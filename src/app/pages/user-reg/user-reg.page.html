@@ -5,6 +5,7 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
+    <section>
     <!-- <div id="user-icons"> -->
     <!-- <ion-title> -->
     <h1>Sign Up</h1>
@@ -17,6 +18,16 @@
     <div class="ion-padding">
         <form [formGroup]="RegForm" (ngSubmit)="submit()">
             <ion-list>
+                <ion-item>
+                    <ion-label position="floating">Name:</ion-label>
+                    <ion-input autocapitalize inputmode="text" formControlName="name"></ion-input>
+                  </ion-item>
+                  <div *ngFor="let error of errorMessages.name">
+                    <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+                      <small class="error-message">{{error.message}}</small>
+                    </ng-container>
+                  </div>
+
                 <ion-item>
                     <ion-label position="floating">Email:</ion-label>
                     <ion-input inputmode="email" formControlName="email"></ion-input>
@@ -67,4 +78,5 @@
             <p style="text-align: center; "><a href="https://example.com " style="padding-left: 10px; color: #5A6573; text-decoration: none; ">Register Restaurant</a></p>
         </form>
     </div>
+</section>
 </ion-content>

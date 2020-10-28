@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyD9rJkSvzr2dOJoCA7Lg0RTP-67Z2_qtAE",
+    authDomain: "mulit-restaurant.firebaseapp.com",
+    databaseURL: "https://mulit-restaurant.firebaseio.com",
+    projectId: "mulit-restaurant",
+    storageBucket: "mulit-restaurant.appspot.com",
+    messagingSenderId: "314510577682",
+    appId: "1:314510577682:web:fb669d0e548c296cf448cb",
+    measurementId: "G-FHQ0FR8L02"
+  }
 };
 
 /*

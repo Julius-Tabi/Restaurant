@@ -75,6 +75,6 @@ export class HomePage {
   });
   public submit() {
     console.log(this.LoginForm.value);
-    this.router.navigate(['/user-reg']);
+    this.router.navigate(['/restaurant-list']);
   }
 }

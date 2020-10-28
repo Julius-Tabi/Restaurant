@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
+import { from } from 'rxjs';
+import{FbserviceService} from '../../services/fbservice.service';
 @Component({
   selector: 'app-user-reg',
   templateUrl: './user-reg.page.html',
@@ -9,7 +11,10 @@ export class UserRegPage implements OnInit {
 
   // constructor() { }
 
-  ngOnInit() {
+  
+  ngOnInit(
+
+  ) {
   }
      showpassword = false;
   passwordToggleIcon = 'eye';
@@ -17,7 +22,7 @@ export class UserRegPage implements OnInit {
     this.showpassword = !this.showpassword;
   }
   
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService) {}
   get email() {
     return this.RegForm.get('email');
   }
@@ -93,4 +98,26 @@ export class UserRegPage implements OnInit {
   public submit() {
     console.log(this.RegForm.value);
   }
+
+  // this.fbservice.Signup(email,password,name).then(() => {
+  //   const alert = this.alertCtrl.create({
+  //     // title: "No Name",
+  //     subTitle: "We have sent you a link on your email ,Please verify your email",
+  //     cssClass : 'myAlert',
+  //     buttons: [
+  //       {
+  //         text: 'Ok',
+  //         handler: () => {
+  //        this.navCtrl.pop()
+  //         }
+  //       },
+  //     ]
+  //   });
+  //   alert.present();
+
+  // }, (error) => {
+  //   console.log(error.message);
+  // })
+  
 }
+
