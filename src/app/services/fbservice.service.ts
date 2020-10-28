@@ -11,21 +11,20 @@ export class FbserviceService {
 
   constructor() { }
 
-  Signup(email, password, name) {
+  
+  // registration 
+  Signup(name, email, phone,password,Confirmpassword) {
     return new Promise((resolve, reject) => {
-      this.ngzone.run(() => {
-        let loading = this.loadingCtrl.create({
-          spinner: 'bubbles',
-          content: 'Signing up...',
-          duration: 4000000
-        });
-        loading.present();
         return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
+          console.log(newUser)
           var user = firebase.auth().currentUser
-          firebase.database().ref("profiles/" + user.uid).set({
+          firebase.database().ref("Users/" + user.uid).set({
             name: name,
             email: email,
-            downloadurl: "../../assets/imgs/Defaults/default.jpg",
+            password: password,
+            Confirmpassword: Confirmpassword,
+            phone:phone,
+            // downloadurl: "../../assets/imgs/Defaults/default.jpg",
             address: "",
           })
           var user = firebase.auth().currentUser;
@@ -35,24 +34,36 @@ export class FbserviceService {
             // An error happened.
           });
           resolve();
-          loading.dismiss();
+          // loading.dismiss();
         }).catch((error) => {
-          loading.dismiss();
-          const alert = this.alertCtrl.create({
-            subTitle: error.message,
-            cssClass: 'myAlert',
-            buttons: [
-              {
-                text: 'ok',
-                handler: data => {
-                  console.log('Cancel clicked');
-                }
-              }
-            ]
-          });
-          alert.present();
           console.log(error);
         })
+      // })
+    })
+  }
+  
+   SignIn(email, password) {
+    return new Promise((resolve, reject) => {
+        firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+          resolve();
+        }).catch((error) => {
+          console.log(error.message)
+      })
+    })
+
+  }
+  
+    checkVerification() {
+    return new Promise((resolve, reject) => {
+      firebase.auth().onAuthStateChanged((user) => {
+        console.log(user);
+        if (user.emailVerified == false) {
+          // this.logout();
+          resolve(0)
+        }
+        else {
+          resolve(1)
+        }
       })
     })
   }

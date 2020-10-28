@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,Validators } from '@angular/forms';
+import { FormBuilder,Validators, } from '@angular/forms';
 import { from } from 'rxjs';
 import{FbserviceService} from '../../services/fbservice.service';
 @Component({
@@ -103,29 +103,16 @@ export class UserRegPage implements OnInit {
     //   ]
     // })
   });
-  public submit() {
+   submit() {
     console.log(this.RegForm.value);
+     this.fbservice.Signup(this.RegForm.value.name,this.RegForm.value.email,this.RegForm.value.phone,this.RegForm.value.password,this.RegForm.value.Confirmpassword).then(() => {
+      console.log("check ur emails")
+  }, (error) => {
+    console.log(error);
+  })
   }
 
-  // this.fbservice.Signup(email,password,name).then(() => {
-  //   const alert = this.alertCtrl.create({
-  //     // title: "No Name",
-  //     subTitle: "We have sent you a link on your email ,Please verify your email",
-  //     cssClass : 'myAlert',
-  //     buttons: [
-  //       {
-  //         text: 'Ok',
-  //         handler: () => {
-  //        this.navCtrl.pop()
-  //         }
-  //       },
-  //     ]
-  //   });
-  //   alert.present();
-
-  // }, (error) => {
-  //   console.log(error.message);
-  // })
+ 
   
 }
 

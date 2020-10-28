@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import{FbserviceService} from '../services/fbservice.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -14,7 +15,7 @@ export class HomePage {
     this.showpassword = !this.showpassword;
   }
   
-  constructor(private formBuilder: FormBuilder,private router: Router) {}
+  constructor(private formBuilder: FormBuilder,private router: Router,private fbservice: FbserviceService) {}
   get email() {
     return this.LoginForm.get('email');
   }
@@ -73,8 +74,21 @@ export class HomePage {
     //   ]
     // })
   });
-  public submit() {
-    console.log(this.LoginForm.value);
-    this.router.navigate(['/restaurant-list']);
+   submit() {
+    this.fbservice.SignIn(this.LoginForm.value.email, this.LoginForm.value.password).then((user: any) => {
+      console.log(user);
+      this.fbservice.checkVerification().then((data: any) => {
+        if (data == 0) {
+          console.log("Please verify before you can login")
+  
+        }
+        else if (data == 1) {
+
+        }
+      })
+    }).catch((error) => {
+      console.log(error)
+
+    })
   }
 }
