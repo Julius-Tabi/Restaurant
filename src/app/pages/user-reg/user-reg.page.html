@@ -1,10 +1,8 @@
-<!-- <ion-header [translucent]="true">
+<ion-header>
     <ion-toolbar>
-        <ion-title>
-            Blank
-        </ion-title>
+        <ion-title>userReg</ion-title>
     </ion-toolbar>
-</ion-header> -->
+</ion-header>
 
 <ion-content [fullscreen]="true">
     <!-- <div id="user-icons"> -->
@@ -17,7 +15,7 @@
     <!-- </ion-title> -->
     <!-- </div> -->
     <div class="ion-padding">
-        <form [formGroup]="LoginForm" (ngSubmit)="submit()">
+        <form [formGroup]="RegForm" (ngSubmit)="submit()">
             <ion-list>
                 <ion-item>
                     <ion-label position="floating">Email</ion-label>
@@ -40,6 +38,16 @@
                 </div>
 
                 <ion-item>
+                    <ion-label position="floating">Confirm Password</ion-label>
+                    <ion-input inputmode="password" formControlName="Confirmpassword" [type]="showpassword ? 'text' : 'password'"></ion-input>
+                    <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color: #5A6573;"></ion-icon>
+                </ion-item>
+                <div *ngFor="let error of errorMessages.Confirmpassword">
+                    <ng-container *ngIf="Confirmpassword.hasError(error.type) && (Confirmpassword.dirty || Confirmpassword.touched)">
+                        <small class="error-message">{{error.message}}</small>
+                    </ng-container>
+                </div>
+                <ion-item>
                     <ion-label position="floating">Phone</ion-label>
                     <ion-input inputmode="tel" formControlName="phone"></ion-input>
                 </ion-item>
@@ -49,13 +57,13 @@
                     </ng-container>
                 </div>
             </ion-list>
-            <p style="text-align: center;">Don't have an account? <a href="/user-reg" style="padding-left: 2px; color: #5A6573; text-decoration: none;">Sign Up</a></p><br>
+            <p style="text-align: center; ">Already have an account? <a href="/home " style="padding-left: 2px; color: #5A6573; text-decoration: none; ">Sign In</a></p><br>
 
-            <ion-button [disabled]="!LoginForm.valid" type="submit" expand="block">Log In
-                <ion-icon slot="end" name="create">
+            <ion-button [disabled]="!RegForm.valid " type="submit " expand="block ">Register
+                <ion-icon slot="end " name="create ">
                 </ion-icon>
             </ion-button>
-            <p style="text-align: center;"><a href="https://example.com" style="padding-left: 10px; color: #5A6573; text-decoration: none;">Register Restaurant</a></p>
+            <p style="text-align: center; "><a href="https://example.com " style="padding-left: 10px; color: #5A6573; text-decoration: none; ">Register Restaurant</a></p>
         </form>
     </div>
 </ion-content>

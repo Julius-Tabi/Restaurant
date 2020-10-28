@@ -1,28 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-user-reg',
+  templateUrl: './user-reg.page.html',
+  styleUrls: ['./user-reg.page.scss'],
 })
-export class HomePage {
+export class UserRegPage implements OnInit {
 
+  // constructor() { }
+
+  ngOnInit() {
+  }
      showpassword = false;
   passwordToggleIcon = 'eye';
    togglePassword() {
     this.showpassword = !this.showpassword;
   }
   
-  constructor(private formBuilder: FormBuilder,private router: Router) {}
+  constructor(private formBuilder: FormBuilder) {}
   get email() {
-    return this.LoginForm.get('email');
+    return this.RegForm.get('email');
   }
   get password() {
-    return this.LoginForm.get('password');
+    return this.RegForm.get('password');
+  }
+   get Confirmpassword() {
+    return this.RegForm.get('Confirmpassword');
   }
   get phone() {
-    return this.LoginForm.get('phone');
+    return this.RegForm.get('phone');
   }
 
   public errorMessages = {
@@ -35,12 +41,16 @@ export class HomePage {
       { type: 'required', message: 'Password is required' },
       { type: 'pattern', message: 'Please enter a valid Password' }
     ],
+     Confirmpassword: [
+      { type: 'required', message: 'Password is required' },
+      { type: 'pattern', message: 'Please enter a valid Password' }
+    ],
     phone: [
       { type: 'required', message: 'Phone number is required' },
       { type: 'pattern', message: 'Please enter a valid phone number' }
     ],
   };
-  LoginForm = this.formBuilder.group({
+  RegForm = this.formBuilder.group({
     email: [
       '',
       [
@@ -49,6 +59,13 @@ export class HomePage {
       ]
     ],
     password: [
+      '',
+      [
+        Validators.required
+        
+      ]
+    ],
+    Confirmpassword: [
       '',
       [
         Validators.required
@@ -74,7 +91,6 @@ export class HomePage {
     // })
   });
   public submit() {
-    console.log(this.LoginForm.value);
-    this.router.navigate(['/user-reg']);
+    console.log(this.RegForm.value);
   }
 }
