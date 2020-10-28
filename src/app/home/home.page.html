@@ -20,7 +20,7 @@
         <form [formGroup]="LoginForm" (ngSubmit)="submit()">
             <ion-list>
                 <ion-item>
-                    <ion-label position="floating">Email</ion-label>
+                    <ion-label position="floating">Email:</ion-label>
                     <ion-input inputmode="email" formControlName="email"></ion-input>
                 </ion-item>
                 <div *ngFor="let error of errorMessages.email">
@@ -29,7 +29,7 @@
                     </ng-container>
                 </div>
                 <ion-item>
-                    <ion-label position="floating">Password</ion-label>
+                    <ion-label position="floating">Password:</ion-label>
                     <ion-input inputmode="password" formControlName="password" [type]="showpassword ? 'text' : 'password'"></ion-input>
                     <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color: #5A6573;"></ion-icon>
                 </ion-item>
@@ -40,7 +40,7 @@
                 </div>
 
                 <ion-item>
-                    <ion-label position="floating">Phone</ion-label>
+                    <ion-label position="floating">Phone:</ion-label>
                     <ion-input inputmode="tel" formControlName="phone"></ion-input>
                 </ion-item>
                 <div *ngFor="let error of errorMessages.phone">
