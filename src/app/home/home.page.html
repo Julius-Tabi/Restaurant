@@ -5,7 +5,14 @@
         </ion-title>
     </ion-toolbar>
 </ion-header> -->
-
+<ion-header>
+    <ion-toolbar>
+      <ion-title style="text-align: center;">Sign In</ion-title>
+      <ion-buttons slot="start">
+        <ion-menu-button autoHide="true"></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 <ion-content id="container" >
     <section>
     <!-- <div id="user-icons"> -->
@@ -53,7 +60,7 @@
             </ion-list>
             <p style="text-align: center;">Don't have an account? <a href="/user-reg" style="padding-left: 2px; color: #5A6573; text-decoration: none;">Sign Up</a></p><br>
 
-            <ion-button shape="round" [disabled]="!LoginForm.valid" type="submit" expand="block">Log In
+            <ion-button shape="round" size="medium" [disabled]="!LoginForm.valid" type="submit" style="width: 60%;">Log In
                 <ion-icon slot="end" name="create">
                 </ion-icon>
             </ion-button>

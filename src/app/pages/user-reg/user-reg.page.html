@@ -18,7 +18,7 @@
     <div class="ion-padding">
         <form [formGroup]="RegForm" (ngSubmit)="submit()">
             <ion-list>
-                <ion-item>
+                <ion-item class="roundedInput">
                     <ion-label position="floating">Name:</ion-label>
                     <ion-input autocapitalize inputmode="text" formControlName="name"></ion-input>
                   </ion-item>
@@ -28,7 +28,7 @@
                     </ng-container>
                   </div>
 
-                <ion-item>
+                <ion-item class="roundedInput">
                     <ion-label position="floating">Email:</ion-label>
                     <ion-input inputmode="email" formControlName="email"></ion-input>
                 </ion-item>
@@ -37,7 +37,7 @@
                         <small class="error-message">{{error.message}}</small>
                     </ng-container>
                 </div>
-                <ion-item>
+                <ion-item class="roundedInput">
                     <ion-label position="floating">Phone:</ion-label>
                     <ion-input inputmode="tel" formControlName="phone"></ion-input>
                 </ion-item>
@@ -46,7 +46,7 @@
                         <small class="error-message">{{error.message}}</small>
                     </ng-container>
                 </div>
-                <ion-item>
+                <ion-item class="roundedInput">
                     <ion-label position="floating">Password:</ion-label>
                     <ion-input inputmode="password" formControlName="password" [type]="showpassword ? 'text' : 'password'"></ion-input>
                     <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color: #5A6573;"></ion-icon>
@@ -57,7 +57,7 @@
                     </ng-container>
                 </div>
 
-                <ion-item>
+                <ion-item class="roundedInput">
                     <ion-label position="floating">Confirm Password:</ion-label>
                     <ion-input inputmode="password" formControlName="Confirmpassword" [type]="showpassword ? 'text' : 'password'"></ion-input>
                     <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color: #5A6573;"></ion-icon>

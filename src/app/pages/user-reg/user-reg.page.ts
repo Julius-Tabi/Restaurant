@@ -23,6 +23,9 @@ export class UserRegPage implements OnInit {
   }
   
   constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService) {}
+  get name() {
+    return this.RegForm.get("name");
+  }
   get email() {
     return this.RegForm.get('email');
   }
@@ -37,6 +40,10 @@ export class UserRegPage implements OnInit {
   }
 
   public errorMessages = {
+    name: [
+      { type: 'required', message: 'Name is required' },
+      { type: 'maxlength', message: 'Name cant be longer than 100 characters' }
+    ],
   
     email: [
       { type: 'required', message: 'Email is required' },
@@ -56,6 +63,7 @@ export class UserRegPage implements OnInit {
     ],
   };
   RegForm = this.formBuilder.group({
+    name: ['', [Validators.required, Validators.maxLength(100)]],
     email: [
       '',
       [
