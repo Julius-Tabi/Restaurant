@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators, } from '@angular/forms';
+import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import{FbserviceService} from '../../services/fbservice.service';
 @Component({
@@ -22,7 +23,7 @@ export class UserRegPage implements OnInit {
     this.showpassword = !this.showpassword;
   }
   
-  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService) {}
+  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router) {}
   get name() {
     return this.RegForm.get("name");
   }
@@ -107,6 +108,7 @@ export class UserRegPage implements OnInit {
     console.log(this.RegForm.value);
      this.fbservice.Signup(this.RegForm.value.name,this.RegForm.value.email,this.RegForm.value.phone,this.RegForm.value.password,this.RegForm.value.Confirmpassword).then(() => {
       console.log("check ur emails")
+      this.router.navigate(['/home']);
   }, (error) => {
     console.log(error);
   })

@@ -1,31 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import{FbserviceService} from '../services/fbservice.service';
+import{FbserviceService} from '../../services/fbservice.service';
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-restlogin',
+  templateUrl: './restlogin.page.html',
+  styleUrls: ['./restlogin.page.scss'],
 })
-export class HomePage {
-
-     showpassword = false;
+export class RestloginPage implements OnInit {
+  showpassword = false;
   passwordToggleIcon = 'eye';
    togglePassword() {
     this.showpassword = !this.showpassword;
   }
-  
-  constructor(private formBuilder: FormBuilder,private router: Router,private fbservice: FbserviceService) {}
+  constructor(private formBuilder: FormBuilder,private router: Router,private fbservice: FbserviceService) { }
   get email() {
     return this.LoginForm.get('email');
   }
   get password() {
     return this.LoginForm.get('password');
   }
-  get phone() {
-    return this.LoginForm.get('phone');
-  }
-
+ 
   public errorMessages = {
   
     email: [
@@ -36,11 +31,8 @@ export class HomePage {
       { type: 'required', message: 'Password is required' },
       { type: 'pattern', message: 'Please enter a valid Password' }
     ],
-    phone: [
-      { type: 'required', message: 'Phone number is required' },
-      { type: 'pattern', message: 'Please enter a valid phone number' }
-    ],
   };
+
   LoginForm = this.formBuilder.group({
     email: [
       '',
@@ -56,25 +48,10 @@ export class HomePage {
         
       ]
     ],
-    phone: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$')
-      ]
-    ],
     
-    // address: this.formBuilder.group({
-    //   street: ['', [Validators.required, Validators.maxLength(100)]],
-    //   city: ['', [Validators.required, Validators.maxLength(100)]],
-    //   state: ['', [Validators.required, Validators.maxLength(100)]],
-    //   zip: [
-    //     '',
-    //     [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')]
-    //   ]
-    // })
   });
-   submit() {
+
+  submit() {
     this.fbservice.SignIn(this.LoginForm.value.email, this.LoginForm.value.password).then((user: any) => {
       console.log(user);
       this.fbservice.checkVerification().then((data: any) => {
@@ -83,7 +60,7 @@ export class HomePage {
   
         }
         else if (data == 1) {
-          this.router.navigate(['/restaurant-list']);
+          this.router.navigate(['/rest-home']);
         }
       })
     }).catch((error) => {
@@ -91,4 +68,8 @@ export class HomePage {
 
     })
   }
+
+  ngOnInit() {
+  }
+
 }

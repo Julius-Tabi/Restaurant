@@ -18,6 +18,18 @@ const routes: Routes = [
     path: 'restaurant-list',
     loadChildren: () => import('./pages/restaurant-list/restaurant-list.module').then( m => m.RestaurantListPageModule)
   },
+  {
+    path: 'restreg',
+    loadChildren: () => import('./pages/restreg/restreg.module').then( m => m.RestregPageModule)
+  },
+  {
+    path: 'restlogin',
+    loadChildren: () => import('./pages/restlogin/restlogin.module').then( m => m.RestloginPageModule)
+  },
+  {
+    path: 'rest-home',
+    loadChildren: () => import('./pages/rest-home/rest-home.module').then( m => m.RestHomePageModule)
+  },
 
 ];
 
