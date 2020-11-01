@@ -11,7 +11,11 @@ import{FbserviceService} from '../../services/fbservice.service';
 export class RestregPage implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router) { }
-
+  showpassword = false;
+  passwordToggleIcon = 'eye';
+   togglePassword() {
+    this.showpassword = !this.showpassword;
+  }
   ngOnInit() {
   }
   // RestregistrationForm = this.formBuilder.group({

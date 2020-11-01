@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'rest-home',
     loadChildren: () => import('./pages/rest-home/rest-home.module').then( m => m.RestHomePageModule)
   },
+  {
+    path: 'adddish',
+    loadChildren: () => import('./pages/adddish/adddish.module').then( m => m.AdddishPageModule)
+  },
 
 ];
 

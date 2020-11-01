@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+// import { AlertController } from 'ionic-angular';
 import{FbserviceService} from '../services/fbservice.service';
 @Component({
   selector: 'app-home',
@@ -79,7 +80,12 @@ export class HomePage {
       console.log(user);
       this.fbservice.checkVerification().then((data: any) => {
         if (data == 0) {
-          console.log("Please verify before you can login")
+          //  const alert = this.alertCtrl.create({
+          //   // title: "No Password",
+          //   subTitle: "We have sent you a verification mail, Please activate your account with the link in the mail",
+          //   buttons: ['OK'],
+          //   cssClass: 'myAlert',
+          // });
   
         }
         else if (data == 1) {
@@ -87,7 +93,12 @@ export class HomePage {
         }
       })
     }).catch((error) => {
-      console.log(error.message)
+    //  const alert = this.alertCtrl.create({
+    //     // title: "No Password",
+    //     subTitle: error.message,
+    //     buttons: ['OK'],
+    //     cssClass: 'myAlert',
+    //   });
 
     })
   }

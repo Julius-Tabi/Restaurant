@@ -7,8 +7,14 @@ import{FbserviceService} from '../../services/fbservice.service';
   styleUrls: ['./rest-home.page.scss'],
 })
 export class RestHomePage implements OnInit {
-
-  constructor(private router: Router,private fbservice: FbserviceService) { }
+  CurrentPerson = new Array();
+  constructor(private router: Router, private fbservice: FbserviceService) {
+    this.fbservice.CurrentUserrLoggedIn().then(data => {
+      // console.log(this.uid)
+      this.CurrentPerson.push(data)
+        console.log(this.CurrentPerson)
+    })
+  }
 
   ngOnInit() {
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import{FbserviceService} from '../../services/fbservice.service';
 import { MenuController } from '@ionic/angular';
 
 
@@ -9,8 +9,19 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./restaurant-list.page.scss'],
 })
 export class RestaurantListPage implements OnInit {
+  displayResurantList = [];
 
-  constructor(private menu: MenuController) { }
+  constructor(private menu: MenuController,private fbservice: FbserviceService) {
+    this.getResurants();
+  }
+  
+  getResurants() {
+       this.fbservice.ResurantList().then((data:any) => {
+      this.displayResurantList = data
+      console.log(this.displayResurantList)
+      
+    })
+  }
   openFirst() {
     this.menu.enable(true, 'first');
     this.menu.open('first');

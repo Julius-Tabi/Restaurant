@@ -11,7 +11,9 @@ export class FbserviceService {
   loadingCtrl: any;
   alertCtrl: any;
   firebase: any;
-
+  auth = firebase.auth();
+  arr = [];
+  resArr = new Array()
   constructor(private router:Router) {
       
    }
@@ -23,15 +25,15 @@ export class FbserviceService {
         return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
           console.log(newUser)
           var user = firebase.auth().currentUser
-          firebase.database().ref("Users/" + user.uid).set({
+          firebase.database().ref("Users/" + newUser.user.uid).set({
             name: name,
             email: email,
             password: password,
             Confirmpassword: Confirmpassword,
-            phone:phone,
+            phone: phone,
             // downloadurl: "../../assets/imgs/Defaults/default.jpg",
             address: "",
-          })
+          });
           var user = firebase.auth().currentUser;
           user.sendEmailVerification().then(function () {
             // Email sent.
@@ -85,7 +87,8 @@ export class FbserviceService {
             password: password,
             Confirmpassword: Confirmpassword, 
             // downloadurl: "../../assets/imgs/Defaults/default.jpg",
-            address:address ,
+            address: address,
+            uid:user.uid
           })
           var user = firebase.auth().currentUser;
           user.sendEmailVerification().then(function () {
@@ -122,6 +125,95 @@ export class FbserviceService {
     //this.firebase.auth.signOut().then(()=>{
   
       //this.router.navigate(['/home']);
+  }
+  // arr = [];
+    CurrentUserrLoggedIn() {
+      return new Promise((accpt, rejc) => {
+        // this.ngzone.run(() => {
+        // this.auth.onAuthStateChanged(function (user) {
+          let userID = firebase.auth().currentUser;
+          firebase.database().ref("Restaurant/" + userID.uid).on('value', (data: any) => {
+            // this.arr.length = 0
+            let details = data.val();
+            console.log(details)
+            // console.log(data.val());
+            let obj = {
+              uid: details.uid
+            }
+            console.log(obj)
+            this.arr.push(obj);
+          });
+          // })
+          accpt(this.arr)
+        // })
+      })
+  }
+  
+  
+  ResurantList() {
+      return new Promise((accpt, rejc) => {
+        // this.ngzone.run(() => {
+        // this.auth.onAuthStateChanged(function (user) {
+          let userID = firebase.auth().currentUser;
+          firebase.database().ref("Restaurant").on('value', (data: any) => {
+            // this.arr.length = 0
+            let details = data.val();
+            console.log(details)
+            // console.log(data.val());
+            let keys1: any = Object.keys(details);
+            console.log(keys1)
+            for (var i = 0; i < keys1.length; i++){
+              let k = keys1[i];
+              console.log(k)
+               let obj = {
+                 Restaurant: details[k].Restaurant,
+                 phone: details[k].phone,
+                 address: details[k].address.city,
+                 addressP:details[k].address.province,
+            }
+           
+            this.resArr.push(obj);
+               console.log(this.resArr)
+            }
+           
+          });
+          // })
+          accpt(this.resArr)
+        // })
+      })
+  } 
+  
+  
+  AddDishes(name, Dishpic, Dishdetails) {
+    // var d = "SA" + Date.now();
+    return new Promise((accpt, rejc) => {
+      // this.ngzone.run(() => {
+        
+        // storageRef.getDownloadURL().then(
+          // url => {
+            var user = firebase.auth().currentUser;
+            // var link = url;
+            firebase
+              .database()
+              .ref("AddDishes/"+ user)
+              .push({
+                // downloadurl: link,
+                name: name,
+                Dishpic: Dishpic,
+                Dishdetails: Dishdetails,
+                uid: user.uid,
+              
+              });
+    
+            accpt("success");
+          // },
+          Error => {
+            rejc(Error.message);
+            console.log(Error.message);
+          }
+        
+      // });
+    });
   }
   
 }

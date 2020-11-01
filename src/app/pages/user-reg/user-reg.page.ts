@@ -107,7 +107,9 @@ export class UserRegPage implements OnInit {
    submit() {
     console.log(this.RegForm.value);
      this.fbservice.Signup(this.RegForm.value.name,this.RegForm.value.email,this.RegForm.value.phone,this.RegForm.value.password,this.RegForm.value.Confirmpassword).then(() => {
-      console.log("check ur emails")
+       console.log("check ur emails")
+       
+       
       this.router.navigate(['/home']);
   }, (error) => {
     console.log(error);
