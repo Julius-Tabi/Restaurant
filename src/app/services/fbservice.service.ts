@@ -195,7 +195,7 @@ export class FbserviceService {
             // var link = url;
             firebase
               .database()
-              .ref("AddDishes/"+ user)
+              .ref("AddDishes/"+ user.uid)
               .push({
                 // downloadurl: link,
                 name: name,
