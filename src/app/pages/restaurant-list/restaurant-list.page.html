@@ -25,12 +25,13 @@
         </ion-card-content>
         <ion-item>
             <!-- <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="RestaurantList" /><br> -->
-           <img src="{{a.Profilepic}}"/>
+           <img style="width: 230px; height: 150px; object-fit: cover;" src="{{a.Profilepic}}"/>
             <ion-button fill="outline" slot="end" style="width: 30%; height: 30%; font-size: large;">View</ion-button>
         </ion-item>
 
         <ion-card-content>
-            <p>{{a.address}}</p>
+            <p>City:{{a.address}}</p>
+            <p>Province:{{a.addressP}}</p>
 
         </ion-card-content>
 
