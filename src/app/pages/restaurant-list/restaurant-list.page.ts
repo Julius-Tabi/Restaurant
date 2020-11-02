@@ -16,7 +16,7 @@ export class RestaurantListPage implements OnInit {
   }
   
   getResurants() {
-       this.fbservice.ResurantList().then((data:any) => {
+      this.fbservice.ResurantList().then((data:any) => {
       this.displayResurantList = data
       console.log(this.displayResurantList)
       

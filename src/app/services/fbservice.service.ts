@@ -151,33 +151,50 @@ export class FbserviceService {
       })
   }
   
-  
+
+
   ResurantList() {
       return new Promise((accpt, rejc) => {
-        // this.ngzone.run(() => {
-        // this.auth.onAuthStateChanged(function (user) {
           let userID = firebase.auth().currentUser;
           firebase.database().ref("Restaurant").on('value', (data: any) => {
-            // this.arr.length = 0
-            let details = data.val();
-            console.log(details)
-            // console.log(data.val());
-            let keys1: any = Object.keys(details);
+            // consolethis first,remember always addd.val()
+            // console.log(data.val())
+            let resturantuserID = data.val()
+            // this shows all keys (with all resturant owners as u saw on console,now you must get inside the user.uid keys)
+            let keys1: any = Object.keys(resturantuserID);
             console.log(keys1)
-            for (var i = 0; i < keys1.length; i++){
-              let k = keys1[i];
+            // you will put everything inside an for loop since they are indexed
+            for(var x =0; x < keys1.length;x++){
+              
+              var k = keys1[x]
+              // this part im sure u know 
               console.log(k)
-               let obj = {
-                 Restaurant: details[k].Restaurant,
-                //  Profilepic: details[k].Profilepic,
-                //  address: details[k].address.city,
-                //  addressP:details[k].address.province,
-            }
-           
-            this.resArr.push(obj);
-               console.log(this.resArr)
-            }
-           
+              // you will call the method again using the keys1 you got which is the user.uid key 
+              // so you can access the second key as you saw on console
+
+              firebase.database().ref("Restaurant/" + k).on('value', (data2: any) => {
+                // console.log(data2.val())
+                let resturantuserID2 = data2.val()
+                console.log(resturantuserID2)
+                let keys2: any = Object.keys(resturantuserID2);
+                console.log(keys2)
+
+                // now you must go inside the second key which is your object 
+                // you will alwys use for loop since its more than one 
+             for(var p = 0;p <keys2.length;p++){
+               let k2 = keys2[p]
+                  let obj = {
+                    Restaurant: resturantuserID2[k2].Restaurant,
+                    Profilepic: resturantuserID2[k2].Profilepic,
+                  //  address: details[k].address.city,
+                  //  addressP:details[k].address.province,
+              }
+                  this.resArr.push(obj);
+                 console.log(this.resArr)
+             }
+            
+              })
+            }        
           });
           // })
           accpt(this.resArr)
