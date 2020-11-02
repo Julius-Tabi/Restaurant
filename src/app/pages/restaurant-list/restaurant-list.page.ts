@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import{FbserviceService} from '../../services/fbservice.service';
 import { MenuController } from '@ionic/angular';
-
+// import {NavController, NavParams} from '@ionic/angular'
 
 @Component({
   selector: 'app-restaurant-list',

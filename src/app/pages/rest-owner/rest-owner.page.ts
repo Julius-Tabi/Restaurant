@@ -1,28 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import{FbserviceService} from '../../services/fbservice.service';
+import { Router } from '@angular/router';
 @Component({
-  selector: 'app-restlogin',
-  templateUrl: './restlogin.page.html',
-  styleUrls: ['./restlogin.page.scss'],
+  selector: 'app-rest-owner',
+  templateUrl: './rest-owner.page.html',
+  styleUrls: ['./rest-owner.page.scss'],
 })
-export class RestloginPage implements OnInit {
+export class RestOwnerPage implements OnInit {
   showpassword = false;
   passwordToggleIcon = 'eye';
    togglePassword() {
     this.showpassword = !this.showpassword;
-  }
-  constructor(private formBuilder: FormBuilder,private router: Router,private fbservice: FbserviceService) { }
+   }
+  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router) { }
   get email() {
-    return this.LoginForm.get('email');
+    return this.RestOwnerForm.get("email");
   }
   get password() {
-    return this.LoginForm.get('password');
+    return this.RestOwnerForm.get('password');
   }
- 
+
   public errorMessages = {
-  
     email: [
       { type: 'required', message: 'Email is required' },
       { type: 'pattern', message: 'Please enter a valid email address' }
@@ -33,7 +32,7 @@ export class RestloginPage implements OnInit {
     ],
   };
 
-  LoginForm = this.formBuilder.group({
+  RestOwnerForm = this.formBuilder.group({
     email: [
       '',
       [
@@ -48,28 +47,17 @@ export class RestloginPage implements OnInit {
         
       ]
     ],
-    
-  });
-
-  submit() {
-    this.fbservice.SignIn(this.LoginForm.value.email, this.LoginForm.value.password).then((user: any) => {
-      console.log(user);
-      this.fbservice.checkVerification().then((data: any) => {
-        if (data == 0) {
-          console.log("Please verify before you can login")
   
-        }
-        else if (data == 1) {
-          this.router.navigate(['/restreg']);
-        }
-      })
-    }).catch((error) => {
-      console.log(error.message)
-
-    })
-  }
-
+  });
   ngOnInit() {
   }
-
+  submit() {
+    console.log(this.RestOwnerForm.value);
+     this.fbservice.RestOwnerSignup(this.RestOwnerForm.value.email,this.RestOwnerForm.value.password).then(() => {
+      console.log("check ur emails")
+      this.router.navigate(['/restlogin']);
+  }, (error) => {
+    console.log(error);
+  })
+  }
 }

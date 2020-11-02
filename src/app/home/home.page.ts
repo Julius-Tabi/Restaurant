@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { AlertController } from 'ionic-angular';
+import {NavController, NavParams,AlertController} from '@ionic/angular'
 import{FbserviceService} from '../services/fbservice.service';
 @Component({
   selector: 'app-home',
@@ -16,7 +16,7 @@ export class HomePage {
     this.showpassword = !this.showpassword;
   }
   
-  constructor(private formBuilder: FormBuilder,private router: Router,private fbservice: FbserviceService) {}
+  constructor(private formBuilder: FormBuilder,private router: Router,private fbservice: FbserviceService,public alertCtrl :AlertController) {}
   get email() {
     return this.LoginForm.get('email');
   }
@@ -75,6 +75,10 @@ export class HomePage {
     //   ]
     // })
   });
+
+
+  // we will find a way on these alerts later lets continue now u must add a dish
+  //okay let me do that but i must do the toilet fisrt,don't feel comfy
    submit() {
     this.fbservice.SignIn(this.LoginForm.value.email, this.LoginForm.value.password).then((user: any) => {
       console.log(user);
@@ -82,9 +86,9 @@ export class HomePage {
         if (data == 0) {
           //  const alert = this.alertCtrl.create({
           //   // title: "No Password",
-          //   subTitle: "We have sent you a verification mail, Please activate your account with the link in the mail",
+          //   title: "We have sent you a verification mail, Please activate your account with the link in the mail",
           //   buttons: ['OK'],
-          //   cssClass: 'myAlert',
+          
           // });
   
         }
@@ -97,7 +101,7 @@ export class HomePage {
     //     // title: "No Password",
     //     subTitle: error.message,
     //     buttons: ['OK'],
-    //     cssClass: 'myAlert',
+      
     //   });
 
     })

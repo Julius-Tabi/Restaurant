@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'adddish',
     loadChildren: () => import('./pages/adddish/adddish.module').then( m => m.AdddishPageModule)
   },
+  {
+    path: 'rest-owner',
+    loadChildren: () => import('./pages/rest-owner/rest-owner.module').then( m => m.RestOwnerPageModule)
+  },
 
 ];
 

@@ -9,8 +9,15 @@ import{FbserviceService} from '../../services/fbservice.service';
   styleUrls: ['./restreg.page.scss'],
 })
 export class RestregPage implements OnInit {
-
-  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router) { }
+  CurrentPerson = new Array();
+  currentUSerKey;
+  downloadurl: null;
+  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router) {
+    this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
+      this.currentUSerKey = data.uid
+      console.log(this.currentUSerKey)
+    })
+   }
   showpassword = false;
   passwordToggleIcon = 'eye';
    togglePassword() {
@@ -33,17 +40,8 @@ export class RestregPage implements OnInit {
   get Restaurant() {
     return this.RestregistrationForm.get("Restaurant");
   }
-  get email() {
-    return this.RestregistrationForm.get("email");
-  }
-  get phone() {
-    return this.RestregistrationForm.get('phone');
-  }
-  get password() {
-    return this.RestregistrationForm.get('password');
-  }
-   get Confirmpassword() {
-    return this.RestregistrationForm.get('Confirmpassword');
+  get Profilepic() {
+    return this.RestregistrationForm.get('Profilepic');
   }
   get street() {
     return this.RestregistrationForm.get('address.street');
@@ -63,22 +61,11 @@ export class RestregPage implements OnInit {
       { type: 'required', message: 'Name is required' },
       { type: 'maxlength', message: 'Name cant be longer than 100 characters' }
     ],
-    email: [
-      { type: 'required', message: 'Email is required' },
-      { type: 'pattern', message: 'Please enter a valid email address' }
+    Profilepic: [
+      { type: 'required', message: 'Profile picture is required' },
+      
     ],
-    phone: [
-      { type: 'required', message: 'Phone number is required' },
-      { type: 'pattern', message: 'Please enter a valid phone number' }
-    ],
-    password: [
-      { type: 'required', message: 'Password is required' },
-      { type: 'pattern', message: 'Please enter a valid Password' }
-    ],
-     Confirmpassword: [
-      { type: 'required', message: 'Password is required' },
-      { type: 'pattern', message: 'Please enter a valid Password' }
-    ],
+   
     street: [
       { type: 'required', message: 'Street name is required' },
       {
@@ -110,32 +97,11 @@ export class RestregPage implements OnInit {
   };
   RestregistrationForm = this.formBuilder.group({
     Restaurant: ['', [Validators.required, Validators.maxLength(100)]],
-    email: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$')
-      ]
-    ],
-    phone: [
-      '',
-      [
-        Validators.required, Validators.maxLength(10), Validators.minLength(10),
-        Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$')
-      ]
-    ],
-    password: [
+    Profilepic: [
       '',
       [
         Validators.required
-        
-      ]
-    ],
-    Confirmpassword: [
-      '',
-      [
-        Validators.required
-        
+       
       ]
     ],
     address: this.formBuilder.group({
@@ -148,14 +114,45 @@ export class RestregPage implements OnInit {
       ]
     })
   });
+  addPic(event: any) {
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.downloadurl = event.target.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+
+  }
+  // now login and add a resturant
+  // you saw the resturant was saved under the current person key who is logged in so if you want to see how many resturants u added u just call ur key then it will show only those 
+  //you have added 
+  // you will do the same with add dishes 
+  // u understand?
+  // i think so
+  //but im worried about the pop things 
+  //and the current user
+  // what pop things?
+  // i will explain the code to you later on so you fully understand and can do it on ur own 
+  //lol
+  //basically follow your steps right?
 
   submit() {
     console.log(this.RestregistrationForm.value);
-     this.fbservice.RestSignup(this.RestregistrationForm.value.Restaurant,this.RestregistrationForm.value.email,this.RestregistrationForm.value.phone,this.RestregistrationForm.value.password,this.RestregistrationForm.value.Confirmpassword,this.RestregistrationForm.value.address).then(() => {
-      console.log("check ur emails")
-      this.router.navigate(['/restlogin']);
-  }, (error) => {
-    console.log(error);
-  })
+    this.fbservice.AddResturant(this.RestregistrationForm.value.Restaurant, this.RestregistrationForm.value.Profilepic,this.RestregistrationForm.value.address).then( data=>{
+      console.log(data)
+      this.router.navigate(['/rest-home']);
+    })
+  //    this.fbservice.RestSignup(this.RestregistrationForm.value.Restaurant,this.RestregistrationForm.value.email,this.RestregistrationForm.value.phone,this.RestregistrationForm.value.password,this.RestregistrationForm.value.Confirmpassword,this.RestregistrationForm.value.address).then(() => {
+  //     console.log("check ur emails")
+  //     this.router.navigate(['/restlogin']);
+  // }, (error) => {
+  //   console.log(error);
+  // })
+  }
+  signout(){
+    this.fbservice.logout();
+    console.log("signed out");
+    this.router.navigate(['/restlogin']);
   }
 }
+  
+

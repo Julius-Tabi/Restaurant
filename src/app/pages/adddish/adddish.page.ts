@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FbserviceService } from 'src/app/services/fbservice.service';
+// import {NavController, NavParams} from '@ionic/angular'
 @Component({
   selector: 'app-adddish',
   templateUrl: './adddish.page.html',
@@ -9,11 +10,13 @@ import { FbserviceService } from 'src/app/services/fbservice.service';
 })
 export class AdddishPage implements OnInit {
   downloadurl: null;
+  CurrentPerson = new Array();
+  currentUSerKey
   constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService, private router: Router) {
-      this.fbservice.CurrentUserrLoggedIn().then(data => {
-      console.log(data)
-      })
-  
+    this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
+      this.currentUSerKey = data.uid
+      console.log(this.currentUSerKey)
+    })
   }
    get name() {
     return this.AddDishForm.get("name");
@@ -74,7 +77,7 @@ export class AdddishPage implements OnInit {
   }
   submit() {
     console.log(this.AddDishForm.value);
-    this.fbservice.AddDishes(this.name.value, this.Dishpic.value, this.Dishdetails.value).then(data => {
+    this.fbservice.AddDish(this.AddDishForm.value.name,this.AddDishForm.value.Dishpic,this.AddDishForm.value.Dishdetails).then( data=>{
       console.log(data)
     })
   }

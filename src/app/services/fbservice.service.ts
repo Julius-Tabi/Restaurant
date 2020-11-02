@@ -75,19 +75,14 @@ export class FbserviceService {
     })
   }
 
-  RestSignup(Restaurant, email, phone,password,Confirmpassword,address) {
+  RestOwnerSignup(email,password) {
     return new Promise((resolve, reject) => {
         return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
           console.log(newUser)
           var user = firebase.auth().currentUser
-          firebase.database().ref("Restaurant/" + user.uid).set({
-            Restaurant: Restaurant,
+          firebase.database().ref("Restaurant-Owner/" + user.uid).set({
             email: email,
-            phone:phone,
             password: password,
-            Confirmpassword: Confirmpassword, 
-            // downloadurl: "../../assets/imgs/Defaults/default.jpg",
-            address: address,
             uid:user.uid
           })
           var user = firebase.auth().currentUser;
@@ -105,6 +100,25 @@ export class FbserviceService {
     })
   }
 
+  AddResturant(Restaurant,Profilepic, address) {
+    return new Promise((resolve, reject) => {
+          var user = firebase.auth().currentUser
+          firebase.database().ref("Restaurant/" + user.uid).push({
+            Restaurant: Restaurant,
+            Profilepic: Profilepic,
+            address: address,
+            uid:user.uid
+          })
+          resolve("success");
+          // loading.dismiss();
+        }).catch((error) => {
+          console.log(error.message);
+        })
+      // })
+    
+  }
+
+
   RestSignIn(email, password) {
     return new Promise((resolve, reject) => {
         firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
@@ -119,33 +133,21 @@ export class FbserviceService {
   logout()
   { 
     this.firebase.signOut().then(()=>{
-      this.router.navigate(['./rest-home']);
+      // this.router.navigate(['./rest-home']);
     });
 
     //this.firebase.auth.signOut().then(()=>{
   
       //this.router.navigate(['/home']);
   }
-  // arr = [];
+  CurrentUserKey;
     CurrentUserrLoggedIn() {
       return new Promise((accpt, rejc) => {
-        // this.ngzone.run(() => {
-        // this.auth.onAuthStateChanged(function (user) {
           let userID = firebase.auth().currentUser;
-          firebase.database().ref("Restaurant/" + userID.uid).on('value', (data: any) => {
-            // this.arr.length = 0
-            let details = data.val();
-            console.log(details)
-            // console.log(data.val());
-            let obj = {
-              uid: details.uid
-            }
-            console.log(obj)
-            this.arr.push(obj);
+          firebase.database().ref("Restaurant-Owner/" + userID.uid).on('value', (data: any) => {
+            var details = data.val();
+            accpt(details)
           });
-          // })
-          accpt(this.arr)
-        // })
       })
   }
   
@@ -167,9 +169,9 @@ export class FbserviceService {
               console.log(k)
                let obj = {
                  Restaurant: details[k].Restaurant,
-                 phone: details[k].phone,
-                 address: details[k].address.city,
-                 addressP:details[k].address.province,
+                //  Profilepic: details[k].Profilepic,
+                //  address: details[k].address.city,
+                //  addressP:details[k].address.province,
             }
            
             this.resArr.push(obj);
@@ -183,37 +185,22 @@ export class FbserviceService {
       })
   } 
   
-  
-  AddDishes(name, Dishpic, Dishdetails) {
-    // var d = "SA" + Date.now();
-    return new Promise((accpt, rejc) => {
-      // this.ngzone.run(() => {
-        
-        // storageRef.getDownloadURL().then(
-          // url => {
-            var user = firebase.auth().currentUser;
-            // var link = url;
-            firebase
-              .database()
-              .ref("AddDishes/"+ user.uid)
-              .push({
-                // downloadurl: link,
-                name: name,
-                Dishpic: Dishpic,
-                Dishdetails: Dishdetails,
-                uid: user.uid,
-              
-              });
+  AddDish(name, Dishpic, Dishdetails) {
+    return new Promise((resolve, reject) => {
+          var user = firebase.auth().currentUser
+          firebase.database().ref("Dish/" + user.uid).push({
+            name: name,
+            Dishpic: Dishpic,
+            Dishdetails:Dishdetails,
+            uid:user.uid
+          })
+          resolve("success");
+          // loading.dismiss();
+        }).catch((error) => {
+          console.log(error.message);
+        })
+      // })
     
-            accpt("success");
-          // },
-          Error => {
-            rejc(Error.message);
-            console.log(Error.message);
-          }
-        
-      // });
-    });
   }
   
 }

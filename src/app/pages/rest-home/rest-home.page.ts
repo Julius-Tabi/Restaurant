@@ -9,9 +9,9 @@ import{FbserviceService} from '../../services/fbservice.service';
 export class RestHomePage implements OnInit {
   CurrentPerson = new Array();
   constructor(private router: Router, private fbservice: FbserviceService) {
-    this.fbservice.CurrentUserrLoggedIn().then(data => {
+    this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
       // console.log(this.uid)
-      this.CurrentPerson.push(data)
+      this.CurrentPerson = data
         console.log(this.CurrentPerson)
     })
   }
