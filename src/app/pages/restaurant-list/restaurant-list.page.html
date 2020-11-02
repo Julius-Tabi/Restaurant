@@ -20,17 +20,17 @@
 
     <ion-card *ngFor="let a of displayResurantList">
         <ion-card-content>
-            <ion-title style="font-size: x-large; text-align: left;">{{a.Restaurant}}</ion-title>
+            <ion-title style="font-size: x-large; color: green;">{{a.Restaurant}}</ion-title>
 
         </ion-card-content>
         <ion-item>
             <!-- <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="RestaurantList" /><br> -->
            <img src="{{a.Profilepic}}"/>
-            <ion-button fill="outline" slot="end" style="width: 30%; height: 50%; font-size: large;">View</ion-button>
+            <ion-button fill="outline" slot="end" style="width: 30%; height: 30%; font-size: large;">View</ion-button>
         </ion-item>
 
         <ion-card-content>
-            {{a.address}}
+            <p>{{a.address}}</p>
 
         </ion-card-content>
 

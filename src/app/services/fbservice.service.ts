@@ -186,8 +186,8 @@ export class FbserviceService {
                   let obj = {
                     Restaurant: resturantuserID2[k2].Restaurant,
                     Profilepic: resturantuserID2[k2].Profilepic,
-                  //  address: details[k].address.city,
-                  //  addressP:details[k].address.province,
+                    address: resturantuserID2[k2].address.city,
+                   addressP:resturantuserID2[k2].address.province,
               }
                   this.resArr.push(obj);
                  console.log(this.resArr)
