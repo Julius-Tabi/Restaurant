@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>restProfile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="main">
+<div class="Profilepic">
+  
+</div>
+  <div class="ion-padding">
+    <form [formGroup]="RestProfileForm" (ngSubmit)="submit()">
+      <ion-list>
+        <ion-item class="roundedInput">
+          <ion-label position="floating">Restaurant</ion-label>
+          <ion-input autocapitalize inputmode="text" formControlName="Restaurant"></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.Restaurant">
+          <ng-container *ngIf="Restaurant.hasError(error.type) && (Restaurant.dirty || Restaurant.touched)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+        <ion-item>
+          <ion-label position="floating">Profile picture:</ion-label>
+          <ion-input formControlName="Profilepic" id="Input" placeholder="Select Item Image" onfocus="this.value=''" type="file" accept="image/*" (change)="addPic($event)" value="Click here to clear" name="picture" required [(ngModel)]="downloadurl"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.Profilepic">
+          <ng-container *ngIf="Profilepic.hasError(error.type) && (Profilepic.dirty || Profilepic.touched)">
+              <small class="error-message">{{error.message}}</small>
+          </ng-container>
+      </div>
+        <ion-item class="roundedInput">
+          <ion-label position="floating">Street</ion-label>
+          <ion-input formControlName="street"></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.street">
+          <ng-container *ngIf="street.hasError(error.type) && (street.dirty || street.touched)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+        <ion-item class="roundedInput">
+          <ion-label position="floating">City</ion-label>
+          <ion-input formControlName="city"></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.city">
+          <ng-container *ngIf="city.hasError(error.type) && (city.dirty || city.touched)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+        <ion-item class="roundedInput">
+          <ion-label position="floating">Province</ion-label>
+          <ion-input formControlName="province"></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.province">
+          <ng-container *ngIf="province.hasError(error.type) && (province.dirty || province.touched)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+        <ion-item class="roundedInput">
+          <ion-label position="floating">Zip Code</ion-label>
+          <ion-input formControlName="zip"></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.zip">
+          <ng-container *ngIf="zip.hasError(error.type) && (zip.dirty || zip.touched)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+      </ion-list>
+      <p style="text-align: center; ">Already have an account? <a href="/restlogin" style="padding-left: 2px; color: #5A6573; text-decoration: none; ">Sign In</a></p><br>
+      <ion-button shape="round" [disabled]="!RestregistrationForm.valid" type="submit" style="width: 60%;">Submit <ion-icon slot="end"
+          name="create">
+        </ion-icon>
+      </ion-button>
+      <ion-button shape="round" size="medium" type="submit" click="signout()">Log Out</ion-button>
+    </form>
+  </div>
+  </div>
+
+</ion-content>

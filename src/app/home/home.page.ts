@@ -23,9 +23,6 @@ export class HomePage {
   get password() {
     return this.LoginForm.get('password');
   }
-  get phone() {
-    return this.LoginForm.get('phone');
-  }
 
   public errorMessages = {
   
@@ -36,10 +33,6 @@ export class HomePage {
     password: [
       { type: 'required', message: 'Password is required' },
       { type: 'pattern', message: 'Please enter a valid Password' }
-    ],
-    phone: [
-      { type: 'required', message: 'Phone number is required' },
-      { type: 'pattern', message: 'Please enter a valid phone number' }
     ],
   };
   LoginForm = this.formBuilder.group({
@@ -57,13 +50,7 @@ export class HomePage {
         
       ]
     ],
-    phone: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$')
-      ]
-    ],
+   
     
     // address: this.formBuilder.group({
     //   street: ['', [Validators.required, Validators.maxLength(100)]],

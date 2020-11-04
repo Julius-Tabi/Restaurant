@@ -48,15 +48,6 @@
                     </ng-container>
                 </div>
 
-                <ion-item class="roundedInput">
-                    <ion-label position="floating">Phone:</ion-label>
-                    <ion-input inputmode="tel" formControlName="phone"></ion-input>
-                </ion-item>
-                <div *ngFor="let error of errorMessages.phone">
-                    <ng-container *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)">
-                        <small class="error-message">{{error.message}}</small>
-                    </ng-container>
-                </div>
             </ion-list>
             <p style="text-align: center;">Don't have an account? <a href="/user-reg" style="padding-left: 2px; color: #5A6573; text-decoration: none;">Sign Up</a></p><br>
 

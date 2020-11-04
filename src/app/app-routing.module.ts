@@ -38,6 +38,10 @@ const routes: Routes = [
     path: 'rest-owner',
     loadChildren: () => import('./pages/rest-owner/rest-owner.module').then( m => m.RestOwnerPageModule)
   },
+  {
+    path: 'rest-profile',
+    loadChildren: () => import('./pages/rest-profile/rest-profile.module').then( m => m.RestProfilePageModule)
+  },
 
 ];
 
