@@ -187,7 +187,8 @@ export class FbserviceService {
                     Restaurant: resturantuserID2[k2].Restaurant,
                     Profilepic: resturantuserID2[k2].Profilepic,
                     address: resturantuserID2[k2].address.city,
-                   addressP:resturantuserID2[k2].address.province,
+                    addressP:resturantuserID2[k2].address.province,
+                    addressZ:resturantuserID2[k2].address.zip,
               }
                   this.resArr.push(obj);
                  console.log(this.resArr)
