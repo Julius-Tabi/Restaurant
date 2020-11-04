@@ -60,7 +60,7 @@ export class RestloginPage implements OnInit {
   
         }
         else if (data == 1) {
-          this.router.navigate(['/restreg']);
+          this.router.navigate(['/rest-home']);
         }
       })
     }).catch((error) => {

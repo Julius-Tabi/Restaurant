@@ -93,16 +93,6 @@ export class UserRegPage implements OnInit {
         Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$')
       ]
     ],
-    
-    // address: this.formBuilder.group({
-    //   street: ['', [Validators.required, Validators.maxLength(100)]],
-    //   city: ['', [Validators.required, Validators.maxLength(100)]],
-    //   state: ['', [Validators.required, Validators.maxLength(100)]],
-    //   zip: [
-    //     '',
-    //     [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')]
-    //   ]
-    // })
   });
    submit() {
     console.log(this.RegForm.value);

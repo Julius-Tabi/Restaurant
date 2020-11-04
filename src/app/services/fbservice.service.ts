@@ -156,7 +156,7 @@ export class FbserviceService {
   ResurantList() {
       return new Promise((accpt, rejc) => {
           let userID = firebase.auth().currentUser;
-          firebase.database().ref("Restaurant").on('value', (data: any) => {
+          firebase.database().ref("Restaurant/" + userID.uid).on('value', (data: any) => {
             // consolethis first,remember always addd.val()
             // console.log(data.val())
             let resturantuserID = data.val()

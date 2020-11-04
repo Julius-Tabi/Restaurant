@@ -9,17 +9,22 @@ import{FbserviceService} from '../../services/fbservice.service';
   styleUrls: ['./rest-profile.page.scss'],
 })
 export class RestProfilePage implements OnInit {
-  displayResurantList = [];
-  constructor( private fbservice: FbserviceService,private router: Router) {
-    this.getResurants();
+  // displayResurantList = [0];
+  CurrentPerson = new Array();
+  currentUSerKey;
+  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router) {
+    this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
+      this.currentUSerKey = data.uid
+      console.log(this.currentUSerKey)
+    })
    }
-   getResurants() {
-    this.fbservice.ResurantList().then((data:any) => {
-    this.displayResurantList = data
-    console.log(this.displayResurantList)
+//    getResurants() {
+//     this.fbservice.ResurantList().then((data:any) => {
+//     this.displayResurantList = data
+//     console.log(this.displayResurantList)
     
-  })
-}
+//   })
+// }
   ngOnInit() {
   }
 
