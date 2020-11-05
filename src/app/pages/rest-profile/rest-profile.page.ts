@@ -9,7 +9,7 @@ import{FbserviceService} from '../../services/fbservice.service';
   styleUrls: ['./rest-profile.page.scss'],
 })
 export class RestProfilePage implements OnInit {
-  displayResurantList=[];
+  displayResurantList = [];
   CurrentPerson = new Array();
   currentUSerKey;
   constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router) {
@@ -17,26 +17,16 @@ export class RestProfilePage implements OnInit {
       this.currentUSerKey = data.uid
       console.log(this.currentUSerKey)
       this.getResurants();
-      // console.log(this.getResurants);
     })
    }
    getResurants() {
     this.fbservice.ResurantProfile().then((data:any) => {
     this.displayResurantList = data
-    console.log(this.displayResurantList)  
+    console.log(this.displayResurantList)
+    
   })
 }
-
-// getRestprofile(){
-//   this.fbservice.restProfile().once('value').then(function(snapshot){
-//     this.displayResurantList = snapshot.val()
-//     console.log('disp: ', this.displayResurantList )
-//   })
-// }
-
-
-
   ngOnInit() {
-    
   }
+
 }

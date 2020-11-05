@@ -1,63 +1,56 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title style="align-self: center;">Profile</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title style="align-self: center;">Profile</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<div class="main">
-<ion-card click="getResurants()" *ngFor="let a of displayResurantList">
-  <div class="Profilepic">
-    <img style="width: 230px; height: 150px; object-fit: cover;" src="{{a.Profilepic}}"/>
-    <!-- <img src="../../../assets/img/image.jpg" alt=""> -->
-    //here i will place the Profilepic
-  </div>
-</ion-card>
-  <ion-card *ngFor="let a of displayResurantList">
-        <ion-card-header>
-          <ion-card-title>
-           <ion-title>Restaurant Name:{{a.Restaurant}}</ion-title>
-          </ion-card-title>
-        </ion-card-header>
-          <br>
-          <ion-card-header>
-          <ion-card-subtitle>
-            <ion-title>About Restaurant:</ion-title>
-          </ion-card-subtitle>
-        </ion-card-header>
-          <br>
-          <ion-card-header>
-          <ion-card-subtitle>
-            <ion-title>here i will place the picture:</ion-title>
-          </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-header>
-          <ion-card-subtitle>
-            <ion-title>Date Established:</ion-title>
-          </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-header>
-          <ion-card-subtitle>
-            <ion-title>Restaurant Address:</ion-title>
-          </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-header>
-          <ion-card-subtitle>
-            <ion-title>Business Field:</ion-title>
-          </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-header>
-        <ion-card-subtitle>
-          <ion-title>Slogan:</ion-title>
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-header>
-        <ion-card-subtitle>
-          <ion-title>Number of Employees:</ion-title>
-        </ion-card-subtitle> 
-      </ion-card-header>
-  </ion-card> 
+    <div class="main">
+        <ion-card click="getResurants()" *ngFor="let a of displayResurantList">
+            <div class="Profilepic">
+                <img style="width: 230px; height: 150px; object-fit: cover;" src="{{a.Profilepic}}" />
+            </div>
+        </ion-card>
+        <ion-card *ngFor="let a of displayResurantList">
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-title>Restaurant Name:{{a.Restaurant}}</ion-title>
+                </ion-card-title>
+            </ion-card-header>
+            <br>
+            <ion-card-header>
+                <ion-card-subtitle>
+                    <ion-title>About Restaurant:{{a.address}}</ion-title>
+                </ion-card-subtitle>
+            </ion-card-header>
+            <br>
+            <ion-card-header>
+                <ion-card-subtitle>
+                    <ion-title>Date Established:{{a.addressP}}</ion-title>
+                </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-header>
+                <ion-card-subtitle>
+                    <ion-title>Restaurant Address:</ion-title>
+                </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-header>
+                <ion-card-subtitle>
+                    <ion-title>Business Field:</ion-title>
+                </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-header>
+                <ion-card-subtitle>
+                    <ion-title>Slogan:</ion-title>
+                </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-header>
+                <ion-card-subtitle>
+                    <ion-title>Number of Employees:</ion-title>
+                </ion-card-subtitle>
+            </ion-card-header>
+        </ion-card>
 
-  </div>
+    </div>
 
 </ion-content>
