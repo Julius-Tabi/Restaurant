@@ -10,7 +10,7 @@
   </ion-header>
 <ion-content  id="content">
     <ion-card *ngFor="let a of displayResurantList">
-        <ion-card-content>
+        <!-- <ion-card-content>
             <ion-title style="font-size: x-large; color: blue; text-align: left; text-transform: uppercase;">{{a.Restaurant}}</ion-title>
                                                                                                                 
         </ion-card-content>
@@ -26,7 +26,19 @@
             <p style="text-transform: uppercase;">City: {{a.address}}</p>
             <p style="text-transform: uppercase;">Province: {{a.addressP}}</p>
             <p style="text-transform: uppercase;">Rating: /10</p>
-        </ion-card-content>
-
+        </ion-card-content> -->
+        <ion-item>
+          <ion-avatar slot="start">
+            <img  src="{{a.Profilepic}}">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{a.Restaurant}}</h2>
+            <p>---------------------------------------------------------------</p>
+            <h3>Address</h3>
+            <p>{{a.addressS}}, {{a.address}}, {{a.addressP}}<br>
+                Rating: /10</p>
+          </ion-label>
+        </ion-item>
     </ion-card>
+    <!-- https://ionicframework.com/docs/api/list -->
 </ion-content>
