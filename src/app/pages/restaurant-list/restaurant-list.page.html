@@ -1,13 +1,11 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title style="text-align: center;">Restaurant List</ion-title>
-  </ion-toolbar>
-</ion-header> -->
 <ion-header>
-   
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
   <ion-card-title style=" background-color: rgba(208, 230, 245, 0.959); text-align: center;  font-size: xxx-large; text-transform: uppercase; font-weight: bolder;">Restaurants</ion-card-title>
-  
-  </ion-header>
 <ion-content  id="content">
     <ion-card *ngFor="let a of displayResurantList">
         <!-- <ion-card-content>

@@ -247,7 +247,26 @@ export class FbserviceService {
       // })
     
   }
+  UpdateDish(name, Dishpic, Dishdetails) {
+    return new Promise((resolve, reject) => {
+          var user = firebase.auth().currentUser
+          firebase.database().ref("Dish/" + user.uid).set({
+            name: name,
+            Dishpic: Dishpic,
+            Dishdetails:Dishdetails,
+            uid:user.uid
+          })
+          resolve("success");
+          // loading.dismiss();
+        }).catch((error) => {
+          console.log(error.message);
+        })
+      // })
+    
+  }
   
 }
+
+
 
 

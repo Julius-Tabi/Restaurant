@@ -1,14 +1,20 @@
-<ion-header>
+<!-- <ion-header>
     <ion-toolbar>
         <ion-title style="align-self: center;">Profile</ion-title>
     </ion-toolbar>
-</ion-header>
-
+</ion-header> -->
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="primary" defaultHref="home"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 <ion-content>
     <div class="main">
-        <ion-card click="getResurants()" *ngFor="let a of displayResurantList">
+        <ion-card click="getResurants()" *ngFor="let a of displayResurantList; let i = index">
             <div class="Profilepic">
-                <img style="width: 100%; height: 100%; object-fit: cover; align-self: right;" src="{{a.Profilepic}}" />
+                <img style="object-fit: cover; align-self: right;" src="{{a.Profilepic}}" />
             </div>
         </ion-card>
         <ion-card *ngFor="let a of displayResurantList">
@@ -20,6 +26,7 @@
             
             <ion-card-header>
                 <ion-card-subtitle>
+                    <p>{{i}}</p>
                     <ion-title>Restaurant Name:{{a.Restaurant}}</ion-title>
                     <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Address</ion-title>
                     <ion-title>City :{{a.address}}</ion-title>
