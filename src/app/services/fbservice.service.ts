@@ -151,25 +151,23 @@ export class FbserviceService {
       })
   }
   
-
-
   ResurantList() {
       return new Promise((accpt, rejc) => {
           let userID = firebase.auth().currentUser;
           firebase.database().ref("Restaurant/").on('value', (data: any) => {
-            // consolethis first,remember always addd.val()
+            // console this first,remember always add .val()
             // console.log(data.val())
             let resturantuserID = data.val()
-            // this shows all keys (with all resturant owners as u saw on console,now you must get inside the user.uid keys)
+            // this shows all keys (with all resturant owners as u saw on console,now i must get inside the user.uid keys)
             let keys1: any = Object.keys(resturantuserID);
             console.log(keys1)
-            // you will put everything inside an for loop since they are indexed
+            // i will put everything inside an for loop since they are indexed
             for(var x =0; x < keys1.length;x++){
               
               var k = keys1[x]
-              // this part im sure u know 
+          
               console.log(k)
-              // you will call the method again using the keys1 you got which is the user.uid key 
+              // i will call the method again using the keys1 you got which is the user.uid key 
               // so you can access the second key as you saw on console
 
               firebase.database().ref("Restaurant/" + k).on('value', (data2: any) => {
@@ -179,13 +177,14 @@ export class FbserviceService {
                 let keys2: any = Object.keys(resturantuserID2);
                 console.log(keys2)
 
-                // now you must go inside the second key which is your object 
-                // you will alwys use for loop since its more than one 
+                // now i must go inside the second key which is your object 
+                // i will alwys use for loop since its more than one 
              for(var p = 0;p <keys2.length;p++){
                let k2 = keys2[p]
                   let obj = {
                     Restaurant: resturantuserID2[k2].Restaurant,
                     Profilepic: resturantuserID2[k2].Profilepic,
+                    addressS: resturantuserID2[k2].address.street,
                     address: resturantuserID2[k2].address.city,
                     addressP:resturantuserID2[k2].address.province,
                     addressZ:resturantuserID2[k2].address.zip,
@@ -193,7 +192,6 @@ export class FbserviceService {
                   this.resArr.push(obj);
                  console.log(this.resArr)
              }
-            
               })
             }        
           });
@@ -206,23 +204,23 @@ export class FbserviceService {
   ResurantProfile() {
     return new Promise((accpt, rejc) => {
         let userID = firebase.auth().currentUser.uid;
-        firebase.database().ref("Restaurant/" + userID).on('value', (data: any) => {
+        firebase.database().ref("Restaurant/" + userID).once('value', (data: any) => {
           let resturantuserID = data.val()
           console.log(resturantuserID);
-          // this shows all keys (with all resturant owners as u saw on console,now you must get inside the user.uid keys)
+          // this shows all keys (with all resturant owners as u saw on console,now i must get inside the user.uid keys)
           let keys1: any = Object.keys(resturantuserID);
           console.log(keys1)
-          // you will put everything inside an for loop since they are indexed
+          // i will put everything inside an for loop since they are indexed
           for(var x =0; x < keys1.length;x++){
             var k = keys1[x]
-            // this part im sure u know 
+             
             console.log(k)
             let obj = {
                Profilepic: resturantuserID[k].Profilepic,
               Restaurant: resturantuserID[k].Restaurant,
                address: resturantuserID[k].address.city,
-                    addressP:resturantuserID[k].address.province,
-                    addressZ:resturantuserID[k].address.zip,
+                addressP:resturantuserID[k].address.province,
+                addressZ:resturantuserID[k].address.zip,
             }
             console.log(obj)
                  this.resArr.push(obj);

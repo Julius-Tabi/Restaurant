@@ -23,10 +23,8 @@ export class RestProfilePage implements OnInit {
     this.fbservice.ResurantProfile().then((data:any) => {
     this.displayResurantList = data
     console.log(this.displayResurantList)
-    
   })
 }
   ngOnInit() {
   }
-
 }

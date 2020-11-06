@@ -26,7 +26,15 @@
                             <small class="error-message">{{error.message}}</small>
                         </ng-container>
                     </div>
-
+                    <!-- <ion-item class="roundedInput">
+                        <ion-label position="floating">About the Restaurant:</ion-label>
+                        <ion-text-area autocapitalize inputmode="text" formControlName="aboutRest"></ion-text-area>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.aboutRest">
+                        <ng-container *ngIf="aboutRest.hasError(error.type) && (aboutRest.dirty || aboutRest.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div> -->
                     <ion-item class="roundedInput">
                         <ion-label position="floating">Email:</ion-label>
                         <ion-input inputmode="email" formControlName="email"></ion-input>
