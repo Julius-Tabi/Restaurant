@@ -122,18 +122,8 @@ export class RestregPage implements OnInit {
     reader.readAsDataURL(event.target.files[0]);
 
   }
-  // now login and add a resturant
-  // you saw the resturant was saved under the current person key who is logged in so if you want to see how many resturants u added u just call ur key then it will show only those 
-  //you have added 
-  // you will do the same with add dishes 
-  // u understand?
-  // i think so
-  //but im worried about the pop things 
-  //and the current user
-  // what pop things?
-  // i will explain the code to you later on so you fully understand and can do it on ur own 
-  //lol
-  //basically follow your steps right?
+ 
+  
 
   submit() {
     console.log(this.RestregistrationForm.value);

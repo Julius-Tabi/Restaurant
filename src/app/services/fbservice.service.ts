@@ -16,6 +16,7 @@ export class FbserviceService {
   auth = firebase.auth();
   arr = [];
   resArr = new Array()
+  resProfArray = new Array()
   constructor(private router:Router) {
       
    }
@@ -141,19 +142,19 @@ export class FbserviceService {
       //this.router.navigate(['/home']);
   }
   CurrentUserKey;
-    CurrentUserrLoggedIn() {
-      return new Promise((accpt, rejc) => {
-          let userID = firebase.auth().currentUser;
-          firebase.database().ref("Restaurant-Owner/" + userID.uid).on('value', (data: any) => {
-            var details = data.val();
-            accpt(details)
-          });
-      })
-  }
+  CurrentUserrLoggedIn() {
+    return new Promise((accpt, rejc) => {
+        let userID = firebase.auth().currentUser.uid;
+        firebase.database().ref("Restaurant-Owner/" + userID).on('value', (data: any) => {
+          var details = data.val();
+          accpt(details)
+        });
+    })
+}
   
   ResurantList() {
       return new Promise((accpt, rejc) => {
-          let userID = firebase.auth().currentUser;
+          // let userID = firebase.auth().currentUser;
           firebase.database().ref("Restaurant/").on('value', (data: any) => {
             // console this first,remember always add .val()
             // console.log(data.val())
@@ -188,6 +189,7 @@ export class FbserviceService {
                     address: resturantuserID2[k2].address.city,
                     addressP:resturantuserID2[k2].address.province,
                     addressZ:resturantuserID2[k2].address.zip,
+                    uid:resturantuserID2[k2].uid
               }
                   this.resArr.push(obj);
                  console.log(this.resArr)
@@ -221,15 +223,48 @@ export class FbserviceService {
                address: resturantuserID[k].address.city,
                 addressP:resturantuserID[k].address.province,
                 addressZ:resturantuserID[k].address.zip,
+                uid:resturantuserID[k].uid
             }
             console.log(obj)
-                 this.resArr.push(obj);
-               console.log(this.resArr)
+                 this.resProfArray.push(obj);
+               console.log(this.resProfArray)
           }        
-        accpt(this.resArr)
+        accpt(this.resProfArray)
       })
     })
 } 
+
+viewProfile() {
+  return new Promise((accpt, rejc) => {
+      // let userID = firebase.auth().currentUser.uid;
+      firebase.database().ref("Restaurant").once('value', (data: any) => {
+        let resturantuserID = data.val()
+        console.log(resturantuserID);
+        // this shows all keys (with all resturant owners as u saw on console,now i must get inside the user.uid keys)
+        let keys1: any = Object.keys(resturantuserID);
+        console.log(keys1)
+        // i will put everything inside an for loop since they are indexed
+        for(var x =0; x < keys1.length;x++){
+          var k = keys1[x]
+           
+          console.log(k)
+          let obj = {
+             Profilepic: resturantuserID[k].Profilepic,
+            Restaurant: resturantuserID[k].Restaurant,
+             address: resturantuserID[k].address.city,
+              addressP:resturantuserID[k].address.province,
+              addressZ:resturantuserID[k].address.zip,
+              uid:resturantuserID[k].uid
+              // uid:resturantuserID
+          }
+          console.log(obj)
+               this.resProfArray.push(obj);
+             console.log(this.resProfArray)
+        }        
+      accpt(this.resProfArray)
+    })
+  })
+}
   AddDish(name, Dishpic, Dishdetails) {
     return new Promise((resolve, reject) => {
           var user = firebase.auth().currentUser

@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="main">
+      <ion-card *ngFor="let p of displayResurantProfile">
+          <div class="Profilepic">
+              <img style="object-fit: cover; align-self: right;" src="{{p.Profilepic}}" />
+          </div>
+      </ion-card>
+      <ion-card *ngFor="let p of displayResurantProfile">
+          <!-- <ion-card-header>
+              <ion-card-title> -->
+                  <!-- <ion-title>Restaurant Name:{{a.Restaurant}}</ion-title> -->
+              <!-- </ion-card-title>
+          </ion-card-header> -->
+          
+          <ion-card-header>
+              <ion-card-subtitle>
+                  <!-- <p>{{i}}</p> -->
+                  <ion-title>Restaurant Name:{{p.Restaurant}}</ion-title>
+                  <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Address</ion-title>
+                  <ion-title>City :{{p.address}}</ion-title>
+                  <ion-title>Province:{{p.addressP}}</ion-title>
+                  <ion-title>Zip Code:{{p.addressZ}}</ion-title>
+              </ion-card-subtitle>
+          </ion-card-header>
+          
+          <ion-card-header>
+              <ion-card-subtitle>
+                  <ion-title>Date Established:</ion-title>
+              </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-header>
+              <ion-card-subtitle>
+                  <ion-title>Restaurant Address:</ion-title>
+              </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-header>
+              <ion-card-subtitle>
+                  <ion-title>Business Field:</ion-title>
+              </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-header>
+              <ion-card-subtitle>
+                  <ion-title>Slogan:</ion-title>
+              </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-header>
+              <ion-card-subtitle>
+                  <ion-title>Number of Employees:</ion-title>
+              </ion-card-subtitle>
+          </ion-card-header>
+      </ion-card>
+  </div>
+</ion-content>

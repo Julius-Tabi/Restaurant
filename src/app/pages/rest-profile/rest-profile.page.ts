@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { from } from 'rxjs';
 import{FbserviceService} from '../../services/fbservice.service';
 @Component({
@@ -12,7 +13,8 @@ export class RestProfilePage implements OnInit {
   displayResurantList = [];
   CurrentPerson = new Array();
   currentUSerKey;
-  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router) {
+  id:any
+  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router, public route: ActivatedRoute) {
     this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
       this.currentUSerKey = data.uid
       console.log(this.currentUSerKey)
@@ -26,5 +28,6 @@ export class RestProfilePage implements OnInit {
   })
 }
   ngOnInit() {
+    this.id= this.route.snapshot.paramMap.get('id');
   }
 }

@@ -43,6 +43,14 @@ const routes: Routes = [
     path: 'rest-profile',
     loadChildren: () => import('./pages/rest-profile/rest-profile.module').then( m => m.RestProfilePageModule)
   },
+  {
+    path: 'auth',
+    loadChildren: () => import('./pages/service/auth/auth.module').then( m => m.AuthPageModule)
+  },
+  {
+    path: 'view-rest/:id',
+    loadChildren: () => import('./pages/view-rest/view-rest.module').then( m => m.ViewRestPageModule)
+  },
 
 ];
 

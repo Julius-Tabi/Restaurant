@@ -1,22 +1,27 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {NavController, NavParams,AlertController} from '@ionic/angular'
 import{FbserviceService} from '../services/fbservice.service';
+import {AuthPage} from '../../app/pages/service/auth/auth.page'
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-
-     showpassword = false;
+export class HomePage implements OnInit {
+  title = 'firebase-angular-auth';
+  isSignedIn = false
+  showpassword = false;
   passwordToggleIcon = 'eye';
    togglePassword() {
     this.showpassword = !this.showpassword;
   }
   
   constructor(private formBuilder: FormBuilder,private router: Router,private fbservice: FbserviceService,public alertCtrl :AlertController) {}
+  ngOnInit(): void {
+
+  }
   get email() {
     return this.LoginForm.get('email');
   }
@@ -50,7 +55,7 @@ export class HomePage {
         
       ]
     ],
-   
+  
     
     // address: this.formBuilder.group({
     //   street: ['', [Validators.required, Validators.maxLength(100)]],

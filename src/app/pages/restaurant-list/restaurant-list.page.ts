@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import{FbserviceService} from '../../services/fbservice.service';
 import { MenuController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 // import {NavController, NavParams} from '@ionic/angular'
 
 @Component({
@@ -11,32 +11,31 @@ import { Router } from '@angular/router';
 })
 export class RestaurantListPage implements OnInit {
   displayResurantList = [];
+  displayResurantProfile = [];
   CurrentPerson = new Array();
   currentUSerKey;
-  constructor(private menu: MenuController,private fbservice: FbserviceService,private router: Router) {
+  id:any
+  Uid:any= this.route.snapshot.params.id;
+
+  constructor(private menu: MenuController,private fbservice: FbserviceService,private router: Router, public route: ActivatedRoute) {
     // this.getResurants();
     // this.getResurantProfile();
     // this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
     //   this.currentUSerKey = data.uid
     //   console.log(this.currentUSerKey)
       this.getResurants();
+      this.viewProfile();
     //   // this.getResurantProfile();
     // })
   }
 
-  getResurantProfile() {
+  viewProfile() {
     this.fbservice.ResurantProfile().then((data:any) => {
-    this.displayResurantList = data.uid
-    console.log(this.displayResurantList)
+    this.displayResurantProfile = data
+    console.log(this.displayResurantProfile)
   })
 }
-//   getResurantProfile() {
-//       this.router.navigate(['/rest-profile']);
-//       this.fbservice.ResurantProfile().then((data:any) => {
-//       this.displayResurantList = data
-//       console.log(this.displayResurantList)
-//   })
-// }
+
   getResurants() {
       this.fbservice.ResurantList().then((data:any) => {
       this.displayResurantList = data
@@ -58,6 +57,8 @@ export class RestaurantListPage implements OnInit {
   }
 
   ngOnInit() {
+    // this.id= this.route.snapshot.paramMap.get('id');
+    
   }
-
+ 
 }
