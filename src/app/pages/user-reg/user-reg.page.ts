@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
-import{FbserviceService} from '../../services/fbservice.service';
+import { FbserviceService } from '../../services/fbservice.service';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import { AlertController, NavController, LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-user-reg',
   templateUrl: './user-reg.page.html',
@@ -23,7 +26,8 @@ export class UserRegPage implements OnInit {
     this.showpassword = !this.showpassword;
   }
   
-  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router,public nav: NavController,
+    public loadingCtrl: LoadingController,private alertCtrl: AlertController) {}
   get name() {
     return this.RegForm.get("name");
   }
@@ -94,16 +98,55 @@ export class UserRegPage implements OnInit {
       ]
     ],
   });
-   submit() {
-    console.log(this.RegForm.value);
-     this.fbservice.Signup(this.RegForm.value.name,this.RegForm.value.email,this.RegForm.value.phone,this.RegForm.value.password,this.RegForm.value.Confirmpassword).then(() => {
-       console.log("check ur emails")
+  // submit() {
+    
+     
+  //   console.log(this.RegForm.value);
+  //    this.fbservice.Signup(this.RegForm.value.name,this.RegForm.value.email).then((newUser) => {
+  //      console.log("check ur emails")
+  //      return firebase.firestore().collection('Users').doc(newUser.user.uid).set({
+  //       name: this.RegForm.value.name
+  //       // phone: phone
+           
+  //       // downloadurl: "../../assets/imgs/Defaults/default.jpg",
+  //       // address: "",
+  //     })
+  //        .then(() => {
+  //          console.log(newUser.user)
+  //          this.router.navigate(['/home']);
+  //        })
        
-       
-      this.router.navigate(['/home']);
-  }, (error) => {
-    console.log(error);
-  })
+  //     // this.router.navigate(['/home']);
+  // }, (error) => {
+  //   console.log(error);
+  // })
+    async submit() {
+    const alert = await this.alertCtrl.create({
+      message: `Your account is registered successfully, click Okay to continue to login.`,
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+            console.log(this.RegForm.value);
+            // this.isSubmitted = true;
+            if(this.RegForm.valid){
+              this.fbservice.Signup(this.RegForm.value.email, this.RegForm.value.password).then((res) => {
+                return firebase.firestore().collection('Users').doc(res.user.uid).set({
+                  name: this.RegForm.value.name,
+                  phone: this.RegForm.value.phone
+                }).then(() => {
+                  console.log(res.user);
+                  this.router.navigate(['/home']);
+                }).catch(function (error) {
+                  console.log(error);
+                });
+              })
+            }
+          }
+        },
+      ]
+    });
+    return await alert.present();
   }
 
  

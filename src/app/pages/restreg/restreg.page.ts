@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,Validators } from '@angular/forms';
+import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
-import{FbserviceService} from '../../services/fbservice.service';
+import { FbserviceService } from '../../services/fbservice.service';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import { AlertController, NavController, LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-restreg',
   templateUrl: './restreg.page.html',
@@ -12,18 +15,23 @@ export class RestregPage implements OnInit {
   CurrentPerson = new Array();
   currentUSerKey;
   downloadurl: null;
-  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router) {
-    this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
-      this.currentUSerKey = data.uid
-      console.log(this.currentUSerKey)
-    })
-   }
+  ownerId: any
+  RestregistrationForm:FormGroup
+  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService, private router: Router, public nav: NavController,
+    public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
+    // this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
+    //   this.currentUSerKey = data.uid
+    //   console.log(this.currentUSerKey)
+    // })
+  }
   showpassword = false;
   passwordToggleIcon = 'eye';
-   togglePassword() {
+  togglePassword() {
     this.showpassword = !this.showpassword;
   }
   ngOnInit() {
+    
+    this.addRest()
   }
   // RestregistrationForm = this.formBuilder.group({
   //   Restaurant: [''],
@@ -95,7 +103,8 @@ export class RestregPage implements OnInit {
       }
     ]
   };
-  RestregistrationForm = this.formBuilder.group({
+  addRest() {
+  this.RestregistrationForm = this.formBuilder.group({
     Restaurant: ['', [Validators.required, Validators.maxLength(100)]],
     Profilepic: [
       '',
@@ -114,6 +123,8 @@ export class RestregPage implements OnInit {
       ]
     })
   });
+  }
+  
   addPic(event: any) {
     let reader = new FileReader();
     reader.onload = (event: any) => {
@@ -123,25 +134,51 @@ export class RestregPage implements OnInit {
 
   }
  
-  
+  async submit() {
+    const alert = await this.alertCtrl.create({
+      message: `Your restaurant is added successfulluy, please click Okay to confirm`,
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+            console.log(this.RestregistrationForm.value);
+            var user = firebase.auth().currentUser
+            this.ownerId = user.uid;
+            this.fbservice.regRest().doc(this.ownerId).set({
+              ownerId: this.ownerId,
+              Restaurant: this.RestregistrationForm.value.Restaurant,
+              Profilepic: this.RestregistrationForm.value.Profilepic,
+              address: this.RestregistrationForm.value.address
+            }).then(() => {
+              this.router.navigateByUrl('/rest-home');
+              this.RestregistrationForm.reset();
+            }).catch(function (error) {
+              console.log(error)
+            });
+          },
+        },
+      ]
+    });
+    return await alert.present();
 
-  submit() {
-    console.log(this.RestregistrationForm.value);
-    this.fbservice.AddResturant(this.RestregistrationForm.value.Restaurant, this.RestregistrationForm.value.Profilepic,this.RestregistrationForm.value.address).then( data=>{
-      console.log(data)
-      this.router.navigate(['/rest-home']);
-    })
-  //    this.fbservice.RestSignup(this.RestregistrationForm.value.Restaurant,this.RestregistrationForm.value.email,this.RestregistrationForm.value.phone,this.RestregistrationForm.value.password,this.RestregistrationForm.value.Confirmpassword,this.RestregistrationForm.value.address).then(() => {
-  //     console.log("check ur emails")
-  //     this.router.navigate(['/restlogin']);
-  // }, (error) => {
-  //   console.log(error);
-  // })
-  }
-  signout(){
-    this.fbservice.logout();
-    console.log("signed out");
-    this.router.navigate(['/restlogin']);
+    // submit() {
+    //   console.log(this.RestregistrationForm.value);
+    //   this.fbservice.AddResturant(this.RestregistrationForm.value.Restaurant, this.RestregistrationForm.value.Profilepic,this.RestregistrationForm.value.address).then( data=>{
+    //     console.log(data)
+    //     this.router.navigate(['/rest-home']);
+    //   })
+    // //    this.fbservice.RestSignup(this.RestregistrationForm.value.Restaurant,this.RestregistrationForm.value.email,this.RestregistrationForm.value.phone,this.RestregistrationForm.value.password,this.RestregistrationForm.value.Confirmpassword,this.RestregistrationForm.value.address).then(() => {
+    // //     console.log("check ur emails")
+    // //     this.router.navigate(['/restlogin']);
+    // // }, (error) => {
+    // //   console.log(error);
+    // // })
+    // }
+    // signout(){
+    //   this.fbservice.logout();
+    //   console.log("signed out");
+    //   this.router.navigate(['/restlogin']);
+    // }
   }
 }
   

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
 import{FbserviceService} from '../../services/fbservice.service';
 import { Router } from '@angular/router';
+import { AlertController, NavController, LoadingController } from '@ionic/angular';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 @Component({
   selector: 'app-rest-owner',
   templateUrl: './rest-owner.page.html',
@@ -13,7 +16,12 @@ export class RestOwnerPage implements OnInit {
    togglePassword() {
     this.showpassword = !this.showpassword;
    }
-  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService,private router: Router,public nav: NavController,
+    public loadingCtrl: LoadingController,private alertCtrl: AlertController) { }
+    get name() {
+    return this.RestOwnerForm.get('name');
+  }
+
   get email() {
     return this.RestOwnerForm.get("email");
   }
@@ -22,6 +30,10 @@ export class RestOwnerPage implements OnInit {
   }
 
   public errorMessages = {
+     name: [
+      { type: 'required', message: 'Name is required' },
+      { type: 'maxlength', message: 'Name cant be longer than 100 characters' }
+    ],
     email: [
       { type: 'required', message: 'Email is required' },
       { type: 'pattern', message: 'Please enter a valid email address' }
@@ -33,6 +45,7 @@ export class RestOwnerPage implements OnInit {
   };
 
   RestOwnerForm = this.formBuilder.group({
+    name: ['', [Validators.required, Validators.maxLength(100)]],
     email: [
       '',
       [
@@ -51,13 +64,41 @@ export class RestOwnerPage implements OnInit {
   });
   ngOnInit() {
   }
-  submit() {
-    console.log(this.RestOwnerForm.value);
-     this.fbservice.RestOwnerSignup(this.RestOwnerForm.value.email,this.RestOwnerForm.value.password).then(() => {
-      console.log("check ur emails")
-      this.router.navigate(['/restlogin']);
-  }, (error) => {
-    console.log(error);
-  })
+   async submit() {
+    const alert = await this.alertCtrl.create({
+      message: `Your account is registered successfully, click Okay to continue to login.`,
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+            console.log(this.RestOwnerForm.value);
+            // this.isSubmitted = true;
+            if(this.RestOwnerForm.valid){
+              this.fbservice.Signup_Owner(this.RestOwnerForm.value.email, this.RestOwnerForm.value.password).then((res) => {
+                return firebase.firestore().collection('Restaurant_Owner').doc(res.user.uid).set({
+                  name: this.RestOwnerForm.value.name,
+                  // phone: this.RestOwnerForm.value.phone
+                }).then(() => {
+                  console.log(res.user);
+                  this.router.navigate(['/restlogin']);
+                }).catch(function (error) {
+                  console.log(error);
+                });
+              })
+            }
+          }
+        },
+      ]
+    });
+    return await alert.present();
   }
+  // submit() {
+  //   console.log(this.RestOwnerForm.value);
+  //    this.fbservice.RestOwnerSignup(this.RestOwnerForm.value.email,this.RestOwnerForm.value.password).then(() => {
+  //     console.log("check ur emails")
+  //     this.router.navigate(['/restlogin']);
+  // }, (error) => {
+  //   console.log(error);
+  // })
+  // }
 }

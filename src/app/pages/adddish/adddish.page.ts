@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,Validators, } from '@angular/forms';
+import { FormBuilder,FormGroup,Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FbserviceService } from 'src/app/services/fbservice.service';
+// import { FbserviceService } from 'src/app/services/fbservice.service';
+import { FbserviceService } from '../../services/fbservice.service';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import { AlertController, NavController, LoadingController } from '@ionic/angular';
 // import {NavController, NavParams} from '@ionic/angular'
 @Component({
   selector: 'app-adddish',
@@ -12,24 +16,27 @@ export class AdddishPage implements OnInit {
   downloadurl: null;
   CurrentPerson = new Array();
   currentUSerKey
-  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService, private router: Router) {
-    this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
-      this.currentUSerKey = data.uid
-      console.log(this.currentUSerKey)
-    })
+  AddDishForm: FormGroup
+  ownerId: any
+  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService, private router: Router, public nav: NavController,
+    public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
+    // this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
+    //   this.currentUSerKey = data.uid
+    //   console.log(this.currentUSerKey)
+    // })
   }
-   get name() {
+  get name() {
     return this.AddDishForm.get("name");
   }
   get Dishpic() {
     return this.AddDishForm.get('Dishpic');
   }
  
-   get Dishdetails() {
+  get Dishdetails() {
     return this.AddDishForm.get('Dishdetails');
-   }
+  }
   
-    public errorMessages = {
+  public errorMessages = {
     name: [
       { type: 'required', message: 'Dish Name is required' },
       { type: 'maxlength', message: 'Name cant be longer than 100 characters' }
@@ -44,26 +51,28 @@ export class AdddishPage implements OnInit {
       
     ],
    
-    };
+  };
   
-   AddDishForm = this.formBuilder.group({
-    name: ['', [Validators.required, Validators.maxLength(100)]],
-    Dishpic: [
-      '',
-      [
-        Validators.required
+  AddDish() {
+    this.AddDishForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(100)]],
+      Dishpic: [
+        '',
+        [
+          Validators.required
        
-      ]
-    ],
-    Dishdetails: [
-      '',
-      [
-        Validators.required
+        ]
+      ],
+      Dishdetails: [
+        '',
+        [
+          Validators.required
         
-      ]
-    ],
+        ]
+      ],
     
-  });
+    });
+  }
   addPic(event: any) {
     let reader = new FileReader();
     reader.onload = (event: any) => {
@@ -73,12 +82,37 @@ export class AdddishPage implements OnInit {
 
   }
   ngOnInit() {
-   
+    this.AddDish()
   }
-  submit() {
-    console.log(this.AddDishForm.value);
-    this.fbservice.AddDish(this.AddDishForm.value.name,this.AddDishForm.value.Dishpic,this.AddDishForm.value.Dishdetails).then( data=>{
-      console.log(data)
-    })
+  async submit() {
+    const loading = await this.loadingCtrl.create();
+    var user = firebase.auth().currentUser
+    this.ownerId = user.uid;
+    // Adding new menu
+    this.fbservice.regRest().doc(this.ownerId).collection('menu').add({
+      ownerId: this.ownerId,
+      name: this.AddDishForm.value.name,
+      Dishpic: this.AddDishForm.value.Dishpic,
+      Dishdetails: this.AddDishForm.value.Dishdetails,
+     
+    }).then(() => {
+      loading.dismiss().then(() => {
+        this.router.navigateByUrl('/rest-home')
+        this.AddDishForm.reset();
+      });
+    },
+      error => {
+        loading.dismiss().then(() => {
+          console.log(error);
+        });
+      }
+    );
+    return await loading.present();
+    // submit() {
+    //   console.log(this.AddDishForm.value);
+    //   this.fbservice.AddDish(this.AddDishForm.value.name,this.AddDishForm.value.Dishpic,this.AddDishForm.value.Dishdetails).then( data=>{
+    //     console.log(data)
+    //   })
+    // }
   }
 }

@@ -1,9 +1,10 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {NavController, NavParams,AlertController} from '@ionic/angular'
+// import {NavController, NavParams,AlertController} from '@ionic/angular'
 import{FbserviceService} from '../services/fbservice.service';
-import {AuthPage} from '../../app/pages/service/auth/auth.page'
+import { AuthPage } from '../../app/pages/service/auth/auth.page'
+import { AlertController, NavController, LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -14,11 +15,12 @@ export class HomePage implements OnInit {
   isSignedIn = false
   showpassword = false;
   passwordToggleIcon = 'eye';
-   togglePassword() {
+  togglePassword() {
     this.showpassword = !this.showpassword;
   }
   
-  constructor(private formBuilder: FormBuilder,private router: Router,private fbservice: FbserviceService,public alertCtrl :AlertController) {}
+  constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService, private router: Router, public nav: NavController,
+    public loadingCtrl: LoadingController, private alertCtrl: AlertController) { }
   ngOnInit(): void {
 
   }
@@ -71,31 +73,23 @@ export class HomePage implements OnInit {
 
   // we will find a way on these alerts later lets continue now u must add a dish
   //okay let me do that but i must do the toilet fisrt,don't feel comfy
-   submit() {
-    this.fbservice.SignIn(this.LoginForm.value.email, this.LoginForm.value.password).then((user: any) => {
-      console.log(user);
-      this.fbservice.checkVerification().then((data: any) => {
-        if (data == 0) {
-          //  const alert = this.alertCtrl.create({
-          //   // title: "No Password",
-          //   title: "We have sent you a verification mail, Please activate your account with the link in the mail",
-          //   buttons: ['OK'],
-          
-          // });
-  
-        }
-        else if (data == 1) {
-          this.router.navigate(['/restaurant-list']);
-        }
-      })
-    }).catch((error) => {
-    //  const alert = this.alertCtrl.create({
-    //     // title: "No Password",
-    //     subTitle: error.message,
-    //     buttons: ['OK'],
-      
-    //   });
-
-    })
+  async submit() {
+    const loading = await this.loadingCtrl.create();
+    this.fbservice.signAuth();
+    console.log(this.LoginForm.value);
+    this.fbservice.SignIn(this.LoginForm.value.email, this.LoginForm.value.password).then((res) => {
+      console.log(res.user);
+    }).then(() => {
+      loading.dismiss().then(() => {
+        this.router.navigateByUrl('/restaurant-list');
+      });
+    },
+      error => {
+        loading.dismiss().then(() => {
+          console.log(error);
+        });
+      }
+    );
+    return await loading.present();
   }
 }

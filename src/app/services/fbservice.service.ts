@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import 'firebase/firestore';
 import { from } from 'rxjs';
 import {Router} from '@angular/router'
 
@@ -20,47 +21,99 @@ export class FbserviceService {
   constructor(private router:Router) {
       
    }
-
+signAuth(){
+    return firebase.auth().onAuthStateChanged(user => {
+     if(user){
+      //  const email = user.email;
+      //  this.setSession(email);
+       console.log('user logged in: ', user);
+     }else{
+       console.log('user logged out')
+     }
+    });
+  }
   
   // registration 
-  Signup(name, email, phone,password,Confirmpassword) {
-    return new Promise((resolve, reject) => {
-        return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
-          console.log(newUser)
-          var user = firebase.auth().currentUser
-          firebase.database().ref("Users/" + newUser.user.uid).set({
-            name: name,
-            email: email,
-            password: password,
-            Confirmpassword: Confirmpassword,
-            phone: phone,
-            // downloadurl: "../../assets/imgs/Defaults/default.jpg",
-            address: "",
-          });
-          var user = firebase.auth().currentUser;
-          user.sendEmailVerification().then(function () {
-            // Email sent.
-          }).catch(function (error) {
-            // An error happened.
-          });
-          resolve();
-          // loading.dismiss();
-        }).catch((error) => {
-          console.log(error);
-        })
-      // })
-    })
+  Signup(email,password) {
+    // return new Promise((resolve, reject) => {
+      return firebase.auth().createUserWithEmailAndPassword(email, password)
+    //     .then((newUser) => {
+    //       console.log(newUser)
+    //       // var user = firebase.auth().currentUser
+    //     // firebase.firestore().collection('Users').doc(newUser.user.uid).set({
+    //     //     name: name,
+    //     //     phone:phone
+           
+    //     //     // downloadurl: "../../assets/imgs/Defaults/default.jpg",
+    //     //     // address: "",
+    //     //   });
+    //       var user = firebase.auth().currentUser;
+    //       user.sendEmailVerification().then(function () {
+    //         // Email sent.
+    //       }).catch(function (error) {
+    //         // An error happened.
+    //       });
+    //       resolve();
+    //       // loading.dismiss();
+    //     }).catch((error) => {
+    //       console.log(error);
+    //     })
+    //   // })
+    // })
+  }
+   Signup_Owner(email,password) {
+    // return new Promise((resolve, reject) => {
+      return firebase.auth().createUserWithEmailAndPassword(email, password)
+    //     .then((newUser) => {
+    //       console.log(newUser)
+    //       // var user = firebase.auth().currentUser
+    //     // firebase.firestore().collection('Users').doc(newUser.user.uid).set({
+    //     //     name: name,
+    //     //     phone:phone
+           
+    //     //     // downloadurl: "../../assets/imgs/Defaults/default.jpg",
+    //     //     // address: "",
+    //     //   });
+    //       var user = firebase.auth().currentUser;
+    //       user.sendEmailVerification().then(function () {
+    //         // Email sent.
+    //       }).catch(function (error) {
+    //         // An error happened.
+    //       });
+    //       resolve();
+    //       // loading.dismiss();
+    //     }).catch((error) => {
+    //       console.log(error);
+    //     })
+    //   // })
+    // })
   }
   
    SignIn(email, password) {
-    return new Promise((resolve, reject) => {
-        firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-          resolve();
-        }).catch((error) => {
-          console.log(error.message)
-      })
-    })
+    // return new Promise((resolve, reject) => {
+    return firebase.auth().signInWithEmailAndPassword(email, password)
+    //    .then(() => {
+    //       resolve();
+    //     }).catch((error) => {
+    //       console.log(error.message)
+    //   })
+    // })
 
+  }
+  SignInOwner(email, password) {
+    // return new Promise((resolve, reject) => {
+    return firebase.auth().signInWithEmailAndPassword(email, password)
+    //    .then(() => {
+    //       resolve();
+    //     }).catch((error) => {
+    //       console.log(error.message)
+    //   })
+    // })
+
+  }
+  
+   regRest() {
+    return firebase.firestore().collection('restaurants');
   }
   
   checkVerification() {
