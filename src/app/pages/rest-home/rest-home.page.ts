@@ -28,6 +28,9 @@ export class RestHomePage implements OnInit {
   }
 
   ngOnInit() {
+    this.fbservice.signAuth();
+    let user = firebase.auth().currentUser.uid
+    console.log('user: ', user)
     // this.id = this.route.snapshot.paramMap.get('id')
     // console.log('ID: ', this.id)
     // console.log(this.uid)
