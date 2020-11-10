@@ -18,21 +18,30 @@ export class FbserviceService {
   arr = [];
   resArr = new Array()
   resProfArray = new Array()
+  UID:any;
   constructor(private router:Router) {
       
    }
 signAuth(){
     return firebase.auth().onAuthStateChanged(user => {
      if(user){
-      //  const email = user.email;
+      const uid = user.uid;
       //  this.setSession(email);
-       console.log('user logged in: ', user);
+      this.setuid(uid)
+      console.log('user logged in: ', user);
      }else{
        console.log('user logged out')
      }
     });
   }
   
+  
+  setuid(a){
+    this.UID = a;
+  }
+  getUid(){
+    return this.UID;
+  }
   // registration 
   Signup(email,password) {
     // return new Promise((resolve, reject) => {

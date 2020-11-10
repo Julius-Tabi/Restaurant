@@ -12,18 +12,19 @@ export class ViewDishesPage implements OnInit {
 
   id:any
   uid = this.route.snapshot.params.id;
-  restaurants: any = [];
-  dishes: any= [];
+  dishes: any = [];
   ownerId:any
   constructor(private fbservice: FbserviceService,private router: Router, public route: ActivatedRoute) { }
  
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id')
-    console.log('ID: ', this.id)
-    console.log(this.uid)
+    this.fbservice.signAuth();
+    let user = firebase.auth().currentUser.uid
+    console.log('user: ', user)
+    // let user = firebase.auth().currentUser.uid;
+    // this.id = user.uid
       // Fetching menus
-    firebase.firestore().collection('restaurants').doc(this.uid).collection('menu').where('ownerId', '==', this.uid).limit(3).get().then(snapshot => {
+    firebase.firestore().collection('restaurants').doc(user).collection('menu').where('ownerId', '==', user).limit(3).get().then(snapshot => {
       snapshot.docs.forEach(menu => {
         this.dishes.push(menu.data())
         console.log('menu: ', this.dishes)

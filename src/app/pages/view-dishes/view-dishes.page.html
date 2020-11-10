@@ -5,13 +5,13 @@
 </ion-header>
 
 <ion-content>
-  <div class="main">
-      <ion-card>
+  <div class="main" >
+      <ion-card *ngFor="let a of dishes">
           <div class="Profilepic">
-              <img style="object-fit: cover; align-self: right;" src="{{restaurants?.Profilepic}}" />
+              <img style="object-fit: cover; align-self: right;" src="{{a?.Profilepic}}" />
           </div>
       </ion-card>
-      <ion-card style="text-align: center; align-self: center; justify-content: center; align-items: center;">
+      <ion-card *ngFor="let a of dishes" style="text-align: center; align-self: center; justify-content: center; align-items: center;">
           <!-- <ion-card-header>
               <ion-card-title> -->
                   <!-- <ion-title>Restaurant Name:{{a.Restaurant}}</ion-title> -->
@@ -36,12 +36,14 @@
           <ion-card-header>
               <ion-card-subtitle style="text-align: center;">
             <ion-item-divider color="primary">
-              <img style="object-fit: cover; align-self: right;" src="{{restaurants?.Dishpic}}" /><br>
-                  <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Dishes</ion-title>
+              <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Dishes</ion-title>
+              <div class="dish-picture">
+                <img style="object-fit: cover; align-self: right;" src="{{a?.Dishpic}}" /><br>
+              </div>
                 </ion-item-divider><br>
-                  <ion-title>Dish Name: {{restaurants?.name}}</ion-title>
-                  <ion-title>Dish Details :{{restaurants?.Dishdetails}}</ion-title>
-                  <ion-title>Price:{{restaurants?.price}}</ion-title>
+                  <ion-title>Dish Name: {{a?.name}}</ion-title>
+                  <ion-title>Dish Details :{{a?.Dishdetails}}</ion-title>
+                  <ion-title>Price:{{a?.price}}</ion-title>
                   <!-- <ion-title>Zip Code:{{restaurants?.zip}}</ion-title> -->
               </ion-card-subtitle>
           </ion-card-header>
