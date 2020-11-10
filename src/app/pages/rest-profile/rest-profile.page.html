@@ -1,65 +1,57 @@
-<!-- <ion-header>
-    <ion-toolbar>
-        <ion-title style="align-self: center;">Profile</ion-title>
-    </ion-toolbar>
-</ion-header> -->
 <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-back-button color="primary" defaultHref="home"></ion-back-button>
+        <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Restaurant Profile</ion-title><br>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-<ion-content>
+  <ion-content>
     <div class="main">
-        <ion-card click="getResurants()" *ngFor="let a of displayResurantList; let i = index">
+        <ion-card>
             <div class="Profilepic">
-                <img style="object-fit: cover; align-self: right;" src="{{a.Profilepic}}" />
+                <img style="object-fit: cover; align-self: right;" src="{{restaurants?.Profilepic}}" />
             </div>
         </ion-card>
-        <ion-card *ngFor="let a of displayResurantList">
+        <ion-card style="text-align: center; align-self: center; justify-content: center; align-items: center;">
             <!-- <ion-card-header>
                 <ion-card-title> -->
                     <!-- <ion-title>Restaurant Name:{{a.Restaurant}}</ion-title> -->
                 <!-- </ion-card-title>
             </ion-card-header> -->
-            
+            <ion-item-divider>
             <ion-card-header>
-                <ion-card-subtitle>
-                    <p>{{i}}</p>
-                    <ion-title>Restaurant Name:{{a.Restaurant}}</ion-title>
+              <ion-card-subtitle>
+                  <ion-item-divider color="primary">
+                  <ion-title style="font-size: x-large; font-weight: bold;">About Restaurant</ion-title>
+                  </ion-item-divider><br>
+                  <ion-title>Restaurant Name:{{restaurants?.Restaurant}}</ion-title><br>
+                  <ion-title>Date Established:</ion-title><br>
+                  <ion-title>Business Field:</ion-title><br>
+                  <ion-title>Slogan:</ion-title><br>
+                  <ion-title>Number of Employees:</ion-title><br>
+                  <ion-title>Reviews:</ion-title>
+              </ion-card-subtitle>
+          </ion-card-header>
+      </ion-item-divider>
+    
+            <ion-card-header>
+                <ion-card-subtitle style="text-align: center;">
+              <ion-item-divider color="primary">
                     <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Address</ion-title>
-                    <ion-title>City :{{a.address}}</ion-title>
-                    <ion-title>Province:{{a.addressP}}</ion-title>
-                    <ion-title>Zip Code:{{a.addressZ}}</ion-title>
+                  </ion-item-divider><br>
+                    <ion-title>Street :{{restaurants?.street}}</ion-title>
+                    <ion-title>City :{{restaurants?.city}}</ion-title>
+                    <ion-title>Province:{{restaurants?.province}}</ion-title>
+                    <ion-title>Zip Code:{{restaurants?.zip}}</ion-title>
                 </ion-card-subtitle>
             </ion-card-header>
-            
-            <ion-card-header>
-                <ion-card-subtitle>
-                    <ion-title>Date Established:</ion-title>
-                </ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-header>
-                <ion-card-subtitle>
-                    <ion-title>Restaurant Address:</ion-title>
-                </ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-header>
-                <ion-card-subtitle>
-                    <ion-title>Business Field:</ion-title>
-                </ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-header>
-                <ion-card-subtitle>
-                    <ion-title>Slogan:</ion-title>
-                </ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-header>
-                <ion-card-subtitle>
-                    <ion-title>Number of Employees:</ion-title>
-                </ion-card-subtitle>
-            </ion-card-header>
+            <ion-button shape="round"  style="width: 60%; align-self: center;" >Update Profile<ion-icon slot="end"
+              name="create">
+            </ion-icon>
+          </ion-button>
         </ion-card>
+       
     </div>
-</ion-content>
+  </ion-content>
+  

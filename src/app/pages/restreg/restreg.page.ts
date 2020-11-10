@@ -52,16 +52,16 @@ export class RestregPage implements OnInit {
     return this.RestregistrationForm.get('Profilepic');
   }
   get street() {
-    return this.RestregistrationForm.get('address.street');
+    return this.RestregistrationForm.get('street');
   }
   get city() {
-    return this.RestregistrationForm.get('address.city');
+    return this.RestregistrationForm.get('city');
   }
   get province() {
-    return this.RestregistrationForm.get('address.province');
+    return this.RestregistrationForm.get('province');
   }
   get zip() {
-    return this.RestregistrationForm.get('address.zip');
+    return this.RestregistrationForm.get('zip');
   }
  
   public errorMessages = {
@@ -113,15 +113,22 @@ export class RestregPage implements OnInit {
        
       ]
     ],
-    address: this.formBuilder.group({
-      street: ['', [Validators.required, Validators.maxLength(100)]],
-      city: ['', [Validators.required, Validators.maxLength(100)]],
-      province: ['', [Validators.required, Validators.maxLength(100)]],
-      zip: [
-        '',
-        [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')]
-      ]
-    })
+    street: ['', [Validators.required, Validators.maxLength(100)]],
+    city: ['', [Validators.required, Validators.maxLength(100)]],
+    province: ['', [Validators.required, Validators.maxLength(100)]],
+    zip: [
+      '',
+      [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')]
+    ]
+    // address: this.formBuilder.group({
+    //   street: ['', [Validators.required, Validators.maxLength(100)]],
+    //   city: ['', [Validators.required, Validators.maxLength(100)]],
+    //   province: ['', [Validators.required, Validators.maxLength(100)]],
+    //   zip: [
+    //     '',
+    //     [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')]
+    //   ]
+    // })
   });
   }
   
@@ -136,7 +143,7 @@ export class RestregPage implements OnInit {
  
   async submit() {
     const alert = await this.alertCtrl.create({
-      message: `Your restaurant is added successfulluy, please click Okay to confirm`,
+      message: `Restaurant added successfulluy, please click Okay to confirm`,
       buttons: [
         {
           text: 'Okay',
@@ -148,7 +155,11 @@ export class RestregPage implements OnInit {
               ownerId: this.ownerId,
               Restaurant: this.RestregistrationForm.value.Restaurant,
               Profilepic: this.RestregistrationForm.value.Profilepic,
-              address: this.RestregistrationForm.value.address
+              street:this.RestregistrationForm.value.street,
+              city:this.RestregistrationForm.value.city,
+              province:this.RestregistrationForm.value.province,
+              zip:this.RestregistrationForm.value.zip,
+              // address: this.RestregistrationForm.value.address
             }).then(() => {
               this.router.navigateByUrl('/rest-home');
               this.RestregistrationForm.reset();

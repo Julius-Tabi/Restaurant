@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import{FbserviceService} from '../../services/fbservice.service';
 import { MenuController } from '@ionic/angular';
 import { Router,ActivatedRoute } from '@angular/router';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import { AlertController, NavController, LoadingController } from '@ionic/angular';
 // import {NavController, NavParams} from '@ionic/angular'
 
 @Component({
@@ -10,12 +13,11 @@ import { Router,ActivatedRoute } from '@angular/router';
   styleUrls: ['./restaurant-list.page.scss'],
 })
 export class RestaurantListPage implements OnInit {
-  displayResurantList = [];
-  displayResurantProfile = [];
-  CurrentPerson = new Array();
-  currentUSerKey;
-  id:any
-  Uid:any= this.route.snapshot.params.id;
+  // displayResurantList = [];
+  restaurants: Array<any> = [];
+  // restaurants: any;
+  id: any;
+  // Uid:any= this.route.snapshot.params.id;
 
   constructor(private menu: MenuController,private fbservice: FbserviceService,private router: Router, public route: ActivatedRoute) {
     // this.getResurants();
@@ -23,25 +25,25 @@ export class RestaurantListPage implements OnInit {
     // this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
     //   this.currentUSerKey = data.uid
     //   console.log(this.currentUSerKey)
-      this.getResurants();
-      this.viewProfile();
+      // this.getResurants();
+      // this.viewProfile();
     //   // this.getResurantProfile();
     // })
   }
 
-  viewProfile() {
-    this.fbservice.ResurantProfile().then((data:any) => {
-    this.displayResurantProfile = data
-    console.log(this.displayResurantProfile)
-  })
-}
+//   viewProfile() {
+//     this.fbservice.ResurantProfile().then((data:any) => {
+//     this.displayResurantProfile = data
+//     console.log(this.displayResurantProfile)
+//   })
+// }
 
-  getResurants() {
-      this.fbservice.ResurantList().then((data:any) => {
-      this.displayResurantList = data
-      console.log(this.displayResurantList)
-    })
-  }
+  // getResurants() {
+  //     this.fbservice.ResurantList().then((data:any) => {
+  //     this.displayResurantList = data
+  //     console.log(this.displayResurantList)
+  //   })
+  // }
   openFirst() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
@@ -57,8 +59,11 @@ export class RestaurantListPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.id= this.route.snapshot.paramMap.get('id');
-    
+    firebase.firestore().collection('restaurants').onSnapshot(res => {
+      res.forEach(element => {
+        this.restaurants.push(element.data());
+      });
+    });
   }
  
 }
