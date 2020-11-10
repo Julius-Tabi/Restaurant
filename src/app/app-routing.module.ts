@@ -51,6 +51,22 @@ const routes: Routes = [
     path: 'view-rest/:id',
     loadChildren: () => import('./pages/view-rest/view-rest.module').then( m => m.ViewRestPageModule)
   },
+  {
+    path: 'reserve-table',
+    loadChildren: () => import('./pages/reserve-table/reserve-table.module').then( m => m.ReserveTablePageModule)
+  },
+  {
+    path: 'view-dishes/:id',
+    loadChildren: () => import('./pages/view-dishes/view-dishes.module').then( m => m.ViewDishesPageModule)
+  },
+  {
+    path: 'view-reservation',
+    loadChildren: () => import('./pages/view-reservation/view-reservation.module').then( m => m.ViewReservationPageModule)
+  },
+  {
+    path: 'user-profile',
+    loadChildren: () => import('./pages/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+  },
 
 ];
 

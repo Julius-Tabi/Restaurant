@@ -33,12 +33,12 @@ export class ViewRestPage implements OnInit {
     });
 
     // Fetching menus
-    firebase.firestore().collection('restaurants').doc(this.uid).collection('menu').where('ownerId', '==', this.uid).limit(3).get().then(snapshot => {
-      snapshot.docs.forEach(menu => {
-        this.dishes.push(menu.data())
-        console.log('menu: ', this.dishes)
-      })
-    })
+    // firebase.firestore().collection('restaurants').doc(this.uid).collection('menu').where('ownerId', '==', this.uid).limit(3).get().then(snapshot => {
+    //   snapshot.docs.forEach(menu => {
+    //     this.dishes.push(menu.data())
+    //     console.log('menu: ', this.dishes)
+    //   })
+    // })
   }
 //   viewProfile() {
 //     this.fbservice.ResurantProfile().then((data:any) => {

@@ -20,10 +20,6 @@ export class AdddishPage implements OnInit {
   ownerId: any
   constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService, private router: Router, public nav: NavController,
     public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
-    // this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
-    //   this.currentUSerKey = data.uid
-    //   console.log(this.currentUSerKey)
-    // })
   }
   get name() {
     return this.AddDishForm.get("name");
@@ -34,6 +30,9 @@ export class AdddishPage implements OnInit {
  
   get Dishdetails() {
     return this.AddDishForm.get('Dishdetails');
+  }
+  get price() {
+    return this.AddDishForm.get('price');
   }
   
   public errorMessages = {
@@ -50,6 +49,10 @@ export class AdddishPage implements OnInit {
       { type: 'required', message: 'Dish details is required' },
       
     ],
+    price: [
+      { type: 'required', message: 'Dish price is required' },
+      
+    ],
    
   };
   
@@ -64,6 +67,13 @@ export class AdddishPage implements OnInit {
         ]
       ],
       Dishdetails: [
+        '',
+        [
+          Validators.required
+        
+        ]
+      ],
+      price: [
         '',
         [
           Validators.required
@@ -94,6 +104,7 @@ export class AdddishPage implements OnInit {
       name: this.AddDishForm.value.name,
       Dishpic: this.AddDishForm.value.Dishpic,
       Dishdetails: this.AddDishForm.value.Dishdetails,
+      price: this.AddDishForm.value.price,
      
     }).then(() => {
       loading.dismiss().then(() => {
@@ -108,11 +119,5 @@ export class AdddishPage implements OnInit {
       }
     );
     return await loading.present();
-    // submit() {
-    //   console.log(this.AddDishForm.value);
-    //   this.fbservice.AddDish(this.AddDishForm.value.name,this.AddDishForm.value.Dishpic,this.AddDishForm.value.Dishdetails).then( data=>{
-    //     console.log(data)
-    //   })
-    // }
   }
 }

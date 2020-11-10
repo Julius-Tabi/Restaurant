@@ -1,11 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button color="primary" defaultHref="home"></ion-back-button>
-      <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Restaurant Profile</ion-title><br>
-    </ion-buttons>
+    <ion-title>ViewDishes</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <div class="main">
       <ion-card>
@@ -19,7 +17,7 @@
                   <!-- <ion-title>Restaurant Name:{{a.Restaurant}}</ion-title> -->
               <!-- </ion-card-title>
           </ion-card-header> -->
-          <ion-item-divider>
+          <!-- <ion-item-divider>
           <ion-card-header>
             <ion-card-subtitle>
                 <ion-item-divider color="primary">
@@ -33,17 +31,18 @@
                 <ion-title>Reviews:</ion-title>
             </ion-card-subtitle>
         </ion-card-header>
-    </ion-item-divider>
+    </ion-item-divider> -->
   
           <ion-card-header>
               <ion-card-subtitle style="text-align: center;">
             <ion-item-divider color="primary">
-                  <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Address</ion-title>
+              <img style="object-fit: cover; align-self: right;" src="{{restaurants?.Dishpic}}" /><br>
+                  <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Dishes</ion-title>
                 </ion-item-divider><br>
-                  <ion-title>Street :{{restaurants?.street}}</ion-title>
-                  <ion-title>City :{{restaurants?.city}}</ion-title>
-                  <ion-title>Province:{{restaurants?.province}}</ion-title>
-                  <ion-title>Zip Code:{{restaurants?.zip}}</ion-title>
+                  <ion-title>Dish Name: {{restaurants?.name}}</ion-title>
+                  <ion-title>Dish Details :{{restaurants?.Dishdetails}}</ion-title>
+                  <ion-title>Price:{{restaurants?.price}}</ion-title>
+                  <!-- <ion-title>Zip Code:{{restaurants?.zip}}</ion-title> -->
               </ion-card-subtitle>
           </ion-card-header>
 
@@ -52,6 +51,6 @@
           </ion-icon>
         </ion-button>
       </ion-card>
-     
   </div>
 </ion-content>
+

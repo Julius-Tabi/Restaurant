@@ -18,7 +18,7 @@
                     </ng-container>
                 </div>
 
-                <!-- <ion-item class="roundedInput">
+                <ion-item class="roundedInput">
                     <ion-label position="floating">Dish price:</ion-label>
                     <ion-input autocapitalize inputmode="text" formControlName="price"></ion-input>
                 </ion-item>
@@ -26,7 +26,7 @@
                     <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
                         <small class="error-message">{{error.message}}</small>
                     </ng-container>
-                </div> -->
+                </div>
                 <ion-item class="roundedInput">
                     <ion-label position="floating">Dish picture:</ion-label>
                     <ion-input formControlName="Dishpic" id="Input" placeholder="Select Item Image" onfocus="this.value=''" type="file" accept="image/*" (change)="addPic($event)" value="Click here to clear" name="picture" required [(ngModel)]="downloadurl"></ion-input>
