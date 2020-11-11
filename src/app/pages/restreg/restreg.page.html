@@ -24,6 +24,14 @@
           </ng-container>
         </div>
         <ion-item>
+          <ion-textarea rows="6" formControlName="aboutRest" placeholder="Say something about your Restaurant..."></ion-textarea>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.aboutRest">
+        <ng-container *ngIf="aboutRest.hasError(error.type) && (aboutRest.dirty || aboutRest.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+        <ion-item>
           <ion-label position="floating">Profile picture:</ion-label>
           <ion-input formControlName="Profilepic" id="Input" placeholder="Select Item Image" onfocus="this.value=''" type="file" accept="image/*" (change)="addPic($event)" value="Click here to clear" name="picture" required [(ngModel)]="downloadurl"></ion-input>
       </ion-item>

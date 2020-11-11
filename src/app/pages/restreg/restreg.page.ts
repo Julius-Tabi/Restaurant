@@ -62,11 +62,18 @@ export class RestregPage implements OnInit {
   get zip() {
     return this.RestregistrationForm.get('zip');
   }
+  get aboutRest() {
+    return this.RestregistrationForm.get('aboutRest');
+  }
  
   public errorMessages = {
     Restaurant: [
       { type: 'required', message: 'Name is required' },
       { type: 'maxlength', message: 'Name cant be longer than 100 characters' }
+    ],
+    aboutRest: [
+      { type: 'required', message: 'about is required' },
+      { type: 'maxlength', message: 'about cant be longer than 100 characters' }
     ],
     Profilepic: [
       { type: 'required', message: 'Profile picture is required' },
@@ -105,6 +112,7 @@ export class RestregPage implements OnInit {
   addRest() {
   this.RestregistrationForm = this.formBuilder.group({
     Restaurant: ['', [Validators.required, Validators.maxLength(100)]],
+    aboutRest: ['', [Validators.required, Validators.maxLength(100)]],
     Profilepic: [
       '',
       [
@@ -153,6 +161,7 @@ export class RestregPage implements OnInit {
             this.fbservice.regRest().doc(this.ownerId).set({
               ownerId: this.ownerId,
               Restaurant: this.RestregistrationForm.value.Restaurant,
+              aboutRest: this.RestregistrationForm.value.aboutRest,
               Profilepic: this.RestregistrationForm.value.Profilepic,
               street:this.RestregistrationForm.value.street,
               city:this.RestregistrationForm.value.city,
