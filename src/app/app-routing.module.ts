@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/rest-home/rest-home.module').then( m => m.RestHomePageModule)
   },
   {
-    path: 'adddish',
+    path: 'adddish/:id',
     loadChildren: () => import('./pages/adddish/adddish.module').then( m => m.AdddishPageModule)
   },
   {
@@ -52,7 +52,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/view-rest/view-rest.module').then( m => m.ViewRestPageModule)
   },
   {
-    path: 'reserve-table',
+    path: 'reserve-table/:id',
     loadChildren: () => import('./pages/reserve-table/reserve-table.module').then( m => m.ReserveTablePageModule)
   },
   {
