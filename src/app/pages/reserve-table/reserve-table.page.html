@@ -28,7 +28,7 @@
         </div>
         <ion-item>
           <ion-label position="floating">Date</ion-label>
-          <ion-date (click)="disableData()" name="CheckIndate" display-format="D/M/YYYY" picker-format="D/M/YYYY"
+          <ion-date (click)="disableData()" name="CheckIndate"  picker-format="YYYY-MM-DD"
             formControlName="date" placeholder=""></ion-date>
         </ion-item>
         <div *ngFor="let error of errorMessages.date">
@@ -38,7 +38,7 @@
         </div>
         <ion-item>
           <ion-label position="floating">Time</ion-label>
-          <ion-datetime display-format="h:mm" picker-format="h:mm" formControlName="time" inputmode="time"
+          <ion-datetime  picker-format="HH:mm" formControlName="time" inputmode="time"
             placeholder=""></ion-datetime>
         </ion-item>
         <div *ngFor="let error of errorMessages.time">

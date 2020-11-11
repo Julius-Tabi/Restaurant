@@ -16,8 +16,8 @@
           <ion-label>
               <h2>Reservation under: {{a.name}}</h2>
               <p>Party of: {{a.NoOfpeople}}</p>
-              <p>On the:{{a.date}}</p>
-              <p>At: {{a.time}}</p>
+              <p>On the:{{a.date | date:'dd/MM/yyyy'}}</p>
+              <p>At: {{a.time | date:'H:mm'}}</p>
               <h3>Contact details</h3>
               <p>Email Address: {{a.email}}</p>
               <p>Phone number: {{a.phone}}</p>
