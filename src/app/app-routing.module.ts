@@ -67,6 +67,11 @@ const routes: Routes = [
     path: 'user-profile',
     loadChildren: () => import('./pages/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   },
+  {
+    path: 'browse-menu/:id',
+    loadChildren: () => import('./pages/browse-menu/browse-menu.module').then( m => m.BrowseMenuPageModule)
+  },
+
 
 ];
 
