@@ -126,7 +126,7 @@ signAuth(){
   }
   
   reserve() {
-    return firebase.firestore().collection('Bookings');
+    return firebase.firestore().collection('restaurants');
   }
   
   checkVerification() {

@@ -60,7 +60,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/view-dishes/view-dishes.module').then( m => m.ViewDishesPageModule)
   },
   {
-    path: 'view-reservation',
+    path: 'view-reservation/:id',
     loadChildren: () => import('./pages/view-reservation/view-reservation.module').then( m => m.ViewReservationPageModule)
   },
   {

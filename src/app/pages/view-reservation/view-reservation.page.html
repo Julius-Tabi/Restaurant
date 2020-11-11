@@ -5,5 +5,29 @@
 </ion-header>
 
 <ion-content>
-
+  <div class="title-block">
+      <div class="heading" style="text-align: center; font-size: larger; font-weight: bold;">Reservations</div>
+  </div>
+  <ion-list style="border-top-right-radius: 20%; width: 100%; overflow-y: scroll;">
+      <ion-item *ngFor="let a of reservations">
+          <!-- <ion-thumbnail slot="start">
+              <img src="{{a?.Dishpic}}" alt="" style="object-fit: cover;">
+          </ion-thumbnail> -->
+          <ion-label>
+              <h2>Reservation under: {{a.name}}</h2>
+              <p>Party of: {{a.NoOfpeople}}</p>
+              <p>On the:{{a.date}}</p>
+              <p>At: {{a.time}}</p>
+              <h3>Contact details</h3>
+              <p>Email Address: {{a.email}}</p>
+              <p>Phone number: {{a.phone}}</p>
+          </ion-label>
+          <!-- <ion-button fill="outline" slot="end" [routerLink]="'/reserve-table/' + a?.ownerId">View</ion-button> -->
+      </ion-item>
+  </ion-list>
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button style="background-color: tomato;" [routerLink]="'/add-note'">
+          <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+  </ion-fab> -->
 </ion-content>

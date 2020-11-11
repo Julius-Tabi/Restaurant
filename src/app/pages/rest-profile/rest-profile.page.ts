@@ -43,8 +43,5 @@ export class RestProfilePage implements OnInit {
   newRestaurant(){
     this.router.navigateByUrl('/rest-profile')
   }
-
-
-
 }
 
