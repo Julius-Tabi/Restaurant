@@ -125,6 +125,10 @@ signAuth(){
     return firebase.firestore().collection('restaurants');
   }
   
+  reserve() {
+    return firebase.firestore().collection('Bookings');
+  }
+  
   checkVerification() {
     return new Promise((resolve, reject) => {
       firebase.auth().onAuthStateChanged((user) => {

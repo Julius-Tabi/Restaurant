@@ -4,14 +4,14 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <div class="main">
+<!-- <ion-content> -->
+    <!-- <div class="main"> -->
         <!-- <ion-card *ngFor="let a of dishes">
           <div class="Profilepic">
               <img style="object-fit: cover; align-self: right;" src="{{a?.Profilepic}}" />
           </div>
       </ion-card> -->
-        <ion-card *ngFor="let a of dishes" style="text-align: center; align-self: center; justify-content: center; align-items: center;">
+        <!-- <ion-card *ngFor="let a of dishes" style="text-align: center; align-self: center; justify-content: center; align-items: center;"> -->
             <!-- <ion-card-header>
               <ion-card-title> -->
             <!-- <ion-title>Restaurant Name:{{a.Restaurant}}</ion-title> -->
@@ -33,25 +33,56 @@
         </ion-card-header>
     </ion-item-divider> -->
 
-            <ion-card-header>
-                <ion-card-subtitle style="text-align: center;">
-                    <ion-item-divider color="primary">
-                        <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Dishes</ion-title>
-                        <div class="dish-picture">
-                            <img style="object-fit: cover; align-self: right;" src="{{a?.Dishpic}}" /><br>
-                        </div>
-                    </ion-item-divider><br>
-                    <ion-title>Dish Name: {{a?.name}}</ion-title>
-                    <ion-title>Dish Details :{{a?.Dishdetails}}</ion-title>
-                    <ion-title>Price:{{a?.price}}</ion-title>
+            <!-- <ion-card-header> -->
+                <!-- <ion-card-subtitle style="text-align: center;"> -->
+                    <!-- <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Dishes</ion-title> -->
+                    <!-- <ion-item-divider>     -->
+                        <!-- <div class="dish-picture"> -->
+                            <!-- <ion-thumbnail slot="start"> -->
+                                <!-- <img style="object-fit: cover; align-self: right; width: 100px; height: 100px;" src="{{a?.Dishpic}}" /> -->
+                            <!-- </ion-thumbnail> -->
+                            <!-- <img style="object-fit: cover; align-self: right;" src="{{a?.Dishpic}}" /><br> -->
+                        <!-- </div><br> -->
+                    <!-- </ion-item-divider><br> -->
+                    <!-- <ion-item-divider> -->
+                    <!-- <ion-title>Dish Name: {{a?.name}}</ion-title> -->
+                    <!-- <ion-title>Dish Details :{{a?.Dishdetails}}</ion-title> -->
+                    <!-- <ion-title>Price:{{a?.price}}</ion-title> -->
                     <!-- <ion-title>Zip Code:{{restaurants?.zip}}</ion-title> -->
-                </ion-card-subtitle>
-            </ion-card-header>
+                    <!-- </ion-item-divider> -->
+                <!-- </ion-card-subtitle> -->
+            <!-- </ion-card-header> -->
 
-            <ion-button shape="round" [routerLink]="'/reserve-table/'" style="width: 60%; align-self: center;">Reserve a Table
+            <!-- <ion-button shape="round" [routerLink]="'/reserve-table/'" style="width: 60%; align-self: center;">Reserve a Table
                 <ion-icon slot="end" name="create">
                 </ion-icon>
-            </ion-button>
-        </ion-card>
+            </ion-button> -->
+        <!-- </ion-card>
     </div>
+</ion-content> -->
+<ion-content>
+    <div class="title-block">
+        <div class="heading" style="text-align: center; font-size: larger; font-weight: bold;">Dish Menu</div>
+    </div>
+    <ion-list style="border-top-right-radius: 20%; background-image: linear-gradient(rgb(194, 140, 232),blue,rgb(75, 72, 255)); width: 100%; overflow-y: scroll;">
+        <ion-list-header>
+            <ion-label>Item</ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let a of dishes">
+            <ion-thumbnail slot="start">
+                <img src="{{a?.Dishpic}}" alt="" style="object-fit: cover;">
+            </ion-thumbnail>
+            <ion-label>
+                <h2>{{a?.name}}</h2>
+                <p>{{a?.Dishdetails}}</p>
+                <p>{{a?.price}}</p>
+            </ion-label>
+            <ion-button fill="outline" slot="end" [routerLink]="'/reserve-table/' + a?.ownerId">Reserve</ion-button>
+        </ion-item>
+    </ion-list>
+    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button style="background-color: tomato;" [routerLink]="'/add-note'">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab> -->
 </ion-content>

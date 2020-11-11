@@ -30,7 +30,6 @@ export class RestregPage implements OnInit {
     this.showpassword = !this.showpassword;
   }
   ngOnInit() {
-    
     this.addRest()
   }
   // RestregistrationForm = this.formBuilder.group({

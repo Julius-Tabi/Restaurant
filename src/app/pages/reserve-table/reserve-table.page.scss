@@ -1,0 +1,96 @@
+.error-message {
+    color: var(--ion-color-danger);
+}
+
+// #user-icons {
+//     border: 1px solid red;
+//     height: 40%;
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     text-align: center;
+//     align-items: center;
+//     flex-direction: column;
+//     text-align: center;
+//     border-top-left-radius: 0%;
+//     border-top-right-radius: 40%;
+//     // background-color: powderblue;
+//     background-color: rgb(209, 209, 209);
+//     // margin-top: 10px;
+// }
+
+ #img {
+    // border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    // height: 50%;
+    
+    // margin-top: 20px;
+    // margin-left: 3px;
+}
+
+// .ion-padding {
+//     width: 100%;
+//     // height: 50%;
+//     // border: 1px solid red;
+//     // opacity: 0.3;
+   
+    
+// }
+
+#container {
+    height: 100%;
+    width: 100%;
+    // border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: cornsilk;
+
+// background: url(../../assets/img/bg2.jpg);
+
+}
+section{
+    // background: url("https://image.freepik.com/free-vector/food-elements-menu_23-2147492922.jpg") no-repeat center;
+    text-align: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: var(pink);
+}
+
+ .ion-padding .roundedInput {
+    // --border-color: var(--ion-color-medium-shade);
+    --border-radius: 30px;
+    // --border-width: 0.05px;
+    --box-shadow: 1px rgb(216, 34, 34);
+    // --box-shadow-width: 50%;
+    --highlight-height: 2px;
+    --highlight-width: 30%;
+    --background-color: transparent;
+    --placeholder-color: blue;
+    width: 100%;
+    // border: 1px solid;
+    padding: 10px;
+    box-shadow: 2px 5px whitesmoke;
+        margin: 16px;
+   }
+  .ion-padding ion-item{
+    // height: 30px;
+    
+    margin: 10px;
+   }
+   
+   

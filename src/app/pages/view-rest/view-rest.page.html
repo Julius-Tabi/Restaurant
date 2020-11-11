@@ -14,11 +14,6 @@
             </div>
         </ion-card>
         <ion-card style="text-align: center; align-self: center; justify-content: center; align-items: center;">
-            <!-- <ion-card-header>
-              <ion-card-title> -->
-            <!-- <ion-title>Restaurant Name:{{a.Restaurant}}</ion-title> -->
-            <!-- </ion-card-title>
-          </ion-card-header> -->
             <ion-item-divider>
                 <ion-card-header>
                     <ion-card-subtitle>
@@ -38,7 +33,7 @@
             <ion-card-header>
                 <ion-card-subtitle style="text-align: center;">
                     <ion-item-divider color="primary">
-                        <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Address</ion-title>
+                     <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Address</ion-title>
                     </ion-item-divider><br>
                     <ion-title>Street :{{restaurants?.street}}</ion-title>
                     <ion-title>City :{{restaurants?.city}}</ion-title>
@@ -46,7 +41,6 @@
                     <ion-title>Zip Code:{{restaurants?.zip}}</ion-title>
                 </ion-card-subtitle>
             </ion-card-header>
-
             <ion-button shape="round" [routerLink]="'/browse-menu/' + restaurants?.ownerId" style="width: 60%; align-self: center;">Browse Menu
                 <ion-icon slot="end" name="create">
                 </ion-icon>

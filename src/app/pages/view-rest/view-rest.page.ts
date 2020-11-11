@@ -24,7 +24,7 @@ export class ViewRestPage implements OnInit {
     // // this.id = this.route.snapshot.params.id
     this.id = this.route.snapshot.paramMap.get('id')
     console.log('ID: ', this.id)
-    console.log(this.uid)
+    console.log('ooo: ',this.uid)
 
     // fetching single restaurant
     firebase.firestore().collection('restaurants').doc(this.id).get().then(snapshot => {

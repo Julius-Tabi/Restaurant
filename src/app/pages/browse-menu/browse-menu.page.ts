@@ -20,10 +20,11 @@ export class BrowseMenuPage implements OnInit {
     this.fbservice.signAuth();
     let user = firebase.auth().currentUser.uid
     console.log('user: ', user)
+    console.log('OwnerIDDD:' , this.uid)
     // let user = firebase.auth().currentUser.uid;
     // this.id = user.uid
       // Fetching menus
-    firebase.firestore().collection('restaurants').doc(user).collection('menu').where('ownerId', '==', user).limit(3).get().then(snapshot => {
+    firebase.firestore().collection('restaurants').doc(this.uid).collection('menu').where('ownerId', '==', this.uid).limit(3).get().then(snapshot => {
       snapshot.docs.forEach(menu => {
         this.dishes.push(menu.data())
         console.log('menu: ', this.dishes)
