@@ -28,8 +28,8 @@
         </div>
         <ion-item>
           <ion-label position="floating">Date</ion-label>
-          <ion-date (click)="disableData()" name="CheckIndate"  picker-format="YYYY-MM-DD"
-            formControlName="date" placeholder=""></ion-date>
+          <ion-datetime (click)="disableData()" name="CheckIndate"  picker-format="YYYY-MM-DD"
+            formControlName="date" placeholder=""></ion-datetime>
         </ion-item>
         <div *ngFor="let error of errorMessages.date">
           <ng-container *ngIf="date.hasError(error.type) && (date.dirty || date.touched)">

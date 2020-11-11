@@ -70,7 +70,11 @@ const routes: Routes = [
   {
     path: 'browse-menu/:id',
     loadChildren: () => import('./pages/browse-menu/browse-menu.module').then( m => m.BrowseMenuPageModule)
+  },  {
+    path: 'user-home',
+    loadChildren: () => import('./pages/user-home/user-home.module').then( m => m.UserHomePageModule)
   },
+
 
 
 ];
