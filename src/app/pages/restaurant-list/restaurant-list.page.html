@@ -3,14 +3,15 @@
     <ion-buttons slot="start">
       <ion-back-button color="primary" defaultHref="home"></ion-back-button>
     </ion-buttons>
+    <!-- <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="person"></ion-icon> -->
+    <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="home"></ion-icon>
   </ion-toolbar>
 </ion-header>
   <ion-card-title style=" background-color: rgba(208, 230, 245, 0.959); text-align: center;  font-size: xxx-large; text-transform: uppercase; font-weight: bolder;">Restaurants</ion-card-title>
 <ion-content  id="content">
     <ion-card *ngFor="let a of restaurants">
         <ion-card-content>
-            <ion-title style="font-size: x-large; color: blue; text-align: left; text-transform: uppercase;">{{a.Restaurant}}</ion-title>
-                                                                                                                
+            <ion-title style="font-size: x-large; color: blue; text-align: left; text-transform: uppercase;">{{a.Restaurant}}</ion-title>                                                                                                
         </ion-card-content>
         <ion-item>
            <img style="width: 230px; height: 150px; object-fit: cover;" src="{{a.Profilepic}}"/>
@@ -21,22 +22,9 @@
           <p style="text-transform: uppercase; font-size: larger; font-weight: bold;">Address</p>
           <p style="text-transform: uppercase;">Street: {{a.street}}</p>
             <p style="text-transform: uppercase;">City: {{a.city}}</p>
-            <!-- <p style="text-transform: uppercase;">City: {{a.uid}}</p> -->
             <p style="text-transform: uppercase;">Province: {{a.province}}</p>
             <p style="text-transform: uppercase;">Rating: /10</p>
         </ion-card-content>
-        <!-- <ion-item>
-          <ion-avatar slot="start">
-            <img  src="{{a.Profilepic}}">
-          </ion-avatar>
-          <ion-label>
-            <h2>{{a.Restaurant}}</h2>
-            <p>---------------------------------------------------------------</p>
-            <h3>Address</h3>
-            <p>{{a.addressS}}, {{a.address}}, {{a.addressP}}<br>
-                Rating: /10</p>
-          </ion-label>
-        </ion-item> -->
     </ion-card>
     <!-- https://ionicframework.com/docs/api/list -->
 </ion-content>

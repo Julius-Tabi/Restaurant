@@ -24,10 +24,10 @@
             <ion-button fill="outline" slot="end" [routerLink]="'/adddish/' + a?.ownerId">Add dish</ion-button>
         </ion-item>
     </ion-list>
-    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button style="background-color: tomato;" [routerLink]="'/add-note'">
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button style="background-color: tomato;" [routerLink]="'/adddish/' + this.fbservice.getUid()">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
-    </ion-fab> -->
+    </ion-fab>
 </ion-content>
 <!-- [routerLink]="'/adddish/' + a?.ownerId" -->
