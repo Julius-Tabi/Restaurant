@@ -128,6 +128,18 @@ signAuth(){
   reserve() {
     return firebase.firestore().collection('restaurants');
   }
+  bookingStatus(ownerId, userId, value){
+    var db = firebase.firestore();
+    var restaurantRef = db.collection('restaurants').doc(ownerId);
+    var restaurant = Promise.all([
+      restaurantRef.collection('bookings').doc(userId).set({
+        status: value
+        
+      }, { merge: true }).then(a => {
+        console.log('Changed')
+      })
+    ])
+  }
   
   checkVerification() {
     return new Promise((resolve, reject) => {

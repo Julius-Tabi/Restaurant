@@ -15,11 +15,12 @@ export class UserReservationPage implements OnInit {
   reservations: Array<any> = [];
   // restaurants: any;
   id: any;
-
+userId:any
   constructor(private menu: MenuController,private fbservice: FbserviceService,private router: Router, public route: ActivatedRoute) { }
 
   ngOnInit() {
-    let user = firebase.auth().currentUser.uid
+    var user = firebase.auth().currentUser
+    this.userId = user.uid
     console.log('user: ', user)
 
     // firebase.firestore().collection('restaurants').doc(user).collection('bookings').onSnapshot(res => {
@@ -31,7 +32,7 @@ export class UserReservationPage implements OnInit {
 
     // .where('userId', '==', this.userId).orderBy('date', 'desc')
 
-    const userBookings = firebase.firestore().collectionGroup('bookings');
+    const userBookings = firebase.firestore().collectionGroup('bookings').where('userId', '==', this.userId).orderBy('date', 'desc');
     userBookings.get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         this.reservations.push(doc.data())

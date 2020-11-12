@@ -161,7 +161,8 @@ export class ReserveTablePage implements OnInit {
                 time: this.ReservationForm.value.time,
                 phone: this.ReservationForm.value.phone,
                 email: this.ReservationForm.value.email,
-                // status: 'pending'
+                status: 'pending'
+                
               }).then(() => {
                 this.nav.navigateRoot('/browse-menu/' + this.ownerId);
                 this.ReservationForm.reset();

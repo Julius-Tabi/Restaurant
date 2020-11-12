@@ -5,24 +5,26 @@
 </ion-header> -->
 
 <ion-content>
-  <div class="title-block">
-      <div class="heading" style="text-align: center; font-size: larger; font-weight: bold;">Reservations</div>
-  </div>
-  <ion-list style="border-top-right-radius: 20%; width: 100%; overflow-y: scroll;" *ngFor="let rev of reservations">
-      <ion-item>
-          <ion-label>
-              <h2>Reservation under: {{rev.name}}</h2>
-              <p>Party of: {{rev.NoOfpeople}}</p>
-              <p>On the:{{rev.date | date:'dd/MM/yyyy'}}</p>
-              <p>At: {{rev.time | date:'H:mm'}}</p>
-              <h3>Contact details</h3>
-              <p>Email Address: {{rev.email}}</p>
-              <p>Phone number: {{rev.phone}}</p>
-          </ion-label>
-          <!-- <ion-button fill="outline" slot="end" [routerLink]="'/reserve-table/' + a?.ownerId">View</ion-button> -->
-      </ion-item>
-  </ion-list>
-  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <div class="title-block">
+        <div class="heading" style="text-align: center; font-size: larger; font-weight: bold;">Reservations</div>
+    </div>
+    <ion-list style="border-top-right-radius: 20%; width: 100%; overflow-y: scroll;" *ngFor="let rev of reservations">
+        <ion-item>
+            <ion-label>
+                <h2>Reservation under: {{rev.name}}</h2>
+                <p>Party of: {{rev.NoOfpeople}}</p>
+                <p>On the:{{rev.date | date:'dd/MM/yyyy'}}</p>
+                <p>At: {{rev.time | date:'H:mm'}}</p>
+                <h3>Contact details</h3>
+                <p>Email Address: {{rev.email}}</p>
+                <p>Phone number: {{rev.phone}}</p>
+                <p>Status: {{rev.status}}</p>
+
+            </ion-label>
+            <!-- <ion-button fill="outline" slot="end" [routerLink]="'/reserve-table/' + a?.ownerId">View</ion-button> -->
+        </ion-item>
+    </ion-list>
+    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
       <ion-fab-button style="background-color: tomato;" [routerLink]="'/add-note'">
           <ion-icon name="add"></ion-icon>
       </ion-fab-button>

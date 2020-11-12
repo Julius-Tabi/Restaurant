@@ -19,12 +19,20 @@ export class ViewReservationPage implements OnInit {
     let user = firebase.auth().currentUser.uid
     console.log('user: ', user)
 
-    firebase.firestore().collection('restaurants').doc(user).collection('bookings').onSnapshot(res => {
+    firebase.firestore().collection('restaurants').doc(user).collection('bookings').where('ownerId', '==', user).onSnapshot(res => {
       res.forEach(element => {
-        this.reservations.push(element.data());
+        // this.reservations.push(element.data());
         console.log('Bookings: ', this.reservations)
+        this.reservations.push(Object.assign( element.data(), {uid:element.id}) );
+        console.log('uuu: ' + {uid:element.id})
+        console.log('u: ' + element.id)
       });
     });
   }
 
+  //Booking status
+  status(ownerId, userId, status){
+    this.fbservice.bookingStatus(ownerId, userId, status);
+  }
+  
 }
