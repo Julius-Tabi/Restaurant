@@ -31,6 +31,9 @@ export class UserRegPage implements OnInit {
   get name() {
     return this.RegForm.get("name");
   }
+  get lastname() {
+    return this.RegForm.get("lastname");
+  }
   get email() {
     return this.RegForm.get('email');
   }
@@ -49,7 +52,10 @@ export class UserRegPage implements OnInit {
       { type: 'required', message: 'Name is required' },
       { type: 'maxlength', message: 'Name cant be longer than 100 characters' }
     ],
-  
+    lastname: [
+      { type: 'required', message: 'Last Name is required' },
+      { type: 'maxlength', message: 'Last Name cant be longer than 100 characters' }
+    ],
     email: [
       { type: 'required', message: 'Email is required' },
       { type: 'pattern', message: 'Please enter a valid email address' }
@@ -69,6 +75,7 @@ export class UserRegPage implements OnInit {
   };
   RegForm = this.formBuilder.group({
     name: ['', [Validators.required, Validators.maxLength(100)]],
+    lastname: ['', [Validators.required, Validators.maxLength(100)]],
     email: [
       '',
       [
@@ -133,6 +140,8 @@ export class UserRegPage implements OnInit {
               this.fbservice.Signup(this.RegForm.value.email, this.RegForm.value.password).then((res) => {
                 return firebase.firestore().collection('Users').doc(res.user.uid).set({
                   name: this.RegForm.value.name,
+                  lastname: this.RegForm.value.lastname,
+                  email: this.RegForm.value.email,
                   phone: this.RegForm.value.phone
                 }).then(() => {
                   console.log(res.user);

@@ -65,6 +65,15 @@ export class RestregPage implements OnInit {
   get aboutRest() {
     return this.RestregistrationForm.get('aboutRest');
   }
+  get Slogan() {
+    return this.RestregistrationForm.get('Slogan');
+  }
+  get date() {
+    return this.RestregistrationForm.get('date');
+  }
+  get NoOfemps() {
+    return this.RestregistrationForm.get('NoOfemps');
+  }
  
   public errorMessages = {
     Restaurant: [
@@ -73,7 +82,19 @@ export class RestregPage implements OnInit {
     ],
     aboutRest: [
       { type: 'required', message: 'about is required' },
-      { type: 'maxlength', message: 'about cant be longer than 100 characters' }
+   
+    ],
+    Slogan: [
+      { type: 'required', message: 'slogan is required' },
+   
+    ],
+    NoOfemps: [
+      { type: 'required', message: 'Number of employees is required' },
+   
+    ],
+    date: [
+      { type: 'required', message: 'date is required' },
+    
     ],
     Profilepic: [
       { type: 'required', message: 'Profile picture is required' },
@@ -112,7 +133,10 @@ export class RestregPage implements OnInit {
   addRest() {
   this.RestregistrationForm = this.formBuilder.group({
     Restaurant: ['', [Validators.required, Validators.maxLength(100)]],
-    aboutRest: ['', [Validators.required, Validators.maxLength(100)]],
+    aboutRest: ['', [Validators.required]],
+    Slogan: ['', [Validators.required, Validators.maxLength(100)]],
+    NoOfemps: ['', [Validators.required]],
+    date: ['', [Validators.required, Validators.maxLength(100)]],
     Profilepic: [
       '',
       [
@@ -162,6 +186,9 @@ export class RestregPage implements OnInit {
               ownerId: this.ownerId,
               Restaurant: this.RestregistrationForm.value.Restaurant,
               aboutRest: this.RestregistrationForm.value.aboutRest,
+              Slogan: this.RestregistrationForm.value.Slogan,
+              NoOfemps: this.RestregistrationForm.value.NoOfemps,
+              date: this.RestregistrationForm.value.date,
               Profilepic: this.RestregistrationForm.value.Profilepic,
               street:this.RestregistrationForm.value.street,
               city:this.RestregistrationForm.value.city,

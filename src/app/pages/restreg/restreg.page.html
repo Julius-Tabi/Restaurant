@@ -24,10 +24,39 @@
           </ng-container>
         </div>
         <ion-item>
-          <ion-textarea rows="6" formControlName="aboutRest" placeholder="Say something about your Restaurant..."></ion-textarea>
+          <ion-label position="floating">About Restaurant</ion-label>
+          <ion-textarea formControlName="aboutRest" placeholder="Say something about your Restaurant..."></ion-textarea>
       </ion-item>
       <div *ngFor="let error of errorMessages.aboutRest">
         <ng-container *ngIf="aboutRest.hasError(error.type) && (aboutRest.dirty || aboutRest.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Restaurant slogan</ion-label>
+        <ion-input autocapitalize inputmode="text" formControlName="Slogan"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.Slogan">
+      <ng-container *ngIf="Slogan.hasError(error.type) && (Slogan.dirty || Slogan.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Number of Employee</ion-label>
+      <ion-input inputmode="Number" formControlName="NoOfemps"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.NoOfemps">
+      <ng-container *ngIf="NoOfemps.hasError(error.type) && (NoOfemps.dirty || NoOfemps.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div>
+      <ion-item>
+        <ion-label position="floating">Date Established</ion-label>
+        <ion-datetime name="CheckIndate"  picker-format="YYYY-MM-DD"
+          formControlName="date" placeholder=""></ion-datetime>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.date">
+        <ng-container *ngIf="date.hasError(error.type) && (date.dirty || date.touched)">
           <small class="error-message">{{error.message}}</small>
         </ng-container>
       </div>
@@ -87,7 +116,7 @@
           name="create">
         </ion-icon>
       </ion-button>
-      <ion-button shape="round" size="medium" type="submit" click="signout()">Log Out</ion-button>
+      <!-- <ion-button shape="round" size="medium" type="submit" click="signout()">Log Out</ion-button> -->
     </form>
   </div>
 </ion-content>

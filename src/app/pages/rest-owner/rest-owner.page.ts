@@ -77,6 +77,7 @@ export class RestOwnerPage implements OnInit {
               this.fbservice.Signup_Owner(this.RestOwnerForm.value.email, this.RestOwnerForm.value.password).then((res) => {
                 return firebase.firestore().collection('Restaurant_Owner').doc(res.user.uid).set({
                   name: this.RestOwnerForm.value.name,
+                  email: this.RestOwnerForm.value.email,
                   // phone: this.RestOwnerForm.value.phone
                 }).then(() => {
                   console.log(res.user);
