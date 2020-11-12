@@ -75,6 +75,11 @@ const routes: Routes = [
     path: 'user-home',
     loadChildren: () => import('./pages/user-home/user-home.module').then( m => m.UserHomePageModule)
   },
+  {
+    path: 'user-reservation',
+    loadChildren: () => import('./pages/user-reservation/user-reservation.module').then( m => m.UserReservationPageModule)
+  },
+
 
 
 
