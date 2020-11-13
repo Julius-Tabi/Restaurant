@@ -164,7 +164,7 @@ export class ReserveTablePage implements OnInit {
                 status: 'pending'
                 
               }).then(() => {
-                this.nav.navigateRoot('/browse-menu/' + this.ownerId);
+                this.router.navigateByUrl('/browse-menu/' + this.ownerId);
                 this.ReservationForm.reset();
               }).catch(function (error) {
                 console.log(error)

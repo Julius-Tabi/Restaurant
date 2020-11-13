@@ -40,9 +40,9 @@ export class UserRegPage implements OnInit {
   get password() {
     return this.RegForm.get('password');
   }
-   get Confirmpassword() {
-    return this.RegForm.get('Confirmpassword');
-  }
+  //  get Confirmpassword() {
+  //   return this.RegForm.get('Confirmpassword');
+  // }
   get phone() {
     return this.RegForm.get('phone');
   }
@@ -64,10 +64,10 @@ export class UserRegPage implements OnInit {
       { type: 'required', message: 'Password is required' },
       { type: 'pattern', message: 'Please enter a valid Password' }
     ],
-     Confirmpassword: [
-      { type: 'required', message: 'Password is required' },
-      { type: 'pattern', message: 'Please enter a valid Password' }
-    ],
+    //  Confirmpassword: [
+    //   { type: 'required', message: 'Password is required' },
+    //   { type: 'pattern', message: 'Please enter a valid Password' }
+    // ],
     phone: [
       { type: 'required', message: 'Phone number is required' },
       { type: 'pattern', message: 'Please enter a valid phone number' }
@@ -90,13 +90,13 @@ export class UserRegPage implements OnInit {
         
       ]
     ],
-    Confirmpassword: [
-      '',
-      [
-        Validators.required
+    // Confirmpassword: [
+    //   '',
+    //   [
+    //     Validators.required
         
-      ]
-    ],
+    //   ]
+    // ],
     phone: [
       '',
       [

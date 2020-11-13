@@ -1,10 +1,24 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    
+  </ion-toolbar>
+</ion-header> -->
 <ion-header>
   <ion-toolbar>
-    <ion-title style="text-align: center; align-self: center;">Reserve Table</ion-title>
+    <ion-buttons slot="start">
+      
+      <ion-back-button color="primary" defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="person"></ion-icon> -->
+    <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="home"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content id="container">
+  <ion-header>
+    <ion-title style="text-align: center; font-size: xx-large; font-weight: bold; font-style: unset;">Reserve a Table</ion-title>
+  </ion-header>
   <div class="ion-padding">
     <form [formGroup]="ReservationForm" (ngSubmit)="submit()">
       <ion-list>
@@ -28,7 +42,7 @@
         </div>
         <ion-item>
           <ion-label position="floating">Date</ion-label>
-          <ion-datetime (click)="disableData()" name="CheckIndate"  picker-format="YYYY-MM-DD"
+          <ion-datetime (click)="disableData()" name="CheckIndate"  picker-format="dd-mm-yyyy"
             formControlName="date" placeholder=""></ion-datetime>
         </ion-item>
         <div *ngFor="let error of errorMessages.date">
@@ -38,7 +52,7 @@
         </div>
         <ion-item>
           <ion-label position="floating">Time</ion-label>
-          <ion-datetime  picker-format="HH:mm" formControlName="time" inputmode="time"
+          <ion-datetime  picker-format="HH:mm" formControlName="time" type="time"
             placeholder=""></ion-datetime>
         </ion-item>
         <div *ngFor="let error of errorMessages.time">
