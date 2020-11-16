@@ -19,7 +19,7 @@ export class ViewReservationPage implements OnInit {
     let user = firebase.auth().currentUser.uid
     console.log('user: ', user)
 
-    firebase.firestore().collection('restaurants').doc(user).collection('bookings').where('ownerId', '==', user).onSnapshot(res => {
+    firebase.firestore().collection('restaurants').doc(user).collection('bookings').where('ownerId', '==', user).orderBy('createdAt', 'desc').onSnapshot(res => {
       res.forEach(element => {
         // this.reservations.push(element.data());
         console.log('Bookings: ', this.reservations)

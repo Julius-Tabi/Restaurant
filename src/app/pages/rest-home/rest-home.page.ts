@@ -16,7 +16,7 @@ export class RestHomePage implements OnInit {
   uid = this.route.snapshot.params.id;
   restaurants: any = [];
   dishes: any= [];
-  constructor(private fbservice: FbserviceService,private router: Router,public nav: NavController,
+  constructor(public fbservice: FbserviceService,private router: Router,public nav: NavController,
     public loadingCtrl: LoadingController,private alertCtrl: AlertController, public route: ActivatedRoute) {
     // this.fbservice.CurrentUserrLoggedIn().then((data:any) => {
     //   // console.log(this.uid)

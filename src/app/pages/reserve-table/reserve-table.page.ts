@@ -161,6 +161,7 @@ export class ReserveTablePage implements OnInit {
                 time: this.ReservationForm.value.time,
                 phone: this.ReservationForm.value.phone,
                 email: this.ReservationForm.value.email,
+                createdAt: new Date(),
                 status: 'pending'
                 
               }).then(() => {
