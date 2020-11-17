@@ -11,9 +11,12 @@
   
 <ion-content>
     <div class="title-block">
-        <div class="heading" style="text-align: center; font-size: larger; font-weight: bold;">Dish Menu</div>
+        <div class="heading" style="text-align: center; font-size: larger; font-weight: bold;">MENU</div>
     </div>
     <ion-list style="border-top-right-radius: 20%; background-image: linear-gradient(rgb(194, 140, 232),blue,rgb(75, 72, 255)); width: 100%; overflow-y: scroll;">
+        <ion-list-header>
+            <ion-label>Dish</ion-label>
+        </ion-list-header>
         <ion-item *ngFor="let a of dishes">
             <ion-thumbnail slot="start">
                 <img src="{{a?.Dishpic}}" alt="" style="object-fit: cover;">

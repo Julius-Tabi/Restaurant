@@ -30,10 +30,10 @@
           <ion-item-divider color="primary">
             <ion-title style="font-size: x-large; font-weight: bold;">About Restaurant</ion-title>
           </ion-item-divider><br>
-          <ion-title>Date Established:{{restaurants?.date  | date:'dd/MM/yyyy'}}</ion-title><br>
-          <ion-title>Slogan: {{restaurants?.Slogan}}</ion-title><br>
-          <ion-title>Number of Employees:{{restaurants?.NoOfemps}}</ion-title><br>
-          <ion-title>Reviews:</ion-title>
+          <p>Date Established:{{restaurants?.date  | date:'dd/MM/yyyy'}}</p>
+          <p>Slogan: {{restaurants?.Slogan}}</p>
+          <p>Number of Employees:{{restaurants?.NoOfemps}}</p>
+          <p>Reviews:</p>
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-header>
@@ -41,15 +41,15 @@
           <ion-item-divider color="primary">
             <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Address</ion-title>
           </ion-item-divider><br>
-          <ion-title>Street :{{restaurants?.street}}</ion-title>
-          <ion-title>City :{{restaurants?.city}}</ion-title>
-          <ion-title>Province:{{restaurants?.province}}</ion-title>
-          <ion-title>Zip Code:{{restaurants?.zip}}</ion-title>
+          <p>Street :{{restaurants?.street}}</p>
+          <p>City :{{restaurants?.city}}</p>
+          <p>Province:{{restaurants?.province}}</p>
+          <p>Zip Code:{{restaurants?.zip}}</p>
         </ion-card-subtitle>
       </ion-card-header>
-      <ion-button shape="round" style="width: 60%; align-self: center;">Update Profile<ion-icon slot="end"
-          name="create">
-        </ion-icon>
+      <ion-button shape="round" [routerLink]="'/restreg'" style="width: 60%; align-self: center;">Edit Profile
+          <ion-icon slot="end" name="create">
+          </ion-icon>
       </ion-button>
     </ion-card>
   </div>

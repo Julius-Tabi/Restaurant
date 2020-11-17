@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-back-button color="primary" defaultHref="home"></ion-back-button>
@@ -74,8 +74,7 @@
                             <small class="error-message">{{error.message}}</small>
                         </ng-container>
                     </div> -->
-
-                </ion-list>
+                <!-- </ion-list>
                 <p style="text-align: center; ">Already have an account? <a href="/home " style="padding-left: 2px; color: #5A6573; text-decoration: none; ">Sign In</a></p><br>
 
                 <ion-button shape="round" [disabled]="!RegForm.valid" type="submit" style="width: 60%;">Register
@@ -86,4 +85,110 @@
             </form>
         </div>
     </section>
-</ion-content>
+</ion-content> -->
+
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+      <!-- <ion-title>signup</ion-title> -->
+      <ion-buttons slot="start">
+        <ion-back-button defaulthref="home" text="">
+        </ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+  
+  </ion-header>
+  
+  <ion-content class="bg-color">
+  
+      <ion-card class="ion-no-margin">
+  
+          <ion-card-header>
+              <ion-card-title>
+                Sign Up
+              </ion-card-title>
+              <ion-card-subtitle>
+                Create Your account by filling
+  up the form
+                </ion-card-subtitle>
+          </ion-card-header>
+  
+         <ion-card-content>
+            <form [formGroup]="RegForm" (ngSubmit)="submit()">
+                <div class="wrapform">
+                    <ion-item >
+                        <!-- <ion-label position="floating">Name:</ion-label> -->
+                        <ion-input autocapitalize inputmode="text" formControlName="name" placeholder="FirstName">
+                            <ion-icon name="person-outline" ></ion-icon>
+                        </ion-input>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.name">
+                        <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
+                    <ion-item>
+                        <!-- <ion-label position="floating">Last Name:</ion-label> -->
+                        <ion-input autocapitalize inputmode="text" placeholder="LastName" formControlName="lastname">
+                            <ion-icon name="person" ></ion-icon>
+                        </ion-input>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.lastname">
+                        <ng-container *ngIf="lastname.hasError(error.type) && (lastname.dirty || lastname.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
+                    <ion-item>
+                       <ion-input type="text" name="email" formControlName="email"  placeholder="Email">
+                      <ion-icon name="mail-outline"></ion-icon>
+                      </ion-input>
+                      </ion-item>
+                      <div *ngFor="let error of errorMessages.email">
+                       <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+                           <small class="error-message">{{error.message}}</small>
+                       </ng-container>
+                   </div>
+                   <ion-item class="roundedInput">
+                    <!-- <ion-label position="floating">Phone:</ion-label> -->
+                    <ion-input inputmode="tel" formControlName="phone" placeholder="Phone">
+                        <ion-icon name="call-outline" ></ion-icon>
+                    </ion-input>
+                </ion-item>
+                <div *ngFor="let error of errorMessages.phone">
+                    <ng-container *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)">
+                        <small class="error-message">{{error.message}}</small>
+                    </ng-container>
+                </div>
+                      <ion-item>
+                        <ion-input type="password" name="password" formControlName="password"  placeholder="**************" >
+                        <ion-icon name="lock-closed"></ion-icon>
+                        </ion-input>
+                        </ion-item>
+           
+                        <div *ngFor="let error of errorMessages.password">
+                           <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+                               <small class="error-message">{{error.message}}</small>
+                           </ng-container>
+                       </div>
+           
+                   </div>
+                    <!-- <div class="password_forgot">
+                       <ion-button fill="clear" class="ion-no-padding">ForgotPasword?</ion-button>
+                    </div> -->
+                    <div class="sign-btn-wrap">
+                       
+           
+                           <ion-button shape="round" size="medium" [disabled]="!RegForm.valid" type="submit" style="width: 60%;">Create Account
+                               <ion-icon slot="end" name="create">
+                               </ion-icon>
+                           </ion-button>
+                           <p style="text-align: center;"><a href="/rest-owner" style="padding-left: 10px; color: #5A6573; text-decoration: none;">Register Restaurant</a></p>
+                      </div>
+            </form>
+       </ion-card-content>
+  
+      </ion-card>
+      <div class="ion-card-footer">
+        <span style="text-align: center; align-self: center;">Already have an account? <a href="/home" style="padding-left: 5px; color: #5A6573; text-decoration: none;">Sign In</a></span><br>
+     <!-- <span>Don’t have an account?</span><button class="ion-no-padding" >Sign Up</button> -->
+      </div>
+  </ion-content>
