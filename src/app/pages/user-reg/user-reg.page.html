@@ -9,10 +9,12 @@
 
 <ion-content id="container" >
     <section>
-        <div id="img">
-            <h1 style="text-align: center; font-size: xx-large; font-weight: bold; font-style: unset;">Sign Up</h1>
-        </div>
+      
         <div class="ion-padding">
+            <div id="img">
+                <h1 style="text-align: center; font-size: xx-large; font-weight: bold;">Sign Up</h1>
+                <ion-icon style=" height: 60%; width: 60%; color: gray;" name="person-add"></ion-icon>
+            </div>
             <form [formGroup]="RegForm" (ngSubmit)="submit()">
                 <ion-list>
                     <ion-item class="roundedInput">
@@ -76,7 +78,7 @@
                 </ion-list>
                 <p style="text-align: center; ">Already have an account? <a href="/home " style="padding-left: 2px; color: #5A6573; text-decoration: none; ">Sign In</a></p><br>
 
-                <ion-button [disabled]="!RegForm.valid " type="submit " expand="block ">Register
+                <ion-button shape="round" [disabled]="!RegForm.valid" type="submit"  style="width: 60%;">Register
                     <ion-icon slot="end " name="create ">
                     </ion-icon>
                 </ion-button>

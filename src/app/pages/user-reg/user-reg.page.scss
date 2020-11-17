@@ -18,7 +18,6 @@
 //     background-color: rgb(209, 209, 209);
 //     // margin-top: 10px;
 // }
-
 #img {
     // border: 1px solid red;
     display: flex;
@@ -27,42 +26,56 @@
     flex-direction: column;
     text-align: center;
     width: 100%;
-    height: 30%;
-    background-color: #3349FF;
+    height: 50%;
+    // background-color: #3349FF;
     // height: 50%;
     // border-bottom-left-radius: 10%;
     // border-bottom-right-radius: 10%;
     // border-top-left-radius: 20%;
     // border-top-right-radius: 20%;
     align-self: center;
+    // margin-bottom: 30%;
     // margin-top: 20px;
     // margin-left: 3px;
 }
 
+// ion-icon{
+//     width: 100%;
+//     height: 100%;
+
+// }
+
 .ion-padding {
     width: 100%;
-    // height: 50%;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    background-color: #f5f5f3;
+    --background: none;
+    opacity: 1;
+    height: 100%;
     // border: 1px solid red;
     // opacity: 0.3;
-   
-    
 }
 
-#container {
-    height: 100%;
-    width: 100%;
-    // border: 1px solid red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    background-color: #3349FF;
-
-// background: url(../../assets/img/bg2.jpg);
-
+ion-content {
+    --background: #f5f5f3;
 }
-section{
+
+// #container {
+//     height: 100%;
+//     width: 100%;
+//     border: 1px solid red;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-direction: column;
+//     text-align: center;
+//     background-color: #f5f5f3;
+//     // --background: #f5f5f3;
+//     // background: url(../../assets/img/bg2.jpg);
+// }
+
+section {
     // background: url("https://image.freepik.com/free-vector/food-elements-menu_23-2147492922.jpg") no-repeat center;
     text-align: center;
     background-size: cover;
@@ -74,27 +87,31 @@ section{
     background-attachment: fixed;
     width: 100%;
     height: 100%;
-    background-color: var(pink);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    // background-color: blue;
 }
 
 .roundedInput {
     // --border-color: var(--ion-color-medium-shade);
     --border-radius: 30px;
     // --border-width: 0.05px;
-    // --box-shadow: 1px rgb(216, 34, 34);
-    --box-shadow-width: 50%;
-    // --highlight-height: 2px;
-    // --highlight-width: 30%;
+    --box-shadow: 1px rgb(216, 34, 34);
+    // --box-shadow-width: 50%;
+    --highlight-height: 2px;
+    --highlight-width: 30%;
     // --background-color: transparent;
-    // --placeholder-color: blue;
+    --placeholder-color: blue;
     width: 100%;
     // border: 1px solid;
     padding: 10px;
-    padding-right: 47px;
-    // box-shadow: 2px 5px whitesmoke;
+    padding-right: 50px;
+    box-shadow: 2px 5px whitesmoke;
         margin: 16px;
    }
-
    ion-item{
     justify-self: center;
     align-self: center;
@@ -102,10 +119,33 @@ section{
     width: 100%;
     // border: 2px solid red;
    }
-  .ion-padding ion-item{
+
+ion-item {
     // height: 30px;
-    
-    margin: 10px;
-   }
-   
-   
+    // margin: 10px;
+    width: 100%;
+    // background-color: #f5f5f3;
+    --background: none;
+    opacity: 1;
+    // border: 1px solid red;
+    border-radius: 30px;
+}
+
+ion-label {
+    --background: none;
+    opacity: 1;
+    // border: 1px solid red;
+}
+
+#form {
+    --background: none;
+    opacity: 1;
+    // border: 1px solid red;
+}
+
+ion-list {
+    // border: 1px solid red;
+    --background: none;
+    opacity: 1;
+    background-color: #f5f5f3;
+}
