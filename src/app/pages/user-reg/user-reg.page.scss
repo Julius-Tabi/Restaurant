@@ -77,21 +77,30 @@ section{
     background-color: var(pink);
 }
 
- .ion-padding .roundedInput {
+.roundedInput {
     // --border-color: var(--ion-color-medium-shade);
     --border-radius: 30px;
     // --border-width: 0.05px;
-    --box-shadow: 1px rgb(216, 34, 34);
-    // --box-shadow-width: 50%;
-    --highlight-height: 2px;
-    --highlight-width: 30%;
-    --background-color: transparent;
-    --placeholder-color: blue;
+    // --box-shadow: 1px rgb(216, 34, 34);
+    --box-shadow-width: 50%;
+    // --highlight-height: 2px;
+    // --highlight-width: 30%;
+    // --background-color: transparent;
+    // --placeholder-color: blue;
     width: 100%;
     // border: 1px solid;
     padding: 10px;
-    box-shadow: 2px 5px whitesmoke;
+    padding-right: 47px;
+    // box-shadow: 2px 5px whitesmoke;
         margin: 16px;
+   }
+
+   ion-item{
+    justify-self: center;
+    align-self: center;
+    margin: 10px;
+    width: 100%;
+    // border: 2px solid red;
    }
   .ion-padding ion-item{
     // height: 30px;
