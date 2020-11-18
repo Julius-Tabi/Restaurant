@@ -8,47 +8,46 @@
 </ion-header>
 <ion-content>
     <div class="main">
-      <ion-card>
-        <div class="Profilepic">
-          <img style="object-fit: cover; align-self: right; margin-right: 50%;" src="{{restaurants?.Profilepic}}" />
-        </div>
-        <div class="about" style="text-align: center; align-self: center;">
-          <ion-title
-            style="text-align: center; font-size: larger; font-family: Georgia, 'Times New Roman', Times, serif;">
-            {{restaurants?.Restaurant}}</ion-title>
-          <ion-item-divider></ion-item-divider>
-          <ion-title>Restaurant Background</ion-title>
-          <ion-textarea readonly>{{restaurants?.aboutRest}}</ion-textarea>
-        </div>
-      </ion-card>
-      <ion-card style="text-align: center; align-self: center; justify-content: center; align-items: center;">
-        <ion-card-header>
-          <ion-card-subtitle style="text-align: center;">
-            <ion-item-divider color="primary">
-              <ion-title style="font-size: x-large; font-weight: bold;">About Restaurant</ion-title>
-            </ion-item-divider><br>
-            <p>Date Established:{{restaurants?.date  | date:'dd/MM/yyyy'}}</p>
-            <p>Slogan: {{restaurants?.Slogan}}</p>
-            <p>Number of Employees:{{restaurants?.NoOfemps}}</p>
-            <p>Reviews:</p>
-          </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-header>
-          <ion-card-subtitle style="text-align: center;">
-            <ion-item-divider color="primary">
-              <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Address</ion-title>
-            </ion-item-divider><br>
-            <p>Street :{{restaurants?.street}}</p>
-            <p>City :{{restaurants?.city}}</p>
-            <p>Province:{{restaurants?.province}}</p>
-            <p>Zip Code:{{restaurants?.zip}}</p>
-          </ion-card-subtitle>
-        </ion-card-header>
-        <ion-button shape="round" [routerLink]="'/browse-menu/' + restaurants?.ownerId" style="width: 60%; align-self: center;">Browse Menu
-            <ion-icon slot="end" name="create">
-            </ion-icon>
-        </ion-button>
-      </ion-card>
+        <ion-card>
+            <div class="Profilepic">
+                <img style="object-fit: cover; align-self: right; margin-right: 50%;" src="{{restaurants?.Profilepic}}" />
+            </div>
+            <div class="about" style="text-align: center; align-self: center;">
+                <ion-title style="text-align: center; font-size: larger; font-family: Georgia, 'Times New Roman', Times, serif;">
+                    {{restaurants?.Restaurant}}</ion-title>
+                <ion-item-divider></ion-item-divider>
+                <ion-title>Restaurant Background</ion-title>
+                <ion-textarea readonly>{{restaurants?.aboutRest}}</ion-textarea>
+            </div>
+        </ion-card>
+        <ion-card style="text-align: center; align-self: center; justify-content: center; align-items: center;">
+            <ion-card-header>
+                <ion-card-subtitle style="text-align: center;">
+                    <ion-item-divider color="primary">
+                        <ion-title style="font-size: x-large; font-weight: bold;">About Restaurant</ion-title>
+                    </ion-item-divider><br>
+                    <p>Date Established:{{restaurants?.date | date:'dd/MM/yyyy'}}</p>
+                    <p>Slogan: {{restaurants?.Slogan}}</p>
+                    <p>Number of Employees:{{restaurants?.NoOfemps}}</p>
+                    <p>Reviews:</p>
+                </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-header>
+                <ion-card-subtitle style="text-align: center;">
+                    <ion-item-divider color="primary">
+                        <ion-title style="text-align: center; font-size: x-large; font-weight: bold;">Address</ion-title>
+                    </ion-item-divider><br>
+                    <p>Street :{{restaurants?.street}}</p>
+                    <p>City :{{restaurants?.city}}</p>
+                    <p>Province:{{restaurants?.province}}</p>
+                    <p>Zip Code:{{restaurants?.zip}}</p>
+                </ion-card-subtitle>
+            </ion-card-header>
+            <ion-button shape="round" [routerLink]="'/browse-menu/' + restaurants?.ownerId" style="width: 60%; align-self: center;">Browse Menu
+                <ion-icon slot="end" name="create">
+                </ion-icon>
+            </ion-button>
+        </ion-card>
     </div>
-  </ion-content>
+</ion-content>
 <!-- [routerLink]="'/browse-menu/' + restaurants?.ownerId" -->

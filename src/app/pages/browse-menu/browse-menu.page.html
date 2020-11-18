@@ -1,37 +1,125 @@
-
-<ion-header>
+<ion-header class="ion-no-border">
     <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button color="primary" defaultHref="home"></ion-back-button>
-      </ion-buttons>
-      <!-- <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="person"></ion-icon> -->
-      <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="home"></ion-icon>
+        <ion-buttons slot="start">
+            <ion-back-button color="primary" defaultHref="home"></ion-back-button>
+        </ion-buttons>
+        <ion-avatar slot="end">
+            <img src="{{restaurants?.Profilepic}}">
+        </ion-avatar>
     </ion-toolbar>
-  </ion-header>
-  
-<ion-content>
-    <div class="title-block">
-        <div class="heading" style="text-align: center; font-size: larger; font-weight: bold;">MENU</div>
+    <ion-item lines="none">
+
+        <ion-label>
+            <h2 style="text-align: center; align-self: center;">{{restaurants?.Restaurant}} Menu</h2>
+        </ion-label>
+    </ion-item>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="main">
+        <div class="ion-padding wrapper">
+
+            <ion-searchbar></ion-searchbar>
+
+            <ion-grid class="ion-no-padding">
+                <ion-row class="ion-align-items-baseline">
+                    <ion-col size="6">
+                        <h4 class="title">
+                            Our Dishes
+                        </h4>
+                    </ion-col>
+                    <ion-col size="6">
+                        <h4 class="more ion-text-end">
+                            Slide for more
+                        </h4>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </div>
+
+        <ion-grid class="ion-no-padding">
+            <ion-row>
+                <ion-col size="12">
+                    <ion-slides [options]="">
+
+                        <ion-slide *ngFor="let a of dishes">
+                            <ion-card class="card">
+                                <ion-card-content class="ion-text-left">
+
+                                    <div class="img-wrapper">
+                                        <ion-img src="{{a?.Dishpic}}"></ion-img>
+                                    </div>
+
+                                    <ion-card-title class="title">{{a?.name}}</ion-card-title>
+                                    <ion-card-subtitle>{{a?.Dishdetails}}</ion-card-subtitle>
+                                    <ion-text style="color: rgb(10, 172, 10);">{{a?.price}}</ion-text>
+                                    <ion-card-subtitle>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star-outline"></ion-icon>
+                                    </ion-card-subtitle>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-slide>
+
+
+
+                    </ion-slides>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <div class="ion-padding-horizontal wrapper">
+
+            <ion-grid class="ion-no-padding">
+                <ion-row class="ion-align-items-baseline">
+                    <ion-col size="6">
+                        <h4 class="title">
+                            Available Drinks
+                        </h4>
+                    </ion-col>
+                    <ion-col size="6">
+                        <h4 class="more ion-text-end">
+                            Slide for more
+                        </h4>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </div>
+
+        <ion-grid class="ion-no-padding">
+            <ion-row>
+                <ion-col size="12">
+                    <ion-slides [options]="">
+
+                        <ion-slide *ngFor="let d of drinks">
+                            <ion-card class="card">
+                                <ion-card-content class="ion-text-left">
+
+                                    <div class="img-wrapper">
+                                        <ion-img src="{{d?.Dishpic}}"></ion-img>
+                                    </div>
+
+                                    <ion-card-title class="title">{{d?.name}}</ion-card-title>
+                                    <ion-card-subtitle>{{d?.Dishdetails}}</ion-card-subtitle>
+                                    <ion-text style="color: rgb(10, 172, 10);">{{d?.price}}</ion-text>
+                                    <ion-card-subtitle>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star-outline"></ion-icon>
+                                    </ion-card-subtitle>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-slide>
+                    </ion-slides>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-button fill="outline" style=" align-self: center; display: flex; justify-content: center;" color="primary" slot="end" [routerLink]="'/reserve-table/' + dishes?.ownerId">Reserve</ion-button>
     </div>
-    <ion-list style="border-top-right-radius: 20%; background-image: linear-gradient(rgb(194, 140, 232),blue,rgb(75, 72, 255)); width: 100%; overflow-y: scroll;">
-        <ion-list-header>
-            <ion-label>Dish</ion-label>
-        </ion-list-header>
-        <ion-item *ngFor="let a of dishes">
-            <ion-thumbnail slot="start">
-                <img src="{{a?.Dishpic}}" alt="" style="object-fit: cover;">
-            </ion-thumbnail>
-            <ion-label>
-                <h2>{{a?.name}}</h2>
-                <p>{{a?.Dishdetails}}</p>
-                <p>{{a?.price}}</p>
-            </ion-label>
-            <ion-button fill="outline" slot="end" [routerLink]="'/reserve-table/' + a?.ownerId">Reserve</ion-button>
-        </ion-item>
-    </ion-list>
-    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button style="background-color: tomato;" [routerLink]="'/add-note'">
-            <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-    </ion-fab> -->
 </ion-content>

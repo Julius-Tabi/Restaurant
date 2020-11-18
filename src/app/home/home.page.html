@@ -1,11 +1,11 @@
 <ion-header class="ion-no-border">
     <ion-toolbar>
-      <!-- <ion-title>loginscreen</ion-title> -->
+        <!-- <ion-title>loginscreen</ion-title> -->
     </ion-toolbar>
     <ion-buttons slot="start">
-    <ion-back-button defaulthref="login" text=""></ion-back-button>
+        <ion-back-button defaulthref="login" text=""></ion-back-button>
     </ion-buttons>
-  </ion-header>
+</ion-header>
 
 <!-- <ion-header [translucent]="true">
     <ion-toolbar>
@@ -67,49 +67,49 @@
 <!-- https://hafizmokhtar.com/tutorials/ionic-4-form-validation-with-reactive-forms-tutorial/ -->
 <ion-content>
     <ion-card class="ion-no-margin">
-      <ion-img src="assets/img/header1.png"></ion-img>
-      <ion-card-title style="text-align: center; font-size: xx-large;">Sign In</ion-card-title>
-      <ion-card-content>
+        <ion-img src="assets/img/header1.png"></ion-img>
+        <ion-card-title style="text-align: center; font-size: xx-large;">Sign In</ion-card-title>
+        <ion-card-content>
 
-    <form [formGroup]="LoginForm" (ngSubmit)="submit()">
-        <div class="wrapform">
-         <ion-item>
-            <ion-input type="text" name="email" formControlName="email"  placeholder="Email">
-           <ion-icon name="mail-outline"></ion-icon>
-           </ion-input>
-           </ion-item>
-           <div *ngFor="let error of errorMessages.email">
-            <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
-                <small class="error-message">{{error.message}}</small>
-            </ng-container>
-        </div>
+            <form [formGroup]="LoginForm" (ngSubmit)="submit()">
+                <div class="wrapform">
+                    <ion-item>
+                        <ion-input type="text" name="email" formControlName="email" placeholder="Email">
+                            <ion-icon slot="start" name="mail-outline"></ion-icon>
+                        </ion-input>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.email">
+                        <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
 
-           <ion-item>
+                    <ion-item>
 
-             <ion-input type="password" name="password" formControlName="password"  placeholder="**************" >
-             <ion-icon name="lock-closed"></ion-icon>
-             </ion-input>
-             </ion-item>
+                        <ion-input type="password" name="password" formControlName="password" placeholder="**************">
+                            <ion-icon slot="start" name="lock-closed"></ion-icon>
+                        </ion-input>
+                    </ion-item>
 
-             <div *ngFor="let error of errorMessages.password">
-                <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
-                    <small class="error-message">{{error.message}}</small>
-                </ng-container>
-            </div>
+                    <div *ngFor="let error of errorMessages.password">
+                        <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
 
-        </div>
-         <!-- <div class="password_forgot">
+                </div>
+                <!-- <div class="password_forgot">
             <ion-button fill="clear" class="ion-no-padding">ForgotPasword?</ion-button>
          </div> -->
-         <div class="sign-btn-wrap">
-                <ion-button shape="round" size="medium" [disabled]="!LoginForm.valid" type="submit" color="" style="width: 60%;">Log In
-                    <ion-icon slot="end" name="log-in"></ion-icon>
-                </ion-button>
-                <p style="text-align: center;"><a href="/rest-owner" style="padding-left: 10px; color: #5A6573; text-decoration: none;">Register Restaurant</a></p>
-           </div>
+                <div class="sign-btn-wrap">
+                    <ion-button shape="round" size="medium" [disabled]="!LoginForm.valid" type="submit" color="" style="width: 60%;">Log In
+                        <ion-icon slot="end" name="log-in"></ion-icon>
+                    </ion-button>
+                    <p style="text-align: center;"><a href="/rest-owner" style="padding-left: 10px; color: #5A6573; text-decoration: none;">Register Restaurant</a></p>
+                </div>
 
-      </form>
-      </ion-card-content>
+            </form>
+        </ion-card-content>
 
 
     </ion-card>
@@ -117,8 +117,8 @@
 
     <div class="ion-card-footer">
         <span style="text-align: center;">Don't have an account? <a href="/user-reg" style="padding-left: 2px; color: #5A6573; text-decoration: none;">Sign Up</a></span><br>
-     <!-- <span>Don’t have an account?</span><button class="ion-no-padding" >Sign Up</button> -->
-      </div>
+        <!-- <span>Don’t have an account?</span><button class="ion-no-padding" >Sign Up</button> -->
+    </div>
 
 
 
