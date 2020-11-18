@@ -128,6 +128,7 @@ signAuth(){
   reserve() {
     return firebase.firestore().collection('restaurants');
   }
+   
   bookingStatus(ownerId, userId, value){
     var db = firebase.firestore();
     var restaurantRef = db.collection('restaurants').doc(ownerId);

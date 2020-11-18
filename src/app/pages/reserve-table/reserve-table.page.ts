@@ -34,7 +34,7 @@ export class ReserveTablePage implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id')
     console.log('ID: ', this.id)
     //console.log(this.uid)
-    this.addRest();
+    this.reservetable();
   }
   get name() {
     return this.ReservationForm.get("name");
@@ -87,7 +87,7 @@ export class ReserveTablePage implements OnInit {
       { type: 'pattern', message: 'Please enter a valid phone number' }
     ],
   };
-  addRest() {
+  reservetable() {
   this.ReservationForm = this.formBuilder.group({
     name: ['', [Validators.required, Validators.maxLength(100)]],
     NoOfpeople: [

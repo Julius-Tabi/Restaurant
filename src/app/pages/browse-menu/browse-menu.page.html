@@ -50,7 +50,6 @@
                                     <div class="img-wrapper">
                                         <ion-img src="{{a?.Dishpic}}"></ion-img>
                                     </div>
-
                                     <ion-card-title class="title">{{a?.name}}</ion-card-title>
                                     <ion-card-subtitle>{{a?.Dishdetails}}</ion-card-subtitle>
                                     <ion-text style="color: rgb(10, 172, 10);">{{a?.price}}</ion-text>
@@ -61,12 +60,12 @@
                                         <ion-icon name="star"></ion-icon>
                                         <ion-icon name="star-outline"></ion-icon>
                                     </ion-card-subtitle>
+                                    <!-- <ion-button fill="outline" style=" align-self: center; display: flex; justify-content: center;" color="primary" slot="end" [routerLink]="'/reserve-table/' +  a?.ownerId">Reserve</ion-button> -->
                                 </ion-card-content>
+
                             </ion-card>
+                            <!-- <ion-button fill="outline" style=" align-self: center; display: flex; justify-content: center;" color="primary" slot="end" [routerLink]="'/reserve-table/' + dishes?.ownerId">Reserve</ion-button> -->
                         </ion-slide>
-
-
-
                     </ion-slides>
                 </ion-col>
             </ion-row>
@@ -113,13 +112,16 @@
                                         <ion-icon name="star"></ion-icon>
                                         <ion-icon name="star-outline"></ion-icon>
                                     </ion-card-subtitle>
+                                    <ion-button fill="outline" style=" align-self: center; display: flex; justify-content: center; width: 50%; margin-left: 30%;" color="primary" slot="end" [routerLink]="'/reserve-table/' +  d?.ownerId">Reserve</ion-button>
                                 </ion-card-content>
+
                             </ion-card>
+
                         </ion-slide>
                     </ion-slides>
                 </ion-col>
             </ion-row>
         </ion-grid>
-        <ion-button fill="outline" style=" align-self: center; display: flex; justify-content: center;" color="primary" slot="end" [routerLink]="'/reserve-table/' + dishes?.ownerId">Reserve</ion-button>
+
     </div>
 </ion-content>

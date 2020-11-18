@@ -99,7 +99,7 @@ export class AddDrinkPage implements OnInit {
     var user = firebase.auth().currentUser
     this.ownerId = user.uid;
     // Adding new menu
-    this.fbservice.regRest().doc(this.ownerId).collection('Drinks').add({
+    this.fbservice.reserve().doc(this.ownerId).collection('Drinks').add({
       ownerId: this.ownerId,
       name: this.AddDishForm.value.name,
       Dishpic: this.AddDishForm.value.Dishpic,

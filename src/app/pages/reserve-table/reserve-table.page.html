@@ -1,89 +1,99 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    
-  </ion-toolbar>
-</ion-header> -->
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      
-      <ion-back-button color="primary" defaultHref="home"></ion-back-button>
-    </ion-buttons>
-    <!-- <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="person"></ion-icon> -->
-    <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="home"></ion-icon>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button color="primary" defaultHref="home"></ion-back-button>
+        </ion-buttons>
+        <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="home"></ion-icon>
+    </ion-toolbar>
 </ion-header>
 
+<ion-content class="bg-color">
 
-<ion-content id="container">
-  <ion-header>
-    <ion-title style="text-align: center; font-size: xx-large; font-weight: bold; font-style: unset;">Reserve a Table</ion-title>
-  </ion-header>
-  <div class="ion-padding">
-    <form [formGroup]="ReservationForm" (ngSubmit)="submit()">
-      <ion-list>
-        <ion-item >
-          <ion-label position="floating">Reserve Under</ion-label>
-          <ion-input autocapitalize inputmode="text" formControlName="name"></ion-input>
-        </ion-item>
-        <div *ngFor="let error of errorMessages.name">
-          <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
-            <small class="error-message">{{error.message}}</small>
-          </ng-container>
-        </div>
-        <ion-item>
-          <ion-label position="floating">No of party</ion-label>
-          <ion-input formControlName="NoOfpeople" inputmode="number" placeholder="" onfocus="this.value=''"></ion-input>
-        </ion-item>
-        <div *ngFor="let error of errorMessages.NoOfpeople">
-          <ng-container *ngIf="NoOfpeople.hasError(error.type) && (NoOfpeople.dirty || NoOfpeople.touched)">
-            <small class="error-message">{{error.message}}</small>
-          </ng-container>
-        </div>
-        <ion-item>
-          <ion-label position="floating">Date</ion-label>
-          <ion-datetime (click)="disableData()" name="CheckIndate"  picker-format="DD-MM-YYYY"
-            formControlName="date" placeholder=""></ion-datetime>
-        </ion-item>
-        <div *ngFor="let error of errorMessages.date">
-          <ng-container *ngIf="date.hasError(error.type) && (date.dirty || date.touched)">
-            <small class="error-message">{{error.message}}</small>
-          </ng-container>
-        </div>
-        <ion-item>
-          <ion-label position="floating">Time</ion-label>
-          <ion-datetime  picker-format="HH:mm" formControlName="time" inputmode="time"
-            placeholder=""></ion-datetime>
-        </ion-item>
-        <div *ngFor="let error of errorMessages.time">
-          <ng-container *ngIf="time.hasError(error.type) && (time.dirty || time.touched)">
-            <small class="error-message">{{error.message}}</small>
-          </ng-container>
-        </div>
-        <ion-item >
-          <ion-label position="floating">Email</ion-label>
-          <ion-input inputmode="email" formControlName="email"></ion-input>
-        </ion-item>
-        <div *ngFor="let error of errorMessages.email">
-          <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
-            <small class="error-message">{{error.message}}</small>
-          </ng-container>
-        </div>
-        <ion-item>
-          <ion-label position="floating">Phone</ion-label>
-          <ion-input inputmode="tel" formControlName="phone"></ion-input>
-        </ion-item>
-        <div *ngFor="let error of errorMessages.phone">
-          <ng-container *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)">
-            <small class="error-message">{{error.message}}</small>
-          </ng-container>
-        </div>
-      </ion-list>
-      <ion-button shape="round" [disabled]="!ReservationForm.valid" type="submit" style="width: 60%;">Submit info
-        <ion-icon slot="end" name="create">
-        </ion-icon>
-      </ion-button>
-      <!-- <ion-button shape="round" size="medium" type="submit" click="signout()">Log Out</ion-button> -->
-    </form>
-  </div>
+    <ion-card class="ion-no-margin">
+
+        <ion-card-header>
+            <ion-card-title>
+                Reserve Your Table
+            </ion-card-title>
+            <ion-card-subtitle>
+                Reserve Your Table by filling up the form
+            </ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+            <form [formGroup]="ReservationForm" (ngSubmit)="submit()">
+                <div class="wrapform">
+                    <ion-item>
+                        <ion-input autocapitalize inputmode="text" placeholder="Reserve Under" formControlName="name">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </ion-input>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.name">
+                        <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
+                    <ion-item>
+                        <ion-input formControlName="NoOfpeople" inputmode="number" placeholder="No of party" onfocus="this.value=''"></ion-input>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.NoOfpeople">
+                        <ng-container *ngIf="NoOfpeople.hasError(error.type) && (NoOfpeople.dirty || NoOfpeople.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
+                    <ion-item>
+
+                        <ion-datetime (click)="disableData()" name="CheckIndate" picker-format="DD-MM-YYYY" formControlName="date" placeholder="Date">
+                            <ion-icon slot="start" name="calendar"></ion-icon>
+                        </ion-datetime>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.date">
+                        <ng-container *ngIf="date.hasError(error.type) && (date.dirty || date.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
+                    <ion-item>
+
+                        <ion-datetime picker-format="HH:mm" formControlName="time" inputmode="time" placeholder="Time">
+                            <ion-icon slot="start" name="time"></ion-icon>
+                        </ion-datetime>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.time">
+                        <ng-container *ngIf="time.hasError(error.type) && (time.dirty || time.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
+                    <ion-item>
+
+                        <ion-input inputmode="email" formControlName="email" placeholder="Email">
+                            <ion-icon name="mail-outline"></ion-icon>
+                        </ion-input>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.email">
+                        <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
+                    <ion-item>
+
+                        <ion-input inputmode="tel" formControlName="phone" placeholder="Phone">
+                            <ion-icon name="call-outline"></ion-icon>
+                        </ion-input>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.phone">
+                        <ng-container *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="sign-btn-wrap">
+                    <ion-button shape="round" [disabled]="!ReservationForm.valid" type="submit" style="width: 60%;">Submit info
+                        <ion-icon slot="end" name="create">
+                        </ion-icon>
+                    </ion-button>
+                </div>
+            </form>
+        </ion-card-content>
+
+    </ion-card>
 </ion-content>

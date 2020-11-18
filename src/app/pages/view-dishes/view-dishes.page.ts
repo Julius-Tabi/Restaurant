@@ -13,8 +13,9 @@ export class ViewDishesPage implements OnInit {
   id:any
   uid = this.route.snapshot.params.id;
   dishes: any = [];
-  ownerId:any
-  constructor(private fbservice: FbserviceService,private router: Router, public route: ActivatedRoute) { }
+  ownerId: any
+   drinks: any = [];
+  constructor(public fbservice: FbserviceService,private router: Router, public route: ActivatedRoute) { }
  
 
   ngOnInit() {
@@ -30,6 +31,12 @@ export class ViewDishesPage implements OnInit {
         console.log('menu: ', this.dishes)
       })
     })
+       firebase.firestore().collection('restaurants').doc(this.uid).collection('Drinks').where('ownerId', '==', this.uid).limit(3).get().then(snapshot => {
+      snapshot.docs.forEach(Drinks => {
+        this.drinks.push(Drinks.data())
+        console.log('Drinks: ', this.drinks)
+      })
+        })
   }
 }
 

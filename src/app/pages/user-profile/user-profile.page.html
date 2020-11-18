@@ -1,32 +1,33 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button color="primary" defaultHref="home"></ion-back-button>
-    </ion-buttons>
-    <!-- <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="person"></ion-icon> -->
-    <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="home"></ion-icon>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button color="primary" defaultHref="home"></ion-back-button>
+        </ion-buttons>
+        <!-- <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="person"></ion-icon> -->
+        <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="home"></ion-icon>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<div class="main">
-<div class="profile">
-  <ion-header class="ion-no-border">
-    <ion-title>
-      Profile
-    </ion-title>
-  </ion-header>
-  <ion-icon style="zoom: 13; color: gray; " name="person-circle"></ion-icon>
-</div>
-<div class="details">
-  <p>First Name: {{userProfile?.name}}</p>
-  <p>Last Name: {{userProfile?.lastname}}</p>
-  <p>Email Address: {{userProfile?.email}}</p>
-  <p>Phone Number: {{userProfile?.phone}}</p>
-</div>
-<ion-button shape="round" style="width: 60%; align-self: center;">Edit Profile<ion-icon slot="end"
-  name="create">
-</ion-icon>
-</ion-button>
-</div>
+    <div class="main">
+        <div class="details">
+            <div class="profile">
+                <ion-header class="ion-no-border">
+                    <ion-text>
+                        Profile
+                    </ion-text>
+
+                </ion-header>
+                <ion-icon style="zoom: 13; color: gray; " name="person-circle"></ion-icon>
+            </div>
+            <p>First Name: {{userProfile?.name}}</p>
+            <p>Last Name: {{userProfile?.lastname}}</p>
+            <p>Email Address: {{userProfile?.email}}</p>
+            <p>Phone Number: {{userProfile?.phone}}</p>
+        </div><br><br>
+        <ion-button routerLink="/user-reg" shape="round" color="light" style="width: 60%; align-self: center;">Edit Profile
+            <ion-icon slot="end" name="create">
+            </ion-icon>
+        </ion-button>
+    </div>
 </ion-content>
