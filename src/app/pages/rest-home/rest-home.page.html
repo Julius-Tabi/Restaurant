@@ -4,7 +4,7 @@
 
             <ion-back-button color="primary" defaultHref="home"></ion-back-button>
         </ion-buttons>
-        <ion-card-title style=" text-align: center; padding-right: 50px;">Home</ion-card-title>
+        <!-- <ion-card-title style=" text-align: center; padding-right: 50px;">Home</ion-card-title> -->
     </ion-toolbar>
 </ion-header>
 
@@ -13,28 +13,27 @@
 
 </ion-header>
 <section style="align-self: center; display: flex; justify-content: center;">
-    <!-- <h1 style="font-size:1.4em;align-self: center; display: flex; justify-content: center;" no-margin>Welcome, <br> Mr. John Doe</h1>
-    <ion-icon name="person"></ion-icon> -->
+
 </section>
 <ion-content class="background">
-    <h1 style="font-size:1.4em;align-self: center; display: flex; justify-content: center; text-align: center;" no-margin>Welcome, <br> Mr. John Doe</h1>
+    <!-- <h1 style="font-size:1.4em;align-self: center; display: flex; justify-content: center; text-align: center;" no-margin>Welcome, <br> Mr. John Doe</h1> -->
     <div class="container">
         <ion-card>
-            <ion-icon routerLink="/rest-profile" style="align-self: center; margin-top: 10px; width: 60%; height: 60%;" name="person-sharp"></ion-icon><br>
-            <ion-text style="text-align: center; align-self: center;"> Profile</ion-text>
+            <ion-icon routerLink="/rest-profile" style="align-self: center; margin-top: 10px; width: 60%; height: 60%; color: #046895;" name="person-sharp"></ion-icon><br>
+            <ion-text style="text-align: center; align-self: center;  color: black;">Store Profile</ion-text>
         </ion-card>
         <ion-card>
-            <ion-icon [routerLink]="'/view-reservation/' + this.fbservice.getUid()" style="align-self: center; margin-top: 10px; width: 60%; height: 60%;" name="calendar-sharp"></ion-icon>
-            <ion-text style="text-align: center; align-self: center;">Reservations</ion-text>
+            <ion-icon [routerLink]="'/view-reservation/' + this.fbservice.getUid()" style="align-self: center; margin-top: 10px; width: 60%; height: 60%; color: #046895;" name="calendar-sharp"></ion-icon>
+            <ion-text style="text-align: center; align-self: center;  color: black;">Reservations</ion-text>
         </ion-card>
         <ion-card>
 
-            <ion-icon [routerLink]="'/view-dishes/' + this.fbservice.getUid()" style="align-self: center; margin-top: 10px; width: 60%; height: 60%;" name="restaurant-sharp"></ion-icon><br>
-            <ion-text style="text-align: center; align-self: center;">Menu</ion-text>
+            <ion-icon [routerLink]="'/view-dishes/' + this.fbservice.getUid()" style="align-self: center; margin-top: 10px; width: 60%; height: 60%; color: #046895;" name="restaurant-sharp"></ion-icon><br>
+            <ion-text style="text-align: center; align-self: center;  color: black;">Menu</ion-text>
         </ion-card>
-        <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="primary">
-            <ion-fab-button style="color: gray" color="grey" routerLink="/restreg">
-                <ion-icon name="add">Restaurant</ion-icon>
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="danger">
+            <ion-fab-button color="light" routerLink="/restreg">
+                <ion-icon name="add">Add</ion-icon>
             </ion-fab-button>
         </ion-fab>
     </div>

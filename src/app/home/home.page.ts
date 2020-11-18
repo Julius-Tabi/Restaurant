@@ -81,7 +81,7 @@ export class HomePage implements OnInit {
       console.log(res.user);
     }).then(() => {
       loading.dismiss().then(() => {
-        this.router.navigateByUrl('/restaurant-list');
+        this.router.navigateByUrl('/user-home');
       });
     },
       error => {

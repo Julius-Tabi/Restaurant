@@ -1,10 +1,9 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button color="primary" defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <!-- <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="person"></ion-icon> -->
-    <!-- <ion-icon routerLink="/user-home" slot="end" style="width: 30px; height: 30px; margin-right: 10px;" color="primary" name="home"></ion-icon> -->
+
   </ion-toolbar>
 </ion-header>
 
@@ -18,10 +17,6 @@
       <ion-icon [routerLink]="'/user-reservation'" style="zoom: 13; color: gray; align-self: center; margin-top: 2px; justify-content: center; align-items: center; width: 100%; height: 100%;" name="calendar"></ion-icon>
          <ion-card-title  style="text-align: center; align-self: center;">Reservations</ion-card-title>
      </ion-card>
-     <!-- <ion-card >
-       <img [routerLink]="'/view-dishes/' + this.fbservice.getUid()" style="align-self: center; margin-top: 10px; color: tomato; width: 60%; height: 60%;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNDgwIDQ4MCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDgwIDQ4MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGNpcmNsZSBzdHlsZT0iZmlsbDojRjhDRjI2OyIgY3g9IjI0MCIgY3k9IjI0MCIgcj0iMjMyIi8+DQo8Y2lyY2xlIHN0eWxlPSJmaWxsOiNGRjkzMUU7IiBjeD0iMjQwIiBjeT0iMjQwIiByPSIxNTIiLz4NCjxwYXRoIGQ9Ik0zNDIuNTUyLDIwNS43NzZjMi41ODEtMTQuNjcxLDEuNjc0LTI5Ljc0NC0yLjY0OC00NGwtNS4xMzYtMTYuOTA0Yy02LjUyNC0xOS4yMDItMjcuMzc5LTI5LjQ3OS00Ni41ODEtMjIuOTU1DQoJYy0xMC44MDIsMy42Ny0xOS4yODUsMTIuMTUzLTIyLjk1NSwyMi45NTVsLTUuMTM2LDE2LjkwNGMtNC4zMjIsMTQuMjU2LTUuMjI5LDI5LjMyOS0yLjY0OCw0NA0KCWMyLjM1NCwxMi4zNTIsMTAuMTk2LDIyLjk2NCwyMS4zMTIsMjguODRMMjczLjAwOCwzNjMuMmMtMC43Nyw3LjE3NywxLjU1OCwxNC4zNDIsNi40LDE5LjY5Ng0KCWMxMC40MTMsMTEuMzksMjguMDg5LDEyLjE4MiwzOS40NzksMS43NjljMC42MTYtMC41NjMsMS4yMDYtMS4xNTMsMS43NjktMS43NjljNC43MzQtNS4yMDIsNy4wNTgtMTIuMTU3LDYuNC0xOS4xNkwzMjEuMjcyLDIzNC42DQoJQzMzMi4zNzMsMjI4LjcyMSwzNDAuMjAyLDIxOC4xMTYsMzQyLjU1MiwyMDUuNzc2TDM0Mi41NTIsMjA1Ljc3NnogTTMyNi43OTIsMjAyLjk5MmMtMS43MzIsOC44NzQtOC4wNTYsMTYuMTU1LTE2LjYsMTkuMTEyDQoJYy0zLjI0MywxLjIxOS01LjMzMiw0LjM4Ny01LjE3Niw3Ljg0OEwzMTEuMDk2LDM2NWMwLjI4LDIuNjQ5LTAuNTk0LDUuMjktMi40LDcuMjQ4Yy00LjgxNyw0Ljc2OS0xMi41NzUsNC43NjktMTcuMzkyLDANCgljLTEuODk2LTIuMTE2LTIuNzU3LTQuOTY0LTIuMzUyLTcuNzc2bDYuMDMyLTEzNC41MmMwLjE1Ni0zLjQ2MS0xLjkzMy02LjYyOS01LjE3Ni03Ljg0OGMtOC41NDQtMi45NTctMTQuODY4LTEwLjIzOC0xNi42LTE5LjExMg0KCWMtMi4xNC0xMi4xOC0xLjM4Ni0yNC42OTMsMi4yLTM2LjUyOGw1LjEzNi0xNi45MTJjMy45NzQtMTAuNzQ1LDE1LjkwNi0xNi4yMzQsMjYuNjUyLTEyLjI2YzUuNjgxLDIuMTAxLDEwLjE1OSw2LjU4LDEyLjI2LDEyLjI2DQoJbDUuMTM2LDE2LjkxMkMzMjguMTc0LDE3OC4zLDMyOC45MjgsMTkwLjgxMiwzMjYuNzkyLDIwMi45OTJMMzI2Ljc5MiwyMDIuOTkyeiIvPg0KPHBhdGggZD0iTTIyMS42NTYsMjA1LjY1NmMxLjUtMS41LDIuMzQ0LTMuNTM0LDIuMzQ0LTUuNjU2di03MmMwLTQuNDE4LTMuNTgyLTgtOC04cy04LDMuNTgyLTgsOHY2OC42ODhsLTIxLjY1NiwyMS42NTYNCgljLTEuNjAyLDEuNTk3LTIuNDU0LDMuNzk3LTIuMzQ0LDYuMDU2bDcsMTQwYzAuMTY3LDMuMDE5LTAuOTI5LDUuOTcyLTMuMDI0LDguMTUyYy00LjM3OSw0LjQxOC0xMS41MTEsNC40NS0xNS45MywwLjA3DQoJYy0wLjAyNC0wLjAyMy0wLjA0Ny0wLjA0Ny0wLjA3LTAuMDdjLTIuMDk1LTIuMTgtMy4xOTEtNS4xMzMtMy4wMjQtOC4xNTJsNy4wNDgtMTQwYzAuMTEyLTIuMjU4LTAuNzM3LTQuNDU4LTIuMzM2LTYuMDU2DQoJTDE1MiwxOTYuNjg4VjEyOGMwLTQuNDE4LTMuNTgyLTgtOC04cy04LDMuNTgyLTgsOHY3MmMwLDIuMTIyLDAuODQ0LDQuMTU2LDIuMzQ0LDUuNjU2bDIxLjQ4OCwyMS40OTZsLTYuODI0LDEzNi40NzINCgljLTAuNzI2LDE0LjkwNywxMC43NywyNy41ODEsMjUuNjc3LDI4LjMwN3MyNy41ODEtMTAuNzcsMjguMzA3LTI1LjY3N2MwLjA0My0wLjg3NiwwLjA0My0xLjc1MywwLTIuNjI5bC02LjgyNC0xMzYuNDcyDQoJTDIyMS42NTYsMjA1LjY1NnoiLz4NCjxwYXRoIGQ9Ik0xNjgsMjAwYzQuNDE4LDAsOC0zLjU4Miw4LTh2LTY0YzAtNC40MTgtMy41ODItOC04LThzLTgsMy41ODItOCw4djY0QzE2MCwxOTYuNDE4LDE2My41ODIsMjAwLDE2OCwyMDB6Ii8+DQo8cGF0aCBkPSJNMTg0LDEyOHY2NGMwLDQuNDE4LDMuNTgyLDgsOCw4czgtMy41ODIsOC04di02NGMwLTQuNDE4LTMuNTgyLTgtOC04UzE4NCwxMjMuNTgyLDE4NCwxMjh6Ii8+DQo8cGF0aCBkPSJNMjQwLDBDMTA3LjQ1MiwwLDAsMTA3LjQ1MiwwLDI0MHMxMDcuNDUyLDI0MCwyNDAsMjQwczI0MC0xMDcuNDUyLDI0MC0yNDBDNDc5Ljg1LDEwNy41MTQsMzcyLjQ4NiwwLjE1LDI0MCwweiBNMjQwLDQ2NA0KCUMxMTYuMjg4LDQ2NCwxNiwzNjMuNzEyLDE2LDI0MFMxMTYuMjg4LDE2LDI0MCwxNnMyMjQsMTAwLjI4OCwyMjQsMjI0QzQ2My44NTksMzYzLjY1MywzNjMuNjUzLDQ2My44NTksMjQwLDQ2NHoiLz4NCjxwYXRoIGQ9Ik0yNTYuOTUyLDM4My4wMTZjLTExLjI2MywxLjMwOC0yMi42NDEsMS4zMDgtMzMuOTA0LDBjLTQuMzktMC41MTUtOC4zNjUsMi42MjYtOC44OCw3LjAxNg0KCWMtMC41MTUsNC4zOSwyLjYyNiw4LjM2NSw3LjAxNiw4Ljg4YzEyLjQ5MSwxLjQ1OSwyNS4xMDksMS40NTksMzcuNiwwYzQuMzk3LTAuNDI5LDcuNjE0LTQuMzQyLDcuMTg1LTguNzQNCgljLTAuNDI5LTQuMzk3LTQuMzQyLTcuNjE0LTguNzQtNy4xODVjLTAuMTAzLDAuMDEtMC4yMDYsMC4wMjItMC4zMDksMC4wMzZMMjU2Ljk1MiwzODMuMDE2eiIvPg0KPHBhdGggZD0iTTM1MS4wOTYsMTM1Ljk1MmMtMy4zNzcsMi44NDgtMy44MDcsNy44OTQtMC45NiwxMS4yNzJjNDguMjM1LDU3LjI2LDQ0LjU0NSwxNDEuOTI5LTguNDg4LDE5NC43NzYNCgljLTMuMTMsMy4xMTktMy4xMzksOC4xODYtMC4wMiwxMS4zMTZjMy4xMTksMy4xMyw4LjE4NiwzLjEzOSwxMS4zMTYsMC4wMmM1OC45MzctNTguNzEzLDYzLjA0Ny0xNTIuNzk1LDkuNDU2LTIxNi40MjQNCgljLTIuODM5LTMuMzg1LTcuODg1LTMuODI4LTExLjI3LTAuOTg4QzM1MS4xMTgsMTM1LjkzMywzNTEuMTA3LDEzNS45NDMsMzUxLjA5NiwxMzUuOTUyeiIvPg0KPHBhdGggZD0iTTE4Ni4zNTIsMTA1Ljc0NGMwLjk2NS0wLjAwMiwxLjkyMi0wLjE3OCwyLjgyNC0wLjUyYzI3LjExOC0xMC4xNDEsNTYuNjQ2LTExLjk1Miw4NC44LTUuMg0KCWM0LjI5NSwxLjAzOCw4LjYxOC0xLjYwMSw5LjY1Ni01Ljg5NnMtMS42MDEtOC42MTgtNS44OTYtOS42NTZjLTMxLjI2NS03LjQ5My02NC4wNTUtNS40NzktOTQuMTY4LDUuNzg0DQoJYy00LjEzNiwxLjU1NS02LjIyNyw2LjE2OC00LjY3MiwxMC4zMDRjMS4xNzQsMy4xMjIsNC4xNjEsNS4xODcsNy40OTYsNS4xODRIMTg2LjM1MnoiLz4NCjxwYXRoIGQ9Ik05NiwyNDBjLTAuMDc5LTMwLjQ0Niw5LjU2NS02MC4xMjIsMjcuNTI4LTg0LjcwNGMyLjY1NS0zLjUzMiwxLjk0NC04LjU0Ny0xLjU4OC0xMS4yMDINCgljLTMuNTMyLTIuNjU1LTguNTQ3LTEuOTQ0LTExLjIwMiwxLjU4OGMtMC4wNDcsMC4wNjMtMC4wOTMsMC4xMjYtMC4xMzgsMC4xOWMtNDYuMjUzLDYzLjU4OC0zOS40NDcsMTUxLjM1OSwxNi4wNTYsMjA3LjA1Ng0KCWMzLjEyOCwzLjEzLDguMjAyLDMuMTMyLDExLjMzMiwwLjAwNHMzLjEzMi04LjIwMiwwLjAwNC0xMS4zMzJsMCwwQzExMS4wMjMsMzE0LjY3Nyw5NS45MDgsMjc4LjEwOCw5NiwyNDBMOTYsMjQweiIvPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo=" />
-         <ion-card-title style="text-align: center; align-self: center;">Dishes</ion-card-title>
-     </ion-card> -->
      <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
        <ion-fab-button style="--background:yellow;" color="tomato"  routerLink="/restreg">
            <ion-icon name="add">Restaurant</ion-icon>
@@ -29,6 +24,46 @@
    </ion-fab>
   </div>
 
+</ion-content> -->
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button color="primary" defaultHref="home"></ion-back-button>
+        </ion-buttons>
+        <!-- <ion-card-title style=" text-align: center; padding-right: 50px;">Home</ion-card-title> -->
+    </ion-toolbar>
+</ion-header>
+
+<ion-header>
+
+
+</ion-header>
+<section style="align-self: center; display: flex; justify-content: center;">
+
+</section>
+<ion-content class="background">
+    <!-- <h1 style="font-size:1.4em;align-self: center; display: flex; justify-content: center; text-align: center; color: black;" no-margin>Welcome</h1> -->
+    <div class="container">
+        <ion-card>
+            <ion-icon routerLink="/user-profile" style="align-self: center; margin-top: 10px; width: 60%; height: 60%; color: #046895;" name="person-sharp"></ion-icon><br>
+            <ion-text style="text-align: center; align-self: center; color: black;">My Profile</ion-text>
+        </ion-card>
+        <ion-card>
+            <ion-icon [routerLink]="'/user-reservation'" style="align-self: center; margin-top: 10px; width: 60%; height: 60%;  color: #046895;" name="calendar-sharp"></ion-icon>
+            <ion-text style="text-align: center; align-self: center; color: black;">Reservations</ion-text>
+        </ion-card>
+        <ion-card>
+            <ion-icon [routerLink]="'/restaurant-list'" style="align-self: center; margin-top: 10px; width: 60%; height: 60%;  color: #046895;" name="restaurant-sharp" name="list"></ion-icon>
+            <ion-text style="text-align: center; align-self: center; color: black;">Restaurants</ion-text>
+        </ion-card>
+        <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="primary">
+            <ion-fab-button style="color: gray" color="grey" routerLink="/restreg">
+                <ion-icon name="add">Restaurant</ion-icon>
+            </ion-fab-button>
+        </ion-fab> -->
+    </div>
 </ion-content>
+<!-- [routerLink]="'/restaurant-list'" -->
+
 <!-- routerLink="/user-profile" -->
 <!-- [routerLink]="'/view-reservation/' + this.fbservice.getUid()" -->
