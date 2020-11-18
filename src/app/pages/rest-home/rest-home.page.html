@@ -1,36 +1,39 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <!-- {{this.fbservice.getUid()}} -->
+
             <ion-back-button color="primary" defaultHref="home"></ion-back-button>
         </ion-buttons>
-        <ion-card-title style=" text-align: center;  font-size: xx-large; padding-right: 50px;">Home</ion-card-title>
+        <ion-card-title style=" text-align: center; padding-right: 50px;">Home</ion-card-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-header>
 
-    <!-- <ion-card-title style=" background-color: whitesmoke; text-align: center;  font-size: xxx-large;">𝐇𝐎𝐌𝐄</ion-card-title> -->
+
 </ion-header>
+<section style="align-self: center; display: flex; justify-content: center;">
+    <!-- <h1 style="font-size:1.4em;align-self: center; display: flex; justify-content: center;" no-margin>Welcome, <br> Mr. John Doe</h1>
+    <ion-icon name="person"></ion-icon> -->
+</section>
 <ion-content class="background">
+    <h1 style="font-size:1.4em;align-self: center; display: flex; justify-content: center; text-align: center;" no-margin>Welcome, <br> Mr. John Doe</h1>
     <div class="container">
         <ion-card>
-          
-            <ion-icon routerLink="/rest-profile" style="align-self: center; margin-top: 10px; width: 60%; height: 60%;" name="person-sharp"></ion-icon>
-            <ion-card-title style="text-align: center; align-self: center;">Store Profile</ion-card-title>
+            <ion-icon routerLink="/rest-profile" style="align-self: center; margin-top: 10px; width: 60%; height: 60%;" name="person-sharp"></ion-icon><br>
+            <ion-text style="text-align: center; align-self: center;"> Profile</ion-text>
         </ion-card>
         <ion-card>
             <ion-icon [routerLink]="'/view-reservation/' + this.fbservice.getUid()" style="align-self: center; margin-top: 10px; width: 60%; height: 60%;" name="calendar-sharp"></ion-icon>
-            <ion-card-title style="text-align: center; align-self: center;">Reservations</ion-card-title>
+            <ion-text style="text-align: center; align-self: center;">Reservations</ion-text>
         </ion-card>
-        <ion-card >
-            <!-- <img [routerLink]="'/view-dishes/' + this.fbservice.getUid()" style="align-self: center; margin-top: 10px; color: tomato; width: 60%; height: 60%;" src="../../../assets/icon/icons8-restaurant-menu-64.png"
-            /> -->
-            <ion-icon [routerLink]="'/view-dishes/' + this.fbservice.getUid()" style="align-self: center; margin-top: 10px; width: 60%; height: 60%;" name="restaurant-sharp"></ion-icon>
-            <ion-card-title style="text-align: center; align-self: center;">Menu</ion-card-title>
+        <ion-card>
+
+            <ion-icon [routerLink]="'/view-dishes/' + this.fbservice.getUid()" style="align-self: center; margin-top: 10px; width: 60%; height: 60%;" name="restaurant-sharp"></ion-icon><br>
+            <ion-text style="text-align: center; align-self: center;">Menu</ion-text>
         </ion-card>
-        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button style="color: blue" color="grey" routerLink="/restreg">
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="primary">
+            <ion-fab-button style="color: gray" color="grey" routerLink="/restreg">
                 <ion-icon name="add">Restaurant</ion-icon>
             </ion-fab-button>
         </ion-fab>
@@ -38,3 +41,39 @@
 </ion-content>
 <!-- [routerLink]="'/adddish/' + a?.ownerId" -->
 <!-- routerLink="/view-dishes"  -->
+
+<!-- <ion-header>
+    <ion-title text-center>
+        Dashboard
+    </ion-title>
+
+</ion-header>
+
+<ion-content>
+    <div class="main" style="align-self: center;">
+        <section text-center margin-bottom style="align-self: center; display: flex; justify-content: center;">
+            <ion-icon name="person"></ion-icon>
+            <h1 style="font-size:1.4em;align-self: center; display: flex; justify-content: center;" no-margin>Welcome, <br> Mr. John Doe</h1>
+        </section>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6>
+                    <ion-card>
+
+                        <ion-icon routerLink="/rest-profile" style="align-self: center; margin-top: 10px; width: 60%; height: 60%;" name="person-sharp"></ion-icon>
+                        <ion-card-title style="text-align: center; align-self: center;">Store Profile</ion-card-title>
+                    </ion-card>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-card text-center padding color="danger" style="align-self: center; display: flex; justify-content: center;">
+                        <ion-icon style="align-self: center;" name="calendar"></ion-icon><br>
+                        <h2>Appointment</h2>
+                    </ion-card>
+                </ion-col>
+
+            </ion-row>
+
+        </ion-grid>
+    </div>
+
+</ion-content> -->
