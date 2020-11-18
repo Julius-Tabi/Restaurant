@@ -31,11 +31,11 @@
             <ion-icon [routerLink]="'/view-dishes/' + this.fbservice.getUid()" style="align-self: center; margin-top: 10px; width: 60%; height: 60%; color: #046895;" name="restaurant-sharp"></ion-icon><br>
             <ion-text style="text-align: center; align-self: center;  color: black;">Menu</ion-text>
         </ion-card>
-        <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="danger">
-            <ion-fab-button color="light" routerLink="/restreg">
-                <ion-icon name="add">Add</ion-icon>
-            </ion-fab-button>
-        </ion-fab>
+        <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="danger"> -->
+        <ion-button shape="round" slot="end" color="#46546B" style="width: 35%;  align-self: center; background-color: #46546B; border-radius: 10%;" routerLink="/restreg">
+            Add Restaurant
+        </ion-button>
+        <!-- </ion-fab> -->
     </div>
 </ion-content>
 <!-- [routerLink]="'/adddish/' + a?.ownerId" -->

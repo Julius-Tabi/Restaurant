@@ -6,60 +6,73 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <div class="ion-padding">
-        <form [formGroup]="AddDishForm" (ngSubmit)="submit()">
-            <div id="img">
-                <ion-icon style="height: 50px; width: 50px;" name="beer-sharp"></ion-icon><br>
-                <ion-icon style="height: 50px; width: 50px;" name="fast-food-sharp"></ion-icon><br>
-                <ion-icon style="height: 50px; width: 50px;" name="pizza-sharp"></ion-icon>
-                <!-- <img src="../../../assets/icon/18395208121586787144-128.png" alt="" style="width: 50%; height: 50%; color: grey;"> -->
-            </div>
-            <ion-list>
-                <ion-item class="roundedInput">
-                    <ion-label outlined position="floating">Dish Name:</ion-label>
-                    <ion-input autocapitalize inputmode="text" formControlName="name"></ion-input>
-                </ion-item>
-                <div *ngFor="let error of errorMessages.name">
-                    <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
-                        <small class="error-message">{{error.message}}</small>
-                    </ng-container>
+<ion-content class="bg-color">
+
+    <ion-card class="ion-no-margin">
+
+        <ion-card-header>
+            <ion-card-title>
+                Add a Drink
+            </ion-card-title>
+            <ion-card-subtitle>
+                Add a Drink to your Menu by filling up the form
+            </ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+            <form [formGroup]="AddDishForm" (ngSubmit)="submit()">
+                <div class="wrapform">
+                    <ion-item>
+                        <!-- <ion-label outlined position="floating">Dish Name:</ion-label> -->
+                        <ion-input autocapitalize inputmode="text" placeholder="Drink Name" formControlName="name"></ion-input>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.name">
+                        <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
+                    <ion-item>
+                        <!-- <ion-label position="floating">Dish price:</ion-label> -->
+                        <ion-input autocapitalize inputmode="text" formControlName="price" placeholder="Drink Price"></ion-input>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.price">
+                        <ng-container *ngIf="name.hasError(error.type) && (price.dirty || price.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
+                    <ion-item>
+                        <!-- <ion-label>Dish picture:</ion-label> -->
+                        <ion-input formControlName="Dishpic" id="Input" placeholder="Select Item Image" placeholder="Drink picture" onfocus="this.value=''" type="file" accept="image/*" (change)="addPic($event)" value="Click here to clear" name="picture" required [(ngModel)]="downloadurl"></ion-input>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.Dishpic">
+                        <ng-container *ngIf="Dishpic.hasError(error.type) && (Dishpic.dirty || Dishpic.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
+                    <ion-item>
+                        <!-- <ion-label position="floating">Dish details:</ion-label> -->
+                        <ion-textarea inputmode="text" formControlName="Dishdetails" placeholder="Drink details"></ion-textarea>
+                    </ion-item>
+                    <div *ngFor="let error of errorMessages.Dishdetails">
+                        <ng-container *ngIf="Dishdetails.hasError(error.type) && (Dishdetails.dirty || Dishdetails.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
+                    </div>
                 </div>
 
-                <ion-item class="roundedInput">
-                    <ion-label position="floating">Dish price:</ion-label>
-                    <ion-input autocapitalize inputmode="text" formControlName="price"></ion-input>
-                </ion-item>
-                <div *ngFor="let error of errorMessages.name">
-                    <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
-                        <small class="error-message">{{error.message}}</small>
-                    </ng-container>
-                </div>
-                <ion-item class="roundedInput">
-                    <ion-label>Dish picture:</ion-label>
-                    <ion-input formControlName="Dishpic" id="Input" placeholder="Select Item Image" onfocus="this.value=''" type="file" accept="image/*" (change)="addPic($event)" value="Click here to clear" name="picture" required [(ngModel)]="downloadurl"></ion-input>
-                </ion-item>
-                <div *ngFor="let error of errorMessages.Dishpic">
-                    <ng-container *ngIf="Dishpic.hasError(error.type) && (Dishpic.dirty || Dishpic.touched)">
-                        <small class="error-message">{{error.message}}</small>
-                    </ng-container>
-                </div>
-                <ion-item class="roundedInput">
-                    <ion-label position="floating">Dish details:</ion-label>
-                    <ion-textarea inputmode="text" formControlName="Dishdetails"></ion-textarea>
-                </ion-item>
-                <div *ngFor="let error of errorMessages.Dishdetails">
-                    <ng-container *ngIf="Dishdetails.hasError(error.type) && (Dishdetails.dirty || Dishdetails.touched)">
-                        <small class="error-message">{{error.message}}</small>
-                    </ng-container>
-                </div>
-            </ion-list>
+                <div class="sign-btn-wrap">
+                    <!-- <ion-button shape="round" [disabled]="!AddDishForm.valid " type="submit " style="width: 60%;">Add Dish
+                        <ion-icon slot="end " name="add">
+                        </ion-icon>
+                    </ion-button> -->
+                    <ion-button shape="round" [disabled]="!AddDishForm.valid " type="submit" [routerLink]="'/add-drink'" style="width: 60%;">Add Drink
+                        <ion-icon slot="end " name="create ">
+                        </ion-icon>
+                    </ion-button>
 
+                </div>
+            </form>
+        </ion-card-content>
 
-            <ion-button shape="round" [disabled]="!AddDishForm.valid " type="submit " style="width: 60%; margin-left: 20%;">Add Dish
-                <ion-icon slot="end " name="create ">
-                </ion-icon>
-            </ion-button>
-        </form>
-    </div>
+    </ion-card>
 </ion-content>
