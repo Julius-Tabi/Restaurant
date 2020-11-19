@@ -28,9 +28,9 @@
                 <!-- <p *ngIf="rev.status == 'pending'">Status: {{rev.status}}</p>
                 <p *ngIf="rev.status == 'Approved'">Status: {{rev.status}}</p>
                 <p *ngIf="rev.status == 'Declined'">Status: {{rev.status}}</p> -->
-                <p *ngIf="rev.status == 'Pending'" style="font-size: x-small; font-weight: bold;">Your booking is still {{rev.status}}</p>
-                <p *ngIf="rev.status == 'Cancelled'" style="font-size: x-small; font-weight: bold;">Your booking has been {{rev.status}}</p>
-                <p *ngIf="rev.status == 'Approved'" style="font-size: x-small; font-weight: bold;">Your booking has been {{rev.status}}</p>
+                <p *ngIf="rev.status == 'Pending'" style="font-size: x-small; font-weight: bold;">Booking status {{rev.status}}</p>
+                <p *ngIf="rev.status == 'Cancelled'" style="font-size: x-small; font-weight: bold;">>Booking status {{rev.status}}</p>
+                <p *ngIf="rev.status == 'Approved'" style="font-size: x-small; font-weight: bold;">>Booking status {{rev.status}}</p>
                 <p></p>
                 <p (click)="statuses(rev.ownerId, rev.uid, 'Pending')"></p>
                 <ion-button style="text-transform: capitalize;" (click)="statuses(rev.ownerId, rev.uid, 'Cancelled')" color="danger" size="small">
