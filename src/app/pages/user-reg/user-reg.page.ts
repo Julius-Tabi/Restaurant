@@ -142,7 +142,10 @@ export class UserRegPage implements OnInit {
                   name: this.RegForm.value.name,
                   lastname: this.RegForm.value.lastname,
                   email: this.RegForm.value.email,
-                  phone: this.RegForm.value.phone
+                  phone: this.RegForm.value.phone,
+                  usergroup: "user",
+                  userid: res.user.uid,
+                  uid: res.user.uid,
                 }).then(() => {
                   console.log(res.user);
                   this.router.navigate(['/home']);

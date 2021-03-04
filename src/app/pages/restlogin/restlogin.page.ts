@@ -59,10 +59,14 @@ export class RestloginPage implements OnInit {
     this.fbservice.signAuth();
     console.log(this.LoginForm.value);
     this.fbservice.SignInOwner(this.LoginForm.value.email, this.LoginForm.value.password).then((res) => {
+      // this.fbservice.checkExistance(this.fbservice.getUserSession());
+      this.fbservice.userSession(res.user.uid)
+      console.log("bbbbbb" + this.fbservice.getUserSession())
+      this.fbservice.checkExistance(res.user.uid);
       console.log(res.user);
     }).then(() => {
       loading.dismiss().then(() => {
-        this.router.navigateByUrl('/rest-home');
+        // this.router.navigateByUrl('/rest-home');
       });
     },
       error => {

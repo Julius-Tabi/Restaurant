@@ -1,10 +1,11 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,Inject,OnInit } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 // import {NavController, NavParams,AlertController} from '@ionic/angular'
 import{FbserviceService} from '../services/fbservice.service';
 import { AuthPage } from '../../app/pages/service/auth/auth.page'
 import { AlertController, NavController, LoadingController } from '@ionic/angular';
+import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -20,9 +21,9 @@ export class HomePage implements OnInit {
   }
   
   constructor(private formBuilder: FormBuilder, private fbservice: FbserviceService, private router: Router, public nav: NavController,
-    public loadingCtrl: LoadingController, private alertCtrl: AlertController) { }
+    public loadingCtrl: LoadingController, private alertCtrl: AlertController,@Inject(DOCUMENT) private _document: Document) { }
   ngOnInit(): void {
-
+   
   }
   get email() {
     return this.LoginForm.get('email');
@@ -78,10 +79,14 @@ export class HomePage implements OnInit {
     this.fbservice.signAuth();
     console.log(this.LoginForm.value);
     this.fbservice.SignIn(this.LoginForm.value.email, this.LoginForm.value.password).then((res) => {
+      this.fbservice.userSession(res.user.uid);
+      console.log("cccccc" + this.fbservice.getUserSession());
+      this.fbservice.checkUserExistance(res.user.uid);
+      this.fbservice.checkExistance(res.user.uid);
       console.log(res.user);
     }).then(() => {
       loading.dismiss().then(() => {
-        this.router.navigateByUrl('/user-home');
+        // this.router.navigateByUrl('/user-home');
       });
     },
       error => {
@@ -91,5 +96,32 @@ export class HomePage implements OnInit {
       }
     );
     return await loading.present();
+  }
+  
+    ionViewWillEnter(){
+      // location.reload();
+      
+    console.log("we are entering the owner page");
+      // window.stop();
+}
+  ionViewDidEnter() {
+    // console.log("ionViewDidEnter");
+// location.reload(true)
+    // this.refreshPage();
+    console.log("owner page reloaded!");
+    this.LoginForm.reset();
+    
+   
+  }
+  
+  logout() {
+    this.fbservice.logout();
+    // this.fbservice.signAuth();
+    
+  }
+  refreshPage() {
+    // this._document.defaultView.location.reload();
+    window.location.reload();
+    window.stop();
   }
 }

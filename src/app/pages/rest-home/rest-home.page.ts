@@ -43,6 +43,6 @@ export class RestHomePage implements OnInit {
     // })
   }
   Logout(){
-  
+   this.fbservice.logout();
   }
 }

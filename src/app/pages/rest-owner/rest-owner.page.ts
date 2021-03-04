@@ -78,6 +78,12 @@ export class RestOwnerPage implements OnInit {
                 return firebase.firestore().collection('Restaurant_Owner').doc(res.user.uid).set({
                   name: this.RestOwnerForm.value.name,
                   email: this.RestOwnerForm.value.email,
+                  ownerid: res.user.uid,
+                  uid: res.user.uid,
+                  usergroup: "owner"
+                
+                //   this.buserSession(ownerId),
+                //  this.fb
                   // phone: this.RestOwnerForm.value.phone
                 }).then(() => {
                   console.log(res.user);

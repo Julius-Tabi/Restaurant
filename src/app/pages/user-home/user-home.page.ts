@@ -20,4 +20,7 @@ export class UserHomePage implements OnInit {
   ngOnInit() {
   }
 
+   Logout() {
+    this.fbservice.logout();
+  }
 }

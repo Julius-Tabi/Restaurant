@@ -3,8 +3,9 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/firestore';
+import { Router, ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
-import {Router} from '@angular/router'
+import { AlertController,LoadingController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,12 @@ export class FbserviceService {
   arr = [];
   resArr = new Array()
   resProfArray = new Array()
-  UID:any;
-  constructor(private router:Router) {
+  UID: any;
+  uid: any;
+  status: boolean;
+  db = firebase.firestore();
+  ownerId: any;
+  constructor(private router:Router,public route: ActivatedRoute, public aletCtrl: AlertController,public loadiCtrl: LoadingController) {
       
    }
 signAuth(){
@@ -28,9 +33,12 @@ signAuth(){
       const uid = user.uid;
       //  this.setSession(email);
       this.setuid(uid)
-      console.log('user logged in: ', user);
+       console.log('user logged in: ', user);
+      //  console.log('the user has no Account on this side of the app')
      }else{
-       console.log('user logged out')
+       console.log('user logged out');
+       
+      //  this.router.navigateByUrl('/home');
      }
     });
   }
@@ -41,6 +49,15 @@ signAuth(){
   }
   getUid(){
     return this.UID;
+  }
+  
+  
+   userSession(ownerId) {
+    this.ownerId = ownerId;
+  }
+
+  getUserSession() {
+    return this.ownerId;
   }
   // registration 
   Signup(email,password) {
@@ -85,9 +102,9 @@ signAuth(){
     //     //   });
     //       var user = firebase.auth().currentUser;
     //       user.sendEmailVerification().then(function () {
-    //         // Email sent.
+    // //         // Email sent.
     //       }).catch(function (error) {
-    //         // An error happened.
+    // //         // An error happened.
     //       });
     //       resolve();
     //       // loading.dismiss();
@@ -159,6 +176,7 @@ signAuth(){
         console.log(user);
         if (user.emailVerified == false) {
           // this.logout();
+          console.log('you did not verify your email');
           resolve(0)
         }
         else {
@@ -168,6 +186,124 @@ signAuth(){
     })
   }
 
+  checkExistance(uid) {
+    this.db.collectionGroup("Restaurant_Owner")
+      .where("uid", "==", (uid))
+      .get()
+      .then(snap => {
+        snap.forEach(doc => {
+          if (!doc.exists) {
+            console.log("No such user in the profiles Document!");
+          
+          } 
+        if(doc.exists)
+            if (doc.data().usergroup == 'owner') {
+              console.log("Owner")
+              this.status = true;            
+              console.log("Document data:", doc.data());
+              console.log("Yeess! looks like you have a business account profile with us");
+              this.showAlertError();
+              // this.checkVerification();
+              // this.router.navigateByUrl('/rest-home');
+            } 
+              else  {
+                console.log("User")
+                this.status = false;
+              }
+          
+        });
+        if (this.status != true) {
+          console.log("User");
+          console.log("Oops! looks like you don't have a business account profile with us");
+                // this.showAlertError();
+                // this.router.navigateByUrl('/signup'); 
+        }
+        
+      }).catch((error) => {
+         console.log(error.message);
+       });
+  }
+  
+   checkUserExistance(uid) {
+     this.db.collection("Users")
+       .where("uid", "==", (uid))
+       .get()
+       .then(snap => {
+         snap.forEach(doc => {
+           if (!doc.exists) {
+             console.log("No such user in the profiles Document!");
+             this.router.navigateByUrl('/user-reg');
+           } else {
+             if (doc.data().usergroup == 'user') {
+               console.log("User")
+               this.status = true;
+               console.log("Document data:", doc.data());
+               console.log("Yeess! looks like you have a User account profile with us");
+               
+               this.showAlertErrorUser();
+              //  this.router.navigateByUrl('/user-home');
+             }
+             else {
+               console.log("Owner")
+               this.status = false;
+             if (this.status == false) {
+           console.log("Owner");
+           console.log("Oops! looks like you don't have a User account profile with us");
+          //  this.showAlertErrorUser();
+           // this.router.navigateByUrl('/signup'); 
+         }
+               // this.router.navigateByUrl('/user-reg');
+             }
+           
+           }
+         })
+        //  if (this.status != true) {
+        //    console.log("Owner");
+        //    console.log("Oops! looks like you don't have a User account profile with us");
+        //    this.showAlertErrorUser();
+        //    // this.router.navigateByUrl('/signup'); 
+        //  }
+        
+       }).catch((error) => {
+         console.log(error.message);
+       });
+  }
+  
+     async showAlertErrorUser() { 
+     
+  const alert = await this.aletCtrl.create({ 
+    // header: 'Alert!', 
+       message: 'Login Successful, Click Okay to Continue',
+      buttons: [
+        {
+          text: 'Okay',
+          handler: async () => {
+            
+           this.router.navigateByUrl('/user-home');
+      }
+        },
+      ]
+    }); 
+   await alert.present(); 
+  }
+  
+   async showAlertError() { 
+     
+  const alert = await this.aletCtrl.create({ 
+    // header: 'Alert!', 
+      message: 'Login Successful, Click Okay to Continue',
+      buttons: [
+        {
+          text: 'Okay',
+          handler: async () => {
+            
+          this.router.navigateByUrl('/rest-home');
+      }
+        },
+      ]
+    }); 
+   await alert.present(); 
+  }
   RestOwnerSignup(email,password) {
     return new Promise((resolve, reject) => {
         return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
@@ -184,7 +320,7 @@ signAuth(){
           }).catch(function (error) {
             // An error happened.
           });
-          resolve();
+          // resolve();
           // loading.dismiss();
         }).catch((error) => {
           console.log(error.message);
@@ -213,7 +349,7 @@ signAuth(){
   RestSignIn(email, password) {
     return new Promise((resolve, reject) => {
         firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-          resolve();
+          // resolve();
         }).catch((error) => {
           console.log(error.message)
       })
@@ -223,13 +359,13 @@ signAuth(){
 
   logout()
   { 
-    this.firebase.signOut().then(()=>{
-      // this.router.navigate(['./rest-home']);
-    });
-
-    //this.firebase.auth.signOut().then(()=>{
-  
-      //this.router.navigate(['/home']);
+   firebase.auth().signOut().then(function() {
+     console.log('Signed Out');
+    
+}, function(error) {
+  console.error('Sign Out Error', error);
+   });
+    this.router.navigateByUrl('/home');
   }
   CurrentUserKey;
   CurrentUserrLoggedIn() {
