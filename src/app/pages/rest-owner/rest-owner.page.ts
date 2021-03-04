@@ -87,7 +87,7 @@ export class RestOwnerPage implements OnInit {
                   // phone: this.RestOwnerForm.value.phone
                 }).then(() => {
                   console.log(res.user);
-                  this.router.navigate(['/restlogin']);
+                  this.router.navigate(['/home']);
                 }).catch(function (error) {
                   console.log(error);
                 });
